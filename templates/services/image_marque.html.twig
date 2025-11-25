@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Visuels, marketing & 3D — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
+    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
+      ← Retour aux services
+    </a>
+
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-4">
+      Identité visuelle, marketing & 3D
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-6 max-w-3xl">
+      Création ou refonte de ton identité visuelle, visuels pour les réseaux sociaux,
+      montages vidéo promotionnels et conception 3D (avatars, figurines, objets).
+      Idéal pour renforcer ton image de marque et te démarquer.
+    </p>
+
+    <div class="grid gap-6 lg:grid-cols-3 mb-10">
+
+      {# Visuels & branding #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Identité visuelle & branding</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour une image cohérente</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Création ou refonte de logo</li>
+          <li>- Charte graphique simple (couleurs, typo, usages)</li>
+          <li>- Bannières pour réseaux sociaux / YouTube</li>
+          <li>- Templates réutilisables (stories, posts…)</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+      {# Vidéos & marketing #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Vidéos & marketing digital</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour mettre en avant ton activité</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Vidéos promotionnelles courtes</li>
+          <li>- Montages pour réseaux sociaux</li>
+          <li>- Aide à la mise en place de campagnes</li>
+          <li>- Conseils stratégie de contenu marketing</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+      {# 3D #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Conception & 3D personnalisée</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour des projets uniques</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Création d’avatars ou figurines à partir de visuels</li>
+          <li>- Fichiers adaptés à l’impression 3D</li>
+          <li>- Objets ou éléments 3D personnalisés</li>
+          <li>- Accompagnement sur la préparation pour l’impression</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+{% endblock %}

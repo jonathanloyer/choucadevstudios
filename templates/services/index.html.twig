@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Services — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
+      Nos services
+    </p>
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
+      Les services ChoucaDev Studios
+    </h1>
+    <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl">
+      Studio digital polyvalent : développement web, création de contenus,
+      identité visuelle, marketing digital et solutions 3D.  
+      Clique sur un service pour voir le détail des offres.
+    </p>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      {# Développement web #}
+      <a href="{{ path('services_developpement_web') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h2 class="font-semibold mb-2 flex items-center justify-between">
+          Développement web
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
+            Détails →
+          </span>
+        </h2>
+        <p class="text-sm text-slate-300 mb-3">
+          Création de sites vitrines modernes, rapides, sécurisés et optimisés SEO.
+        </p>
+        <span class="text-xs text-slate-400 mt-auto">
+          Idéal : entreprises, artisans, associations
+        </span>
+      </a>
+
+      {# Création de contenu #}
+      <a href="{{ path('services_creation_contenu') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h2 class="font-semibold mb-2 flex items-center justify-between">
+          Création de contenu
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
+            Détails →
+          </span>
+        </h2>
+        <p class="text-sm text-slate-300 mb-3">
+          Accompagnement créateurs (YouTube, TikTok, Twitch) : vidéos, miniatures,
+          identité visuelle et stratégie.
+        </p>
+        <span class="text-xs text-slate-400 mt-auto">
+          Idéal : créateurs & indépendants
+        </span>
+      </a>
+
+      {# Visuels / marketing / 3D #}
+      <a href="{{ path('services_image_marque') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h2 class="font-semibold mb-2 flex items-center justify-between">
+          Visuels, marketing & 3D
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
+            Détails →
+          </span>
+        </h2>
+        <p class="text-sm text-slate-300 mb-3">
+          Logos, bannières, vidéos, campagnes marketing et conception 3D personnalisée.
+        </p>
+        <span class="text-xs text-slate-400 mt-auto">
+          Idéal : image de marque & promotion
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

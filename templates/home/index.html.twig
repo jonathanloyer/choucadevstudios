@@ -4,11 +4,11 @@
 
 {% block body %}
 
-{# ===============================================
+{# ========================
    HERO
-   =============================================== #}
+   ======================== #}
 <section class="relative overflow-hidden">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16 lg:py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
     <div class="grid lg:grid-cols-2 gap-10 items-center">
 
       {# Texte à gauche #}
@@ -18,24 +18,24 @@
         </p>
 
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-          Des sites vitrines pro<br>
-          pour <span class="text-cyan-400">booster ton activité</span>.
+          Des sites vitrines <span class="text-cyan-400">professionnels</span><br>
+          pour développer ton activité.
         </h1>
 
         <p class="text-slate-300 text-sm sm:text-base max-w-xl mb-8">
-          ChoucaDev Studios t’accompagne pour créer un site moderne, rapide et
-          sécurisé, optimisé pour le référencement (SEO) et pensé pour l’affichage mobile.
+          Studio spécialisé en création de sites vitrines, contenus digitaux et solutions
+          web modernes. Nous créons des expériences rapides, sécurisées, responsive et optimisées SEO.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
-          <a href="#contact"
+          <a href="{{ path('contact') }}"
              class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
             Demander un devis gratuit
           </a>
 
-          <a href="#services"
+          <a href="{{ path('services') }}"
              class="text-sm text-cyan-300 hover:text-cyan-200">
-            Voir les services ChoucaDev →
+            Découvrir les services →
           </a>
         </div>
       </div>
@@ -43,7 +43,7 @@
       {# Carte arguments à droite #}
       <div class="relative">
         <div class="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full"></div>
-        <div class="relative rounded-3xl border border-slate-700/70 bg-slate-900/80 px-6 sm:px-8 py-6 sm:py-8 shadow-xl shadow-cyan-500/10">
+        <div class="relative rounded-3xl border border-slate-700/70 bg-slate-900/80 px-8 py-8 shadow-xl shadow-cyan-500/10">
           <h2 class="text-base sm:text-lg font-semibold mb-4">
             Pourquoi choisir ChoucaDev Studios ?
           </h2>
@@ -51,15 +51,15 @@
           <ul class="space-y-3 text-sm text-slate-200">
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span>Sites 100 % <strong>responsive</strong> (mobile, tablette, PC).</span>
+              <span>Sites 100% <strong>responsive</strong> (mobile, tablette, PC).</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span>Code propre avec <strong>Symfony + Tailwind CSS</strong>.</span>
+              <span>Développement <strong>Symfony + Tailwind CSS</strong>.</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span><strong>SEO optimisé</strong> dès la création (balises, performances).</span>
+              <span><strong>SEO optimisé</strong> dès la création.</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
@@ -73,120 +73,88 @@
   </div>
 </section>
 
-{# ===============================================
-   SERVICES PRINCIPAUX
-   =============================================== #}
-<section id="services" class="py-12 sm:py-16 bg-slate-950">
+
+
+{# ========================
+   SERVICES EN APERÇU (3 blocs)
+   ======================== #}
+<section class="py-12 sm:py-16 bg-slate-950">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
     <h2 class="text-2xl sm:text-3xl font-semibold mb-2">
-      Les services ChoucaDev Studios
+      Nos domaines d’expertise
     </h2>
+
     <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-2xl">
-      Une agence digitale polyvalente pour t’accompagner sur le web :
-      création de contenus, sites vitrines, visuels, marketing, maintenance,
-      formations et 3D.
+      Découvrez les principaux services proposés par ChoucaDev Studios.  
+      Chaque domaine possède sa page dédiée avec toutes les offres.
     </p>
 
-    <div class="grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">
-      {# 1. Création de contenus #}
-      <article id="creation-contenu"
-               class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Création & monétisation de contenus</h3>
-        <p class="text-sm text-slate-300 mb-3">
-          Accompagnement pour YouTube, TikTok, Twitch : scénarisation,
-          montage vidéo, habillages graphiques et optimisation pour la
-          monétisation.
-        </p>
-        <span class="text-xs text-cyan-300 mt-auto">Idéal créateurs & indépendants</span>
-      </article>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-      {# 2. Sites web #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Développement de sites vitrines</h3>
+      {# Développement web #}
+      <a href="{{ path('services_developpement_web') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
+          Développement web
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Création de sites modernes avec Symfony : rapide, sécurisé, responsive,
-          avec un design sur mesure adapté à ton activité.
+          Création de sites vitrines modernes, rapides et sécurisés avec Symfony.
         </p>
-        <span class="text-xs text-cyan-300 mt-auto">Commerçants, artisans, associations…</span>
-      </article>
+        <span class="text-xs text-slate-400 mt-auto">Entreprises, associations, indépendants</span>
+      </a>
 
-      {# 3. Visuels & vidéos #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Visuels, bannières & vidéos</h3>
+      {# Création de contenu #}
+      <a href="{{ path('services_creation_contenu') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
+          Création de contenu
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Création de logos, bannières, miniatures, montages vidéo pour
-          les réseaux sociaux et sites web.
+          Vidéos, miniatures, branding, accompagnement créateurs.
         </p>
-        <span class="text-xs text-cyan-300 mt-auto">Image de marque cohérente</span>
-      </article>
+        <span class="text-xs text-slate-400 mt-auto">YouTube, TikTok, Twitch</span>
+      </a>
 
-      {# 4. Marketing digital #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Marketing digital & communication</h3>
+      {# Visuels / marketing / 3D #}
+      <a href="{{ path('services_image_marque') }}"
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
+          Visuels, marketing & 3D
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Référencement (SEO), publicité en ligne, gestion des réseaux sociaux,
-          stratégie de contenu pour développer ta visibilité.
+          Logos, vidéos, bannières, formations et conception 3D.
         </p>
-        <span class="text-xs text-cyan-300 mt-auto">Gagner en visibilité & clients</span>
-      </article>
+        <span class="text-xs text-slate-400 mt-auto">Identité visuelle & promotion</span>
+      </a>
 
-      {# 5. Maintenance & hébergement #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Maintenance & hébergement web</h3>
-        <p class="text-sm text-slate-300 mb-3">
-          Suivi technique, mises à jour, sauvegardes et hébergement adapté
-          pour garder ton site rapide et sécurisé.
-        </p>
-        <span class="text-xs text-cyan-300 mt-auto">Sites toujours en ligne & sécurisés</span>
-      </article>
-
-      {# 6. Formations & 3D #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col">
-        <h3 class="font-semibold mb-2">Formations & 3D personnalisée</h3>
-        <p class="text-sm text-slate-300 mb-3">
-          Tutoriels en ligne liés au numérique et conception / impression 3D :
-          avatars, figurines et objets personnalisés.
-        </p>
-        <span class="text-xs text-cyan-300 mt-auto">Ajoute une touche unique à ton projet</span>
-      </article>
     </div>
   </div>
 </section>
 
-{# ===============================================
-   SECTION CONTACT SIMPLE
-   =============================================== #}
-<section id="contact" class="py-12 sm:py-16 bg-slate-900/40">
+
+
+{# ========================
+   CONTACT
+   ======================== #}
+<section class="py-12 sm:py-16 bg-slate-900/40">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
     <h2 class="text-2xl sm:text-3xl font-semibold mb-3">
       Discutons de ton projet
     </h2>
+
     <p class="text-slate-300 text-sm sm:text-base mb-6">
-      Tu as un projet de site vitrine, de contenu numérique ou besoin d’un
-      accompagnement digital&nbsp;? Envoie-moi un message avec ton besoin et
-      je te répondrai avec une proposition sur mesure.
+      Tu as un projet de site vitrine ou un besoin digital ?  
+      Contacte-moi directement : je te réponds avec une proposition personnalisée.
     </p>
 
-    {# plus tard tu pourras connecter ce formulaire à un controller #}
-    <form class="space-y-4 max-w-xl">
-      <div>
-        <label class="block text-xs font-medium text-slate-300 mb-1">Nom / Prénom</label>
-        <input type="text" class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400">
-      </div>
-      <div>
-        <label class="block text-xs font-medium text-slate-300 mb-1">Email</label>
-        <input type="email" class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400">
-      </div>
-      <div>
-        <label class="block text-xs font-medium text-slate-300 mb-1">Projet</label>
-        <textarea rows="4" class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                  placeholder="Parle-moi de ton site vitrine, de ta chaîne ou de ton projet numérique..."></textarea>
-      </div>
-      <button type="submit"
-              class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
-        Envoyer ma demande
-      </button>
-    </form>
+    <a href="{{ path('contact') }}"
+       class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-8 py-3 text-sm shadow-lg shadow-cyan-500/30">
+      Accéder à la page contact
+    </a>
   </div>
 </section>
 

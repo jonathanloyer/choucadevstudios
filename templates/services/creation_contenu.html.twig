@@ -1,0 +1,86 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Création de contenu — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
+    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
+      ← Retour aux services
+    </a>
+
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-4">
+      Création & accompagnement de contenus
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-6 max-w-3xl">
+      Accompagnement pour YouTube, TikTok, Twitch et autres plateformes : scénarisation,
+      tournage, montage vidéo, miniatures, branding et stratégie de contenu pour faire
+      grandir ton audience et te professionnaliser.
+    </p>
+
+    <div class="grid gap-6 lg:grid-cols-3 mb-10">
+
+      {# Pack Starter #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Pack Starter</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour bien démarrer</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Analyse de ton projet et de ta niche</li>
+          <li>- Aide à la création de la chaîne / profil</li>
+          <li>- Kit graphique simple (logo, bannière…)</li>
+          <li>- Conseils sur le matériel et l’organisation</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+      {# Pack Production #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Pack Production</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour gagner du temps</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Montages vidéos réguliers (YouTube, Shorts, Reels…)</li>
+          <li>- Création de miniatures optimisées pour le clic</li>
+          <li>- Adaptation des contenus pour plusieurs formats</li>
+          <li>- Possibilité de décliner les vidéos sur plusieurs plateformes</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+      {# Pack Stratégie #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Pack Stratégie & croissance</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour structurer ton contenu</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Analyse de la concurrence et de ton positionnement</li>
+          <li>- Calendrier éditorial et formats récurrents</li>
+          <li>- Optimisation titres, descriptions, tags, playlists</li>
+          <li>- Suivi des performances et ajustements</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+          Demander un devis
+        </a>
+      </article>
+
+    </div>
+
+    <div class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300">
+      <h2 class="font-semibold mb-2 text-slate-100">Pour qui est-ce adapté ?</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Créateurs qui débutent et veulent un rendu pro dès le départ.</li>
+        <li>Créateurs déjà en place qui souhaitent déléguer une partie de la production.</li>
+        <li>Entrepreneurs qui veulent utiliser la vidéo pour leur communication.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

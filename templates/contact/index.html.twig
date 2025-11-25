@@ -1,0 +1,66 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Contact — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-900/40">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
+      Contact
+    </p>
+
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-3">
+      Discutons de ton projet
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-6">
+      Tu as un projet de site vitrine, de contenu numérique ou besoin d’un accompagnement digital ?  
+      Remplis ce formulaire et je te répondrai avec une proposition sur mesure.
+    </p>
+
+    {{ form_start(contactForm, {'attr': {'class': 'space-y-4 max-w-xl'}}) }}
+
+      {{ form_row(contactForm.name, {
+        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
+                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+        }
+      }) }}
+
+      {{ form_row(contactForm.email, {
+        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
+                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+        }
+      }) }}
+
+      {{ form_row(contactForm.subject, {
+        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
+                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+        }
+      }) }}
+
+      {{ form_row(contactForm.message, {
+        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
+                   focus:outline-none focus:ring-1 focus:ring-cyan-400',
+          rows: 5
+        }
+      }) }}
+
+      <button type="submit"
+              class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400
+                     text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
+        Envoyer ma demande
+      </button>
+
+    {{ form_end(contactForm) }}
+
+  </div>
+</section>
+{% endblock %}
