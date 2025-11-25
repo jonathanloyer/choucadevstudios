@@ -1,0 +1,82 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Connexion — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="min-h-[60vh] flex items-center justify-center px-4 py-12">
+  <div class="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl shadow-slate-900/40">
+
+    <h1 class="text-xl sm:text-2xl font-semibold mb-4 text-slate-50">
+      Se connecter
+    </h1>
+
+    {# Message d'erreur de connexion #}
+    {% if error %}
+      <div class="mb-4 rounded-lg border border-red-500/60 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+      </div>
+    {% endif %}
+
+    {# Si l'utilisateur est déjà connecté #}
+    {% if app.user %}
+      <div class="mb-4 text-sm text-slate-300">
+        Vous êtes connecté en tant que
+        <span class="font-semibold text-cyan-300">{{ app.user.userIdentifier }}</span>.
+        <a href="{{ path('app_logout') }}" class="ml-1 underline text-cyan-300 hover:text-cyan-200">
+          Se déconnecter
+        </a>
+      </div>
+    {% endif %}
+
+    <form method="post" class="space-y-4">
+      <div>
+        <label for="username" class="block text-xs font-medium text-slate-300 mb-1">
+          Adresse email
+        </label>
+        <input
+          type="email"
+          id="username"
+          name="_username"
+          value=""                     {# champ toujours vide #}
+          autocomplete="off"
+          required
+          autofocus
+          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100
+                 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"
+        >
+      </div>
+
+      <div>
+        <label for="password" class="block text-xs font-medium text-slate-300 mb-1">
+          Mot de passe
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="_password"
+          autocomplete="off"
+          required
+          class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100
+                 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"
+        >
+      </div>
+
+      {# CSRF #}
+      <input
+        type="hidden"
+        name="_csrf_token"
+        value="{{ csrf_token('authenticate') }}"
+      >
+
+      <button
+        type="submit"
+        class="mt-2 inline-flex w-full justify-center items-center rounded-full bg-cyan-500
+               px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30
+               hover:bg-cyan-400 transition"
+      >
+        Se connecter
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

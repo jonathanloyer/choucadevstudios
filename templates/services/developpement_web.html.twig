@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Développement web — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
+    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
+      ← Retour aux services
+    </a>
+
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-4">
+      Développement de sites vitrines
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-6 max-w-3xl">
+      Création de sites vitrines modernes, responsive et sécurisés, développés avec Symfony
+      et Tailwind CSS. Idéal pour présenter ton activité de manière professionnelle et
+      améliorer ta visibilité en ligne.
+    </p>
+
+    <div class="grid gap-6 lg:grid-cols-3 mb-10">
+
+      {# Offre 1 #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Site vitrine Essentiel</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour une présence simple mais pro</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- 1 à 4 pages (Accueil, Services, Contact…)</li>
+          <li>- Design adapté à ta charte (couleurs, logo)</li>
+          <li>- Formulaire de contact simple</li>
+          <li>- Site responsive (mobile / tablette / PC)</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+          Demander un devis
+        </a>
+      </article>
+
+      {# Offre 2 #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Site vitrine Pro</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour gagner en visibilité</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- 5 à 8 pages (services détaillés, équipe, FAQ…)</li>
+          <li>- Blog / actualités simple</li>
+          <li>- Optimisation SEO (balises, structure, performances)</li>
+          <li>- Intégration Google Analytics / Search Console</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+          Demander un devis
+        </a>
+      </article>
+
+      {# Offre 3 #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
+        <h2 class="font-semibold mb-1">Site vitrine Sur-mesure</h2>
+        <p class="text-xs text-slate-400 mb-3">Pour des besoins spécifiques</p>
+        <ul class="text-sm text-slate-300 space-y-1 mb-4">
+          <li>- Fonctionnalités avancées (agenda, membres, zones privées…)</li>
+          <li>- Connexions à des outils externes (API, newsletters…)</li>
+          <li>- Accompagnement sur la stratégie digitale</li>
+          <li>- Maintenance possible en option</li>
+        </ul>
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+          Demander un devis
+        </a>
+      </article>
+
+    </div>
+
+    <div class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300">
+      <h2 class="font-semibold mb-2 text-slate-100">Processus de création</h2>
+      <ol class="list-decimal list-inside space-y-1">
+        <li>Discussion sur ton projet et tes objectifs.</li>
+        <li>Proposition d’arborescence, maquette et design.</li>
+        <li>Développement du site (Symfony + Tailwind CSS).</li>
+        <li>Tests, corrections et mise en ligne.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
