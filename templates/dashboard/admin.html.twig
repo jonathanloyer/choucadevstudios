@@ -1,0 +1,225 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Admin — Tableau de bord{% endblock %}
+
+{% block body %}
+<section class="max-w-6xl mx-auto px-4 py-10">
+  <h1 class="text-2xl sm:text-3xl font-semibold mb-6">
+    Tableau de bord administration
+  </h1>
+
+  <p class="text-sm text-slate-300 mb-6">
+    Bienvenue dans l’espace d’administration de ChoucaDev Studios.
+  </p>
+
+  {# Boutons d'action #}
+  <div class="mb-8 flex flex-wrap gap-3">
+    <a href="{{ path('admin_billing_new') }}"
+       class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2
+              text-sm font-semibold text-slate-900 hover:bg-cyan-400 transition">
+      ➕ Ajouter un devis / une facture
+    </a>
+
+    <a href="{{ path('admin_maintenance_new') }}"
+       class="inline-flex items-center rounded-full border border-slate-700 px-6 py-2
+              text-sm font-semibold text-slate-200 hover:border-cyan-400 hover:text-cyan-300 transition">
+      🛠 Créer un abonnement de maintenance
+    </a>
+
+    <a href="{{ path('admin_users_index') }}"
+       class="inline-flex items-center rounded-full border border-slate-700 px-6 py-2
+              text-sm font-semibold text-slate-200 hover:border-cyan-400 hover:text-cyan-300 transition">
+      👤 Gérer les utilisateurs
+    </a>
+  </div>
+
+  {# Cartes d’accès + listes #}
+  <div class="grid gap-6 md:grid-cols-3">
+
+    {# Clients #}
+    <div id="clients"
+         class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">Clients</h2>
+      <p class="text-xs text-slate-400 mb-3">
+        Gérer les comptes clients, leurs accès et leurs projets.
+      </p>
+
+      {% if clients is not empty %}
+        <ul class="space-y-1 text-[11px] text-slate-300 max-h-40 overflow-y-auto pr-1">
+          {% for user in clients %}
+            <li>
+              • <a href="{{ path('admin_user_edit_role', { id: user.id }) }}"
+                   class="hover:text-cyan-300">
+                  {{ user.fullName ?: user.email }}
+                </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-[11px] text-slate-500">
+          Aucun client pour le moment.
+        </p>
+      {% endif %}
+    </div>
+
+    {# Sous-traitants #}
+    <div id="subcontractors"
+         class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">Sous-traitants</h2>
+      <p class="text-xs text-slate-400 mb-3">
+        Gérer les sous-traitants et leur assigner des clients.
+      </p>
+
+      {% if subcontractors is not empty %}
+        <ul class="space-y-1 text-[11px] text-slate-300 max-h-40 overflow-y-auto pr-1">
+          {% for user in subcontractors %}
+            <li>
+              • <a href="{{ path('admin_user_edit_role', { id: user.id }) }}"
+                   class="hover:text-cyan-300">
+                  {{ user.fullName ?: user.email }}
+                </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-[11px] text-slate-500">
+          Aucun sous-traitant pour le moment.
+        </p>
+      {% endif %}
+    </div>
+
+    {# Devis & factures #}
+    <div id="billing"
+         class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">Devis & factures</h2>
+      <p class="text-xs text-slate-400">
+        Déposer et suivre les devis et factures des clients.
+      </p>
+    </div>
+  </div>
+
+  {# Liste des derniers documents envoyés #}
+  <div class="mt-10 text-xs text-slate-500">
+    <h2 class="text-sm font-semibold mb-3 text-slate-100">
+      Derniers documents envoyés
+    </h2>
+
+    {% if documents is empty %}
+      <p class="text-xs text-slate-400">
+        Aucun document envoyé pour le moment.
+      </p>
+    {% else %}
+      <div class="overflow-x-auto rounded-2xl bg-slate-900/60 shadow-lg shadow-slate-950/40">
+        <table class="min-w-full text-xs text-left">
+          <thead class="border-b border-slate-800 text-slate-400">
+            <tr>
+              <th class="px-4 py-2">Date</th>
+              <th class="px-4 py-2">Client / sous-traitant</th>
+              <th class="px-4 py-2">Rôle</th>
+              <th class="px-4 py-2">Type</th>
+              <th class="px-4 py-2">Fichier</th>
+              <th class="px-4 py-2 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for doc in documents %}
+            <tr class="border-b border-slate-800/60 last:border-b-0">
+              <td class="px-4 py-2 text-slate-300">
+                {{ doc.sentAt ? doc.sentAt|date('d/m/Y H:i') : '-' }}
+              </td>
+
+              <td class="px-4 py-2 text-slate-100">
+                {{ doc.client ? doc.client.fullName ?: doc.client.email : '—' }}
+              </td>
+
+              <td class="px-4 py-2">
+                {% if doc.forSubcontractor %}
+                  <span class="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-[10px] font-medium text-purple-300">
+                    Sous-traitant
+                  </span>
+                {% else %}
+                  <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+                    Client
+                  </span>
+                {% endif %}
+              </td>
+
+              <td class="px-4 py-2 text-slate-300">
+                {{ doc.typeLabel }}
+              </td>
+
+              <td class="px-4 py-2 text-slate-400">
+                {{ doc.originalFilename }}
+              </td>
+
+              <td class="px-4 py-2 text-right">
+                <form method="post"
+                      action="{{ path('admin_billing_delete', { id: doc.id }) }}"
+                      onsubmit="return confirm('Supprimer ce document ?');">
+                  <input type="hidden" name="_token"
+                         value="{{ csrf_token('delete_billing_' ~ doc.id) }}">
+                  <button type="submit"
+                          class="inline-flex items-center rounded-full bg-red-500/90 px-4 py-1.5 text-[11px] font-semibold text-white hover:bg-red-400 transition">
+                    Supprimer
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </div>
+
+  {# Abonnements de maintenance actifs #}
+  <div class="mt-10 text-xs text-slate-500">
+    <h2 class="text-sm font-semibold mb-3 text-slate-100">
+      Abonnements de maintenance actifs
+    </h2>
+
+    {% if activeContracts is not defined or activeContracts is empty %}
+      <p class="text-xs text-slate-400">
+        Aucun abonnement actif pour le moment.
+      </p>
+    {% else %}
+      <div class="overflow-x-auto rounded-2xl bg-slate-900/60 shadow-lg shadow-slate-950/40">
+        <table class="min-w-full text-xs text-left">
+          <thead class="border-b border-slate-800 text-slate-400">
+            <tr>
+              <th class="px-4 py-2">Client</th>
+              <th class="px-4 py-2">Formule</th>
+              <th class="px-4 py-2">Prix mensuel</th>
+              <th class="px-4 py-2">Début</th>
+              <th class="px-4 py-2">Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for contract in activeContracts %}
+            <tr class="border-b border-slate-800/60 last:border-b-0">
+              <td class="px-4 py-2 text-slate-100">
+                {{ contract.client ? contract.client.fullName ?: contract.client.email : '—' }}
+              </td>
+              <td class="px-4 py-2 text-slate-300">
+                {{ contract.plan ? contract.plan.name : '' }}
+              </td>
+              <td class="px-4 py-2 text-slate-300">
+                {{ (contract.pricePerMonth / 100)|number_format(2, ',', ' ') }} € / mois
+              </td>
+              <td class="px-4 py-2 text-slate-400">
+                {{ contract.startedAt ? contract.startedAt|date('d/m/Y') : '-' }}
+              </td>
+              <td class="px-4 py-2">
+                <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+                  {{ contract.status }}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modifier le rôle — Admin{% endblock %}
+
+{% block body %}
+<section class="max-w-lg mx-auto px-4 py-10">
+  <h1 class="text-2xl font-semibold mb-6">
+    Modifier le rôle de {{ user.fullName ?: user.email }}
+  </h1>
+
+  {{ form_start(form, { attr: { class: 'space-y-4' } }) }}
+    <div>
+      {{ form_label(form.role, null, { label_attr: { class: 'text-xs font-medium text-slate-300' } }) }}
+      {{ form_widget(form.role, { attr: { class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100' } }) }}
+      {{ form_errors(form.role) }}
+    </div>
+
+    <button type="submit"
+            class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition">
+      Enregistrer
+    </button>
+  {{ form_end(form) }}
+</section>
+{% endblock %}

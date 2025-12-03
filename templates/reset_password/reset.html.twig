@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nouveau mot de passe — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="min-h-[60vh] flex items-center justify-center px-4 py-12">
+  <div class="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl shadow-slate-900/40">
+
+    <h1 class="text-xl sm:text-2xl font-semibold mb-4 text-slate-50">
+      Définir un nouveau mot de passe
+    </h1>
+
+    {% for flash_error in app.flashes('reset_password_error') %}
+      <div class="mb-4 rounded-lg border border-red-500/60 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+        {{ flash_error }}
+      </div>
+    {% endfor %}
+
+    {{ form_start(resetForm, {'attr': {'class': 'space-y-4'}}) }}
+      {{ form_row(resetForm.plainPassword) }}
+
+      <p class="mt-1 text-xs text-slate-400">
+        Votre mot de passe doit contenir <span class="font-semibold">au moins 12 caractères</span>.
+        Essayez d’utiliser une phrase de passe facile à retenir mais longue.
+      </p>
+
+      <button
+        type="submit"
+        class="mt-2 inline-flex w-full justify-center items-center rounded-full bg-cyan-500
+               px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30
+               hover:bg-cyan-400 transition"
+      >
+        Enregistrer le nouveau mot de passe
+      </button>
+    {{ form_end(resetForm) }}
+  </div>
+</section>
+{% endblock %}

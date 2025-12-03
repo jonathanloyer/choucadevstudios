@@ -4,15 +4,23 @@
 
 {% block body %}
 <section class="max-w-md mx-auto px-4 py-10">
-  <h1 class="text-2xl font-semibold mb-6">Créer un compte</h1>
+  <h1 class="text-2xl font-semibold mb-6 text-slate-50">Créer un compte</h1>
 
   {{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
     {{ form_row(registrationForm.email) }}
     {{ form_row(registrationForm.firstname) }}
     {{ form_row(registrationForm.lastname) }}
-    {{ form_row(registrationForm.plainPassword) }}
 
-    <button class="mt-4 inline-flex items-center rounded-full bg-cyan-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400">
+    {# Mot de passe (RepeatedType) #}
+    {{ form_row(registrationForm.plainPassword) }}
+    <p class="mt-1 text-xs text-slate-400">
+      Votre mot de passe doit contenir <span class="font-semibold">au moins 12 caractères</span>.
+      Utilisez de préférence une phrase de passe (ex. : <span class="italic">MonProjetChoucaDev2025!</span>).
+    </p>
+
+    <button
+      class="mt-4 inline-flex items-center rounded-full bg-cyan-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition"
+    >
       Valider mon inscription
     </button>
   {{ form_end(registrationForm) }}

@@ -1,0 +1,159 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Maintenance & hébergement — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
+    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
+      ← Retour aux services
+    </a>
+
+    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-3">
+      Hébergement &amp; maintenance de ton site
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl">
+      Suivi technique complet de ton site : mises à jour, sécurité, sauvegardes,
+      surveillance et petites évolutions. L’objectif : que ton site reste rapide,
+      sécurisé et disponible, sans que tu aies à t’en occuper.
+    </p>
+
+    {# =======================
+       OFFRES D’ABONNEMENT
+       ======================= #}
+    <div class="grid gap-6 lg:grid-cols-3 mb-12">
+
+      {# Offre 1 : Chouca Care #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40">
+        <header class="mb-4">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400 mb-1">
+            Essentiel
+          </p>
+          <h2 class="text-lg font-semibold">
+            Chouca <span class="text-cyan-400">Care</span>
+          </h2>
+          <p class="mt-3 text-sm text-slate-400">
+            Pour les sites vitrines avec un besoin de suivi technique simple et régulier.
+          </p>
+        </header>
+
+        <div class="mt-4 mb-5">
+          <p class="text-[11px] uppercase text-slate-400">À partir de</p>
+          <p class="text-2xl font-semibold text-slate-100">
+            49&nbsp;€ / mois
+            <span class="text-xs font-normal text-slate-400">HT</span>
+          </p>
+        </div>
+
+        <ul class="text-sm text-slate-300 space-y-2 mb-6">
+          <li>• Mises à jour de sécurité mensuelles (Symfony, plugins, serveur)</li>
+          <li>• Sauvegardes automatiques du site</li>
+          <li>• Surveillance basique de la disponibilité</li>
+          <li>• Correctifs en cas de bug simple</li>
+          <li>• 1 petite intervention / mois incluse (texte, image, lien…)</li>
+        </ul>
+
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+          Demander un devis maintenance Care
+        </a>
+      </article>
+
+      {# Offre 2 : Chouca Guard (mise en avant) #}
+      <article class="rounded-2xl border border-cyan-500/60 bg-slate-900/80 p-6 flex flex-col shadow-xl shadow-cyan-500/30 scale-[1.02]">
+        <header class="mb-4 flex items-start justify-between gap-3">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.18em] text-cyan-300 mb-1">
+              Croissance
+            </p>
+            <h2 class="text-lg font-semibold">
+              Chouca <span class="text-cyan-400">Guard</span>
+            </h2>
+            <p class="mt-3 text-sm text-slate-300">
+              Pour les sites plus exposés ou qui génèrent déjà du trafic régulier.
+            </p>
+          </div>
+
+          <span class="mt-1 rounded-full bg-cyan-500 px-3 py-1 text-[10px] font-semibold text-slate-950 uppercase tracking-wide whitespace-nowrap">
+            Offre la plus choisie
+          </span>
+        </header>
+
+        <div class="mt-4 mb-5">
+          <p class="text-[11px] uppercase text-slate-400">À partir de</p>
+          <p class="text-2xl font-semibold text-slate-100">
+            79&nbsp;€ / mois
+            <span class="text-xs font-normal text-slate-400">HT</span>
+          </p>
+        </div>
+
+        <ul class="text-sm text-slate-200 space-y-2 mb-6">
+          <li>• Tout Chouca Care</li>
+          <li>• Surveillance plus fréquente des performances</li>
+          <li>• Optimisations de cache et temps de chargement</li>
+          <li>• 2 interventions / mois (contenu ou petits ajustements)</li>
+          <li>• Rapport mensuel synthétique (état du site & actions menées)</li>
+        </ul>
+
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/40 shadow-xl">
+          Demander un devis maintenance Guard
+        </a>
+      </article>
+
+      {# Offre 3 : Chouca Signature (sur-mesure) #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40">
+        <header class="mb-4">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400 mb-1">
+            Sur-mesure
+          </p>
+          <h2 class="text-lg font-semibold">
+            Chouca <span class="text-cyan-400">Ops</span>
+          </h2>
+          <p class="mt-3 text-sm text-slate-300">
+            Pour les projets critiques ou e-commerce avec besoins spécifiques.
+          </p>
+        </header>
+
+        <div class="mt-4 mb-5">
+          <p class="text-[11px] uppercase text-slate-400">Tarif</p>
+          <p class="text-lg font-semibold text-slate-100">
+            Sur devis
+          </p>
+        </div>
+
+        <ul class="text-sm text-slate-300 space-y-2 mb-6">
+          <li>• Supervision renforcée (logs, erreurs, monitoring avancé)</li>
+          <li>• SLA personnalisé (délais d’intervention)</li>
+          <li>• Intégration avec d’autres outils (API, CRM, etc.)</li>
+          <li>• Accompagnement stratégique technique</li>
+          <li>• Évolutions fonctionnelles planifiées</li>
+        </ul>
+
+        <a href="{{ path('contact') }}"
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+          Discuter d’un contrat sur-mesure
+        </a>
+      </article>
+
+    </div>
+
+    <div class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300">
+      <h2 class="font-semibold mb-2 text-slate-100">Comment se passe un abonnement de maintenance&nbsp;?</h2>
+      <ol class="list-decimal list-inside space-y-1">
+        <li>Échange sur ton site, ton trafic et tes besoins.</li>
+        <li>Choix d’un plan ou définition d’un contrat sur-mesure.</li>
+        <li>Envoi d’un devis détaillé (mensuel ou annuel).</li>
+        <li>Après validation du devis, mise en place du contrat et du suivi technique.</li>
+      </ol>
+      <p class="mt-3 text-xs text-slate-400">
+        Le déclenchement de l’abonnement se fait uniquement après validation d’un devis
+        et création du contrat dans ton espace client par ChoucaDev Studios.
+      </p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

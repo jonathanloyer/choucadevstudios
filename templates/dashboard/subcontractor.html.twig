@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Espace sous-traitant — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="max-w-5xl mx-auto px-4 py-10">
+  <h1 class="text-2xl sm:text-3xl font-semibold mb-4">
+    Espace sous-traitant
+  </h1>
+
+  <p class="text-sm text-slate-300 mb-6">
+    Cet espace vous permet de voir les clients ou projets qui vous sont attribués
+    par l’administrateur.
+  </p>
+
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
+    <h2 class="text-sm font-semibold mb-2 text-slate-100">Documents reçus</h2>
+
+    {% if documents is empty %}
+      <p class="text-xs text-slate-400">
+        Aucun document n’a encore été attribué.
+      </p>
+    {% else %}
+      <ul class="text-xs text-slate-300 space-y-1">
+        {% for doc in documents %}
+          <li class="flex justify-between gap-4">
+            <span>{{ doc.typeLabel }} — {{ doc.originalFilename }}</span>
+            <span class="text-slate-500">{{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '' }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

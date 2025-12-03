@@ -1,0 +1,153 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Espace client — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="max-w-5xl mx-auto px-4 py-10">
+  <header class="mb-8">
+    <h1 class="text-2xl sm:text-3xl font-semibold mb-2">
+      Bonjour {{ app.user ? app.user.fullName ?: app.user.email : '' }}
+    </h1>
+    <p class="text-sm text-slate-300">
+      Bienvenue dans votre espace client. Retrouvez ici vos devis, factures et les informations liées à votre abonnement.
+    </p>
+  </header>
+
+  <div class="space-y-8">
+
+    {# --- Devis --- #}
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
+      <div class="flex items-center justify-between mb-4 gap-3">
+        <div>
+          <h2 class="text-sm font-semibold text-slate-100">Mes devis</h2>
+          <p class="text-xs text-slate-400">
+            Les derniers devis transmis par ChoucaDev Studios.
+          </p>
+        </div>
+      </div>
+
+      {% if quotes is empty %}
+        <p class="text-xs text-slate-400">
+          Aucun devis disponible pour le moment.
+        </p>
+      {% else %}
+        <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
+          <table class="min-w-full text-xs text-left">
+            <thead class="border-b border-slate-800 text-slate-400">
+              <tr>
+                <th class="px-4 py-2">Nom du fichier</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for doc in quotes %}
+              <tr class="border-b border-slate-800/60 last:border-b-0">
+                <td class="px-4 py-2 text-slate-100">
+                  {{ doc.originalFilename }}
+                </td>
+                <td class="px-4 py-2 text-slate-400">
+                  {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
+                </td>
+                <td class="px-4 py-2 text-right">
+                  <a href="{{ path('client_billing_download', { id: doc.id }) }}"
+                     class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
+                    Télécharger
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+
+    {# --- Factures --- #}
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
+      <div class="flex items-center justify-between mb-4 gap-3">
+        <div>
+          <h2 class="text-sm font-semibold text-slate-100">Mes factures</h2>
+          <p class="text-xs text-slate-400">
+            Historique des factures disponibles au téléchargement.
+          </p>
+        </div>
+      </div>
+
+      {% if invoices is empty %}
+        <p class="text-xs text-slate-400">
+          Aucune facture disponible pour le moment.
+        </p>
+      {% else %}
+        <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
+          <table class="min-w-full text-xs text-left">
+            <thead class="border-b border-slate-800 text-slate-400">
+              <tr>
+                <th class="px-4 py-2">Nom du fichier</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for doc in invoices %}
+              <tr class="border-b border-slate-800/60 last:border-b-0">
+                <td class="px-4 py-2 text-slate-100">
+                  {{ doc.originalFilename }}
+                </td>
+                <td class="px-4 py-2 text-slate-400">
+                  {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
+                </td>
+                <td class="px-4 py-2 text-right">
+                  <a href="{{ path('client_billing_download', { id: doc.id }) }}"
+                     class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
+                    Télécharger
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+
+    {# --- Abonnement & maintenance --- #}
+    <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">Abonnement &amp; maintenance</h2>
+
+      {% if activeContract %}
+        <p class="text-xs text-slate-300 mb-3">
+          Vous avez actuellement un abonnement
+          <span class="font-semibold text-cyan-300">
+            {{ activeContract.plan.name }}
+          </span>
+          actif depuis le {{ activeContract.startedAt|date('d/m/Y') }}.
+        </p>
+
+        <p class="text-xs text-slate-300 mb-3">
+          Tarif mensuel : 
+          <span class="font-semibold">
+            {{ (activeContract.pricePerMonth / 100)|number_format(2, ',', ' ') }}&nbsp;€
+          </span>
+        </p>
+
+        <form method="post"
+              action="{{ path('client_maintenance_cancel', { id: activeContract.id }) }}"
+              onsubmit="return confirm('Confirmer la résiliation de votre abonnement ?');">
+          <input type="hidden" name="_token"
+                 value="{{ csrf_token('cancel_maintenance_' ~ activeContract.id) }}">
+          <button type="submit"
+                  class="inline-flex items-center rounded-full bg-red-500/90 px-4 py-1.5 text-[11px] font-semibold text-white hover:bg-red-400 transition">
+            Résilier mon abonnement
+          </button>
+        </form>
+      {% else %}
+        <p class="text-xs text-slate-400">
+          Vous n’avez pas encore d’abonnement de maintenance actif.
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

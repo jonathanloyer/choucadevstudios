@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mot de passe oublié — ChoucaDev Studios{% endblock %}
+
+{% block body %}
+<section class="min-h-[60vh] flex items-center justify-center px-4 py-12">
+  <div class="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl shadow-slate-900/40">
+
+    <h1 class="text-xl sm:text-2xl font-semibold mb-2 text-slate-50">
+      Mot de passe oublié
+    </h1>
+
+    <p class="text-sm text-slate-300 mb-6">
+      Indique l’adresse email de ton compte.  
+      Si un compte existe, tu recevras un lien pour définir un nouveau mot de passe.
+    </p>
+
+    {% for flashError in app.flashes('reset_password_error') %}
+      <div class="mb-4 rounded-lg border border-red-500/60 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+        {{ flashError }}
+      </div>
+    {% endfor %}
+
+    {{ form_start(requestForm, {'attr': {'class': 'space-y-4'}}) }}
+      <div>
+        {{ form_label(requestForm.email, null, {
+          'label_attr': {'class': 'block text-xs font-medium text-slate-300 mb-1'}
+        }) }}
+        {{ form_widget(requestForm.email, {
+          'attr': {
+            'class': 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100
+                      placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400'
+          }
+        }) }}
+        {{ form_errors(requestForm.email) }}
+      </div>
+
+      <button
+        type="submit"
+        class="mt-2 inline-flex w-full justify-center items-center rounded-full bg-cyan-500
+               px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30
+               hover:bg-cyan-400 transition"
+      >
+        Envoyer le lien de réinitialisation
+      </button>
+    {{ form_end(requestForm) }}
+
+    <p class="mt-4 text-center text-xs text-slate-400">
+      <a href="{{ path('app_login') }}" class="text-cyan-300 hover:text-cyan-200">
+        Retour à la connexion
+      </a>
+    </p>
+  </div>
+</section>
+{% endblock %}
