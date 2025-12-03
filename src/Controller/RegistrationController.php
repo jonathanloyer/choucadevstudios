@@ -30,8 +30,8 @@ class RegistrationController extends AbstractController
                 $passwordHasher->hashPassword($user, $plainPassword)
             );
 
-            // rôle par défaut
-            $user->setRoles(['ROLE_USER']);
+            // ✅ rôle par défaut : client
+            $user->setRoles(['ROLE_CLIENT']);
 
             $em->persist($user);
             $em->flush();

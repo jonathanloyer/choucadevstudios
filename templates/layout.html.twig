@@ -59,15 +59,19 @@
                 </a>
               </li>
               <li>
-                <a href="{{ path('services_creation_contenu') }}" class="hover:text-cyan-300 transition">
-                  Création de contenu
-                </a>
-              </li>
-              <li>
                 <a href="{{ path('contact') }}" class="hover:text-cyan-300 transition">
                   Contact
                 </a>
               </li>
+
+              {# ➕ Lien Tableau de bord (seulement si connecté) #}
+              {% if app.user %}
+                <li>
+                  <a href="{{ path('app_dashboard_redirect') }}" class="hover:text-cyan-300 transition">
+                    Tableau de bord
+                  </a>
+                </li>
+              {% endif %}
             </ul>
           </nav>
 
@@ -131,15 +135,19 @@
               </a>
             </li>
             <li>
-              <a href="{{ path('services_creation_contenu') }}" class="block py-1 hover:text-cyan-300 transition">
-                Création de contenu
-              </a>
-            </li>
-            <li>
               <a href="{{ path('contact') }}" class="block py-1 hover:text-cyan-300 transition">
                 Contact
               </a>
             </li>
+
+            {# ➕ Lien Tableau de bord en mobile aussi (si connecté) #}
+            {% if app.user %}
+              <li>
+                <a href="{{ path('app_dashboard_redirect') }}" class="block py-1 hover:text-cyan-300 transition">
+                  Tableau de bord
+                </a>
+              </li>
+            {% endif %}
 
             <li class="mt-2 border-t border-slate-700 pt-2">
               {% if app.user %}

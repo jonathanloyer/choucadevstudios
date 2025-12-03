@@ -31,4 +31,11 @@ class ServiceController extends AbstractController
     {
         return $this->render('services/image_marque.html.twig');
     }
+
+     // 🆕 NOUVEAU SERVICE : Hébergement & maintenance
+    #[Route('/services/maintenance', name: 'services_maintenance')]
+    public function maintenance(): Response
+    {
+        return $this->render('services/maintenance.html.twig');
+    }
 }

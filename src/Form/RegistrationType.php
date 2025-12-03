@@ -75,7 +75,7 @@ class RegistrationType extends AbstractType
                         'message' => 'Veuillez renseigner un mot de passe.',
                     ]),
                     new Assert\Length([
-                        'min' => 8,
+                        'min' => 12,
                         'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
                         'max' => 4096,
                     ]),

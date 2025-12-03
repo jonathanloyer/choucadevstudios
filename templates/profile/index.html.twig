@@ -3,40 +3,56 @@
 {% block title %}Mon profil — ChoucaDev Studios{% endblock %}
 
 {% block body %}
-
-<div class="max-w-3xl mx-auto mt-10 p-6 bg-slate-900 border border-slate-800 rounded-xl shadow-lg">
-    
-    <h1 class="text-2xl font-semibold text-cyan-400 mb-6">
-        Mon profil
+<section class="max-w-3xl mx-auto px-4 py-10">
+  {# En-tête avec bonjour Prénom #}
+  <header class="mb-6">
+    <h1 class="text-2xl font-semibold text-cyan-400">
+      Bonjour {{ app.user.fullName ?: app.user.email }} 👋
     </h1>
+    <p class="mt-2 text-sm text-slate-300">
+      Voici les informations de votre compte ChoucaDev Studios.
+    </p>
+  </header>
 
-    {# Affichage des messages flash #}
-    {% for message in app.flashes('success') %}
-        <div class="mb-4 p-3 rounded bg-green-700 text-green-100 text-sm">
-            {{ message }}
-        </div>
-    {% endfor %}
+  {# Messages flash #}
+  {% for message in app.flashes('success') %}
+    <div class="mb-4 p-3 rounded bg-green-700 text-green-100 text-sm">
+      {{ message }}
+    </div>
+  {% endfor %}
 
+  <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg space-y-4">
     {{ form_start(profileForm, { attr: { class: 'space-y-4' } }) }}
 
-        <div class="space-y-2">
-            {{ form_label(profileForm.email, null, { label_attr: { class: 'text-sm text-slate-300' } }) }}
-            {{ form_widget(profileForm.email, { attr: { class: 'w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded text-slate-200' } }) }}
-            {{ form_errors(profileForm.email) }}
-        </div>
+      <div class="space-y-2">
+        {{ form_label(profileForm.email, 'Adresse email', {
+          label_attr: { class: 'text-xs font-medium text-slate-300' }
+        }) }}
+        {{ form_widget(profileForm.email, {
+          attr: {
+            class: 'w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400'
+          }
+        }) }}
+        {{ form_errors(profileForm.email) }}
+      </div>
 
-        <div class="space-y-2">
-            {{ form_label(profileForm.pseudo, null, { label_attr: { class: 'text-sm text-slate-300' } }) }}
-            {{ form_widget(profileForm.pseudo, { attr: { class: 'w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded text-slate-200' } }) }}
-            {{ form_errors(profileForm.pseudo) }}
-        </div>
+      {# Si ton ProfileType contient d’autres champs (firstname, lastname, etc.),
+         tu peux les afficher ici de la même manière que l’email. #}
 
-        <button type="submit"
-                class="mt-4 px-4 py-2 bg-cyan-500 text-slate-950 font-semibold rounded hover:bg-cyan-400 transition">
-            Mettre à jour
-        </button>
+      <button type="submit"
+              class="mt-4 px-4 py-2 bg-cyan-500 text-slate-950 text-sm font-semibold rounded-full hover:bg-cyan-400 transition">
+        Mettre à jour
+      </button>
 
     {{ form_end(profileForm) }}
-</div>
+  </div>
 
+  {# Lien vers le tableau de bord (on fera la route plus tard) #}
+  <div class="mt-6 flex justify-end">
+    <a href="{{ path('app_dashboard_redirect') }}"
+       class="text-xs sm:text-sm text-cyan-300 hover:text-cyan-200 underline">
+      Accéder à mon tableau de bord
+    </a>
+  </div>
+</section>
 {% endblock %}

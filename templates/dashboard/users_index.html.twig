@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Gestion des utilisateurs — Admin{% endblock %}
+
+{% block body %}
+<section class="max-w-5xl mx-auto px-4 py-10">
+  <h1 class="text-2xl font-semibold mb-6">Gestion des utilisateurs</h1>
+
+  {% for message in app.flashes('success') %}
+    <div class="mb-3 rounded bg-emerald-500/10 border border-emerald-500/40 px-3 py-2 text-sm text-emerald-200">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+  <div class="overflow-x-auto rounded-2xl bg-slate-900/60 border border-slate-800">
+    <table class="min-w-full text-sm text-left">
+      <thead class="border-b border-slate-800 text-slate-400">
+        <tr>
+          <th class="px-4 py-2">Nom</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Rôle</th>
+          <th class="px-4 py-2 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for user in users %}
+        <tr class="border-b border-slate-800/60 last:border-b-0">
+          <td class="px-4 py-2 text-slate-100">
+            {{ user.fullName ?: '—' }}
+          </td>
+          <td class="px-4 py-2 text-slate-300">
+            {{ user.email }}
+          </td>
+          <td class="px-4 py-2">
+            {% if user.isAdmin() %}
+              <span class="inline-flex items-center rounded-full bg-amber-500/20 px-2 py-0.5 text-[11px] font-medium text-amber-300">
+                Admin
+              </span>
+            {% elseif user.isSubcontractor() %}
+              <span class="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-[11px] font-medium text-purple-300">
+                Sous-traitant
+              </span>
+            {% elseif user.isClient() %}
+              <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
+                Client
+              </span>
+            {% else %}
+              <span class="inline-flex items-center rounded-full bg-slate-500/20 px-2 py-0.5 text-[11px] font-medium text-slate-200">
+                Utilisateur
+              </span>
+            {% endif %}
+          </td>
+          <td class="px-4 py-2 text-right">
+            <a href="{{ path('admin_user_edit_role', { id: user.id }) }}"
+               class="text-[11px] font-semibold text-cyan-400 hover:text-cyan-300">
+              Modifier le rôle
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
