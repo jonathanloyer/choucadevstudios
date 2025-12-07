@@ -1,135 +1,212 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Espace client — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + description + NOINDEX (espace client)
+   ======================== #}
+{% block title %}
+  Espace client — ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Espace client ChoucaDev Studios : consultez et téléchargez vos devis, factures
+  et suivez les informations liées à votre abonnement de maintenance de site vitrine.
+{% endblock %}
+
+{# On ne veut pas que l’espace client soit indexé #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="max-w-5xl mx-auto px-4 py-10">
+<section class="max-w-6xl mx-auto px-4 py-10">
+
+  {# Header #}
   <header class="mb-8">
+    <p class="text-[11px] uppercase tracking-[0.2em] text-cyan-400 mb-1">
+      Espace client
+    </p>
     <h1 class="text-2xl sm:text-3xl font-semibold mb-2">
       Bonjour {{ app.user ? app.user.fullName ?: app.user.email : '' }}
     </h1>
-    <p class="text-sm text-slate-300">
-      Bienvenue dans votre espace client. Retrouvez ici vos devis, factures et les informations liées à votre abonnement.
+    <p class="text-sm text-slate-300 max-w-2xl">
+      Retrouvez ici vos devis, factures et les informations liées à votre abonnement de maintenance.
     </p>
   </header>
 
   <div class="space-y-8">
 
-    {# --- Devis --- #}
-    <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
-      <div class="flex items-center justify-between mb-4 gap-3">
-        <div>
-          <h2 class="text-sm font-semibold text-slate-100">Mes devis</h2>
-          <p class="text-xs text-slate-400">
-            Les derniers devis transmis par ChoucaDev Studios.
-          </p>
+    {# --- Devis + Factures côte à côte sur grand écran --- #}
+    <div class="grid gap-6 lg:grid-cols-2">
+
+      {# --- Devis --- #}
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
+        <div class="flex items-center justify-between mb-4 gap-3">
+          <div>
+            <h2 class="text-sm font-semibold text-slate-100">Mes devis</h2>
+            <p class="text-xs text-slate-400">
+              Les derniers devis transmis par ChoucaDev Studios.
+            </p>
+          </div>
+          {% if quotes is not empty %}
+            <span class="inline-flex items-center rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-medium text-slate-300">
+              {{ quotes|length }} document{{ quotes|length > 1 ? 's' : '' }}
+            </span>
+          {% endif %}
         </div>
+
+        {% if quotes is empty %}
+          <p class="text-xs text-slate-500">
+            Aucun devis disponible pour le moment.
+          </p>
+        {% else %}
+          <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
+            <table class="min-w-full text-xs text-left">
+              <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/60">
+                <tr>
+                  <th class="px-4 py-2">Nom du fichier</th>
+                  <th class="px-4 py-2">Date</th>
+                  <th class="px-4 py-2 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for doc in quotes %}
+                <tr class="border-b border-slate-800/60 last:border-b-0">
+                  <td class="px-4 py-2 text-slate-100 truncate max-w-[220px]">
+                    {{ doc.originalFilename }}
+                  </td>
+                  <td class="px-4 py-2 text-slate-400 whitespace-nowrap">
+                    {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
+                  </td>
+                  <td class="px-4 py-2 text-right">
+                    <a href="{{ path('client_billing_download', { id: doc.id }) }}"
+                       class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
+                      Télécharger
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
       </div>
 
-      {% if quotes is empty %}
-        <p class="text-xs text-slate-400">
-          Aucun devis disponible pour le moment.
-        </p>
-      {% else %}
-        <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
-          <table class="min-w-full text-xs text-left">
-            <thead class="border-b border-slate-800 text-slate-400">
-              <tr>
-                <th class="px-4 py-2">Nom du fichier</th>
-                <th class="px-4 py-2">Date</th>
-                <th class="px-4 py-2 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for doc in quotes %}
-              <tr class="border-b border-slate-800/60 last:border-b-0">
-                <td class="px-4 py-2 text-slate-100">
-                  {{ doc.originalFilename }}
-                </td>
-                <td class="px-4 py-2 text-slate-400">
-                  {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
-                </td>
-                <td class="px-4 py-2 text-right">
-                  <a href="{{ path('client_billing_download', { id: doc.id }) }}"
-                     class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
-                    Télécharger
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+      {# --- Factures --- #}
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
+        <div class="flex items-center justify-between mb-4 gap-3">
+          <div>
+            <h2 class="text-sm font-semibold text-slate-100">Mes factures</h2>
+            <p class="text-xs text-slate-400">
+              Historique des factures disponibles au téléchargement.
+            </p>
+          </div>
+          {% if invoices is not empty %}
+            <span class="inline-flex items-center rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-medium text-slate-300">
+              {{ invoices|length }} document{{ invoices|length > 1 ? 's' : '' }}
+            </span>
+          {% endif %}
         </div>
-      {% endif %}
-    </div>
 
-    {# --- Factures --- #}
-    <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
-      <div class="flex items-center justify-between mb-4 gap-3">
-        <div>
-          <h2 class="text-sm font-semibold text-slate-100">Mes factures</h2>
-          <p class="text-xs text-slate-400">
-            Historique des factures disponibles au téléchargement.
+        {% if invoices is empty %}
+          <p class="text-xs text-slate-500">
+            Aucune facture disponible pour le moment.
           </p>
-        </div>
+        {% else %}
+          <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
+            <table class="min-w-full text-xs text-left">
+              <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/60">
+                <tr>
+                  <th class="px-4 py-2">Nom du fichier</th>
+                  <th class="px-4 py-2">Date</th>
+                  <th class="px-4 py-2 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for doc in invoices %}
+                <tr class="border-b border-slate-800/60 last:border-b-0">
+                  <td class="px-4 py-2 text-slate-100 truncate max-w-[220px]">
+                    {{ doc.originalFilename }}
+                  </td>
+                  <td class="px-4 py-2 text-slate-400 whitespace-nowrap">
+                    {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
+                  </td>
+                  <td class="px-4 py-2 text-right">
+                    <a href="{{ path('client_billing_download', { id: doc.id }) }}"
+                       class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
+                      Télécharger
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
       </div>
 
-      {% if invoices is empty %}
-        <p class="text-xs text-slate-400">
-          Aucune facture disponible pour le moment.
-        </p>
-      {% else %}
-        <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40">
-          <table class="min-w-full text-xs text-left">
-            <thead class="border-b border-slate-800 text-slate-400">
-              <tr>
-                <th class="px-4 py-2">Nom du fichier</th>
-                <th class="px-4 py-2">Date</th>
-                <th class="px-4 py-2 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for doc in invoices %}
-              <tr class="border-b border-slate-800/60 last:border-b-0">
-                <td class="px-4 py-2 text-slate-100">
-                  {{ doc.originalFilename }}
-                </td>
-                <td class="px-4 py-2 text-slate-400">
-                  {{ doc.sentAt ? doc.sentAt|date('d/m/Y') : '-' }}
-                </td>
-                <td class="px-4 py-2 text-right">
-                  <a href="{{ path('client_billing_download', { id: doc.id }) }}"
-                     class="inline-flex items-center rounded-full bg-cyan-500 px-4 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-cyan-400 transition">
-                    Télécharger
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      {% endif %}
-    </div>
+    </div> {# fin grid devis/factures #}
 
     {# --- Abonnement & maintenance --- #}
     <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg shadow-slate-950/30">
-      <h2 class="text-sm font-semibold mb-2 text-slate-100">Abonnement &amp; maintenance</h2>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <div>
+          <h2 class="text-sm font-semibold mb-1 text-slate-100">
+            Abonnement &amp; maintenance
+          </h2>
+          <p class="text-xs text-slate-400">
+            Suivi de votre contrat de maintenance technique.
+          </p>
+        </div>
 
-      {% if activeContract %}
-        <p class="text-xs text-slate-300 mb-3">
-          Vous avez actuellement un abonnement
-          <span class="font-semibold text-cyan-300">
-            {{ activeContract.plan.name }}
-          </span>
-          actif depuis le {{ activeContract.startedAt|date('d/m/Y') }}.
-        </p>
+        {% if activeContract is defined and activeContract %}
+          <div class="flex flex-col items-start sm:items-end gap-1">
+            <div class="inline-flex items-center gap-2">
+              <span class="inline-flex items-center rounded-full bg-emerald-500/15 px-3 py-0.5 text-[10px] font-medium text-emerald-200 border border-emerald-500/40">
+                {{ activeContract.plan.name }}
+              </span>
+              <span class="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/30">
+                Actif
+              </span>
+            </div>
+            <p class="text-xs text-slate-300">
+              <span class="text-slate-400">Tarif mensuel HT :</span>
+              <span class="font-semibold text-emerald-300">
+                {{ (activeContract.pricePerMonth / 100)|number_format(2, ',', ' ') }}&nbsp;€
+              </span>
+            </p>
+          </div>
+        {% endif %}
+      </div>
 
-        <p class="text-xs text-slate-300 mb-3">
-          Tarif mensuel : 
-          <span class="font-semibold">
-            {{ (activeContract.pricePerMonth / 100)|number_format(2, ',', ' ') }}&nbsp;€
-          </span>
-        </p>
+      {% if activeContract is defined and activeContract %}
+        <div class="overflow-x-auto rounded-xl border border-slate-800/70 bg-slate-950/40 mb-4">
+          <table class="min-w-full text-xs text-left">
+            <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/60">
+              <tr>
+                <th class="px-4 py-2">Formule</th>
+                <th class="px-4 py-2">Prix mensuel HT</th>
+                <th class="px-4 py-2">Début</th>
+                <th class="px-4 py-2">Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4 py-2 text-slate-100">
+                  {{ activeContract.plan.name }}
+                </td>
+                <td class="px-4 py-2 text-slate-100">
+                  {{ (activeContract.pricePerMonth / 100)|number_format(2, ',', ' ') }}&nbsp;€
+                </td>
+                <td class="px-4 py-2 text-slate-400">
+                  {{ activeContract.startedAt|date('d/m/Y') }}
+                </td>
+                <td class="px-4 py-2">
+                  <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+                    Actif
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <form method="post"
               action="{{ path('client_maintenance_cancel', { id: activeContract.id }) }}"
@@ -137,13 +214,14 @@
           <input type="hidden" name="_token"
                  value="{{ csrf_token('cancel_maintenance_' ~ activeContract.id) }}">
           <button type="submit"
-                  class="inline-flex items-center rounded-full bg-red-500/90 px-4 py-1.5 text-[11px] font-semibold text-white hover:bg-red-400 transition">
+                  class="inline-flex items-center rounded-full bg-red-500/90 px-5 py-2 text-[11px] font-semibold text-white hover:bg-red-400 transition">
             Résilier mon abonnement
           </button>
         </form>
       {% else %}
         <p class="text-xs text-slate-400">
           Vous n’avez pas encore d’abonnement de maintenance actif.
+          N’hésitez pas à nous contacter si vous souhaitez mettre en place un suivi technique.
         </p>
       {% endif %}
     </div>

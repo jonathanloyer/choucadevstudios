@@ -1,28 +1,180 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Inscription — ChoucaDev Studios{% endblock %}
+{% block title %}
+  Créer un compte client — ChoucaDev Studios, agence web à Gif-sur-Yvette
+{% endblock %}
 
 {% block body %}
-<section class="max-w-md mx-auto px-4 py-10">
-  <h1 class="text-2xl font-semibold mb-6 text-slate-50">Créer un compte</h1>
+<section class="max-w-2xl mx-auto px-4 py-10" aria-labelledby="register-title">
+  {# Fil d’Ariane simple pour le SEO interne #}
+  <nav aria-label="Fil d’ariane" class="mb-4">
+    <ol class="flex items-center gap-1 text-xs text-slate-400">
+      <li>
+        <a href="/" class="hover:text-cyan-400 transition">Accueil</a>
+      </li>
+      <li aria-hidden="true" class="px-1 text-slate-600">/</li>
+      <li class="text-slate-200 font-medium">Créer un compte</li>
+    </ol>
+  </nav>
 
-  {{ form_start(registrationForm, {'attr': {'class': 'space-y-4'}}) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.firstname) }}
-    {{ form_row(registrationForm.lastname) }}
+  <div class="bg-slate-900/70 border border-slate-800 rounded-2xl shadow-xl backdrop-blur px-6 sm:px-8 py-8">
+    <header class="mb-6">
+      <p class="text-[11px] font-semibold uppercase tracking-wide text-cyan-400">
+        Espace client ChoucaDev Studios
+      </p>
+      <h1 id="register-title" class="mt-1 text-2xl font-semibold text-slate-50">
+        Créer un compte client
+      </h1>
+      <p class="mt-2 text-sm text-slate-400">
+        Inscrivez-vous pour suivre vos projets de développement web &amp; mobile,
+        accéder à vos factures et gérer vos contrats de maintenance avec
+        <span class="font-semibold text-slate-100">ChoucaDev Studios</span>,
+        agence de développement située à Gif-sur-Yvette (91190, Île-de-France).
+      </p>
+    </header>
 
-    {# Mot de passe (RepeatedType) #}
-    {{ form_row(registrationForm.plainPassword) }}
-    <p class="mt-1 text-xs text-slate-400">
-      Votre mot de passe doit contenir <span class="font-semibold">au moins 12 caractères</span>.
-      Utilisez de préférence une phrase de passe (ex. : <span class="italic">MonProjetChoucaDev2025!</span>).
-    </p>
+    {# Message d’erreur global si formulaire soumis et invalide #}
+    {% if registrationForm.vars.submitted and not registrationForm.vars.valid %}
+      <div class="mb-6 rounded-xl border border-red-500/60 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+        <p class="font-semibold">Certaines informations sont manquantes ou incorrectes.</p>
+        <p class="mt-1">Merci de vérifier les champs mis en évidence avant de valider votre inscription.</p>
+      </div>
+    {% endif %}
 
-    <button
-      class="mt-4 inline-flex items-center rounded-full bg-cyan-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition"
-    >
-      Valider mon inscription
-    </button>
-  {{ form_end(registrationForm) }}
+    {{ form_start(registrationForm, {
+      attr: {
+        class: 'space-y-6'
+      }
+    }) }}
+
+      {# Identité & contact #}
+      <div class="space-y-4">
+        {{ form_row(registrationForm.email, {
+          row_attr:   {'class': 'space-y-1'},
+          label:      'Adresse email professionnelle',
+          label_attr: {'class': 'text-sm font-medium text-slate-100'},
+          attr: {
+            class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+            autocomplete: 'email'
+          }
+        }) }}
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          {{ form_row(registrationForm.firstname, {
+            row_attr:   {'class': 'space-y-1'},
+            label:      'Prénom',
+            label_attr: {'class': 'text-sm font-medium text-slate-100'},
+            attr: {
+              class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+              autocomplete: 'given-name'
+            }
+          }) }}
+          {{ form_row(registrationForm.lastname, {
+            row_attr:   {'class': 'space-y-1'},
+            label:      'Nom',
+            label_attr: {'class': 'text-sm font-medium text-slate-100'},
+            attr: {
+              class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+              autocomplete: 'family-name'
+            }
+          }) }}
+        </div>
+
+        {{ form_row(registrationForm.phone, {
+          row_attr:   {'class': 'space-y-1'},
+          label:      'Téléphone',
+          label_attr: {'class': 'text-sm font-medium text-slate-100'},
+          attr: {
+            class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+            autocomplete: 'tel'
+          }
+        }) }}
+      </div>
+
+      {# Coordonnées postales pour le côté “local / GEO” #}
+      <div class="space-y-4 pt-2 border-t border-slate-800">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Coordonnées postales
+        </p>
+
+        {{ form_row(registrationForm.address, {
+          row_attr:   {'class': 'space-y-1'},
+          label:      'Adresse postale',
+          label_attr: {'class': 'text-sm font-medium text-slate-100'},
+          attr: {
+            class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+            autocomplete: 'street-address'
+          }
+        }) }}
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          {{ form_row(registrationForm.postalCode, {
+            row_attr:   {'class': 'space-y-1 sm:col-span-1'},
+            label:      'Code postal',
+            label_attr: {'class': 'text-sm font-medium text-slate-100'},
+            attr: {
+              class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+              autocomplete: 'postal-code',
+              inputmode: 'numeric'
+            }
+          }) }}
+          {{ form_row(registrationForm.city, {
+            row_attr:   {'class': 'space-y-1 sm:col-span-2'},
+            label:      'Ville',
+            label_attr: {'class': 'text-sm font-medium text-slate-100'},
+            attr: {
+              class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+              autocomplete: 'address-level2'
+            }
+          }) }}
+        </div>
+      </div>
+
+      {# Mot de passe (RepeatedType) #}
+      <div class="space-y-2 pt-2 border-t border-slate-800">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Sécurité du compte
+        </p>
+
+        {{ form_row(registrationForm.plainPassword, {
+          row_attr:   {'class': 'space-y-2'},
+          label_attr: {'class': 'text-sm font-medium text-slate-100'},
+          attr: {
+            class: 'w-full rounded-xl border border-slate-700 bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500',
+            autocomplete: 'new-password'
+          }
+        }) }}
+
+        <p class="mt-1 text-xs text-slate-400">
+          Votre mot de passe doit contenir
+          <span class="font-semibold">au moins 12 caractères</span>.
+          Utilisez de préférence une phrase de passe, par exemple&nbsp;:
+          <span class="italic text-slate-300">MonProjetChoucaDev2025!</span>.
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-full bg-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition"
+        >
+          Valider mon inscription
+        </button>
+
+        <p class="text-[11px] leading-relaxed text-slate-500 sm:text-right">
+          En créant un compte, vous acceptez les conditions générales et la politique de confidentialité de
+          ChoucaDev Studios.
+        </p>
+      </div>
+
+    {{ form_end(registrationForm) }}
+
+    <footer class="mt-6 border-t border-slate-800 pt-4">
+      <p class="text-[11px] text-slate-500">
+        ChoucaDev Studios — Agence de développement web &amp; mobile basée à Gif-sur-Yvette (91190),
+        Essonne, France. Services de création de sites vitrines, e-commerce et applications sur mesure.
+      </p>
+    </footer>
+  </div>
 </section>
 {% endblock %}

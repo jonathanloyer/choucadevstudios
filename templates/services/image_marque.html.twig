@@ -1,75 +1,136 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Visuels, marketing & 3D — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + meta description
+   ======================== #}
+{% block title %}
+  Visuels, marketing & 3D — Identité visuelle professionnelle et contenus digitaux | ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Identité visuelle, branding, visuels marketing, vidéos et créations 3D personnalisées en Essonne et en Île-de-France.
+  ChoucaDev Studios t’accompagne pour créer un univers cohérent, professionnel et adapté à ta marque.
+{% endblock %}
 
 {% block body %}
-<section class="py-12 sm:py-16 bg-slate-950">
+<section class="py-12 sm:py-16 bg-slate-950" aria-labelledby="visuels-marketing-3d-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
 
-    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
-      ← Retour aux services
+    <a href="{{ path('services') }}"
+       class="text-xs text-cyan-300 hover:text-cyan-200 inline-flex items-center gap-1 mb-3">
+      <span aria-hidden="true">←</span>
+      <span>Retour aux services</span>
     </a>
 
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-4">
-      Identité visuelle, marketing & 3D
-    </h1>
+    <header class="mb-6">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-cyan-400 mb-1">
+        Services ChoucaDev Studios
+      </p>
 
-    <p class="text-slate-300 text-sm sm:text-base mb-6 max-w-3xl">
-      Création ou refonte de ton identité visuelle, visuels pour les réseaux sociaux,
-      montages vidéo promotionnels et conception 3D (avatars, figurines, objets).
-      Idéal pour renforcer ton image de marque et te démarquer.
-    </p>
+      <h1 id="visuels-marketing-3d-title"
+          class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-3">
+        Identité visuelle, marketing digital &amp; créations 3D sur-mesure
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base max-w-3xl">
+        ChoucaDev Studios t’accompagne dans la création ou la refonte de ton
+        <strong>identité visuelle</strong>, de tes <strong>visuels marketing</strong>
+        et de tes <strong>projets 3D personnalisés</strong> (avatars, figurines, objets).
+        L’objectif : construire un univers cohérent, moderne et reconnaissable sur tous tes supports :
+        site vitrine, réseaux sociaux, supports imprimés et contenus vidéo.
+      </p>
+
+      <p class="text-[11px] text-slate-500 mt-3">
+        Basé à Gif-sur-Yvette (Essonne, Île-de-France) — accompagnement possible partout en France, à distance.
+      </p>
+    </header>
 
     <div class="grid gap-6 lg:grid-cols-3 mb-10">
 
-      {# Visuels & branding #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Identité visuelle & branding</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour une image cohérente</p>
+      {# Identité visuelle & branding #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col"
+               aria-label="Service identité visuelle et branding">
+        <h2 class="font-semibold mb-1 text-slate-100">
+          Identité visuelle &amp; branding
+        </h2>
+        <p class="text-xs text-slate-400 mb-3">
+          Construire une image claire, cohérente et professionnelle.
+        </p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Création ou refonte de logo</li>
-          <li>- Charte graphique simple (couleurs, typo, usages)</li>
-          <li>- Bannières pour réseaux sociaux / YouTube</li>
-          <li>- Templates réutilisables (stories, posts…)</li>
+          <li>• Création ou refonte de logo</li>
+          <li>• Charte graphique simplifiée (couleurs, typographies, usages)</li>
+          <li>• Bannières pour réseaux sociaux, site vitrine &amp; chaîne YouTube</li>
+          <li>• Templates réutilisables (stories, posts, miniatures…)</li>
         </ul>
+        <p class="text-[11px] text-slate-500 mb-3">
+          Idéal pour lancer une nouvelle activité ou moderniser ton image de marque.
+        </p>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour l'identité visuelle">
           Demander un devis
         </a>
       </article>
 
-      {# Vidéos & marketing #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Vidéos & marketing digital</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour mettre en avant ton activité</p>
+      {# Vidéos & marketing digital #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col"
+               aria-label="Service vidéos et marketing digital">
+        <h2 class="font-semibold mb-1 text-slate-100">
+          Vidéos &amp; marketing digital
+        </h2>
+        <p class="text-xs text-slate-400 mb-3">
+          Mettre en avant ton activité avec du contenu optimisé pour le web.
+        </p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Vidéos promotionnelles courtes</li>
-          <li>- Montages pour réseaux sociaux</li>
-          <li>- Aide à la mise en place de campagnes</li>
-          <li>- Conseils stratégie de contenu marketing</li>
+          <li>• Vidéos promotionnelles courtes (présentation, offres, événements)</li>
+          <li>• Montages pour réseaux sociaux (YouTube, TikTok, Instagram, Reels)</li>
+          <li>• Visuels marketing pour campagnes sponsorisées</li>
+          <li>• Conseils sur la stratégie de contenu et les appels à l’action</li>
         </ul>
+        <p class="text-[11px] text-slate-500 mb-3">
+          Parfait pour augmenter ta visibilité et attirer de nouveaux clients.
+        </p>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour vidéos et marketing digital">
           Demander un devis
         </a>
       </article>
 
-      {# 3D #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Conception & 3D personnalisée</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour des projets uniques</p>
+      {# Conception & 3D personnalisée #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col"
+               aria-label="Service conception 3D personnalisée">
+        <h2 class="font-semibold mb-1 text-slate-100">
+          Conception &amp; 3D personnalisée
+        </h2>
+        <p class="text-xs text-slate-400 mb-3">
+          Donner vie à tes idées grâce à des créations 3D uniques.
+        </p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Création d’avatars ou figurines à partir de visuels</li>
-          <li>- Fichiers adaptés à l’impression 3D</li>
-          <li>- Objets ou éléments 3D personnalisés</li>
-          <li>- Accompagnement sur la préparation pour l’impression</li>
+          <li>• Création d’avatars ou figurines à partir de photos ou concepts</li>
+          <li>• Fichiers optimisés pour l’impression 3D (format, supports...)</li>
+          <li>• Objets 3D personnalisés (goodies, décoration, mascottes…)</li>
+          <li>• Accompagnement jusqu’à la mise en production</li>
         </ul>
+        <p class="text-[11px] text-slate-500 mb-3">
+          Idéal pour des projets créatifs, professionnels ou des cadeaux personnalisés.
+        </p>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour un projet 3D">
           Demander un devis
         </a>
       </article>
 
+    </div>
+
+    <div class="max-w-3xl text-xs sm:text-sm text-slate-400">
+      <p>
+        Chaque projet étant unique, les tarifs varient selon la complexité, le nombre de supports
+        et les droits d’utilisation.  
+        Pour obtenir une estimation précise, décris-moi ton objectif, ton univers et le type de contenu
+        que tu souhaites produire.
+      </p>
     </div>
 
   </div>

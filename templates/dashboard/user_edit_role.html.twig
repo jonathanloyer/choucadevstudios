@@ -1,24 +1,67 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Modifier le rôle — Admin{% endblock %}
+{# ========================
+   SEO : titre + meta description + NOINDEX (admin)
+   ======================== #}
+{% block title %}
+  Modifier le rôle utilisateur — Administration ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Modification du rôle d’un utilisateur dans l’administration ChoucaDev Studios :
+  client, sous-traitant ou accès administrateur. Interface sécurisée pour la gestion des comptes.
+{% endblock %}
+
+{# Page d’administration : on ne veut pas qu’elle soit indexée #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="max-w-lg mx-auto px-4 py-10">
-  <h1 class="text-2xl font-semibold mb-6">
-    Modifier le rôle de {{ user.fullName ?: user.email }}
-  </h1>
+<section class="max-w-lg mx-auto px-4 py-10" aria-labelledby="edit-role-title">
 
-  {{ form_start(form, { attr: { class: 'space-y-4' } }) }}
+  <header class="mb-6">
+    <h1 id="edit-role-title" class="text-2xl sm:text-3xl font-semibold mb-2">
+      Modifier le rôle de {{ user.fullName ?: user.email }}
+    </h1>
+    <p class="text-sm text-slate-300">
+      Change le rôle attribué à cet utilisateur : client, sous-traitant ou admin.
+      Les permissions associées seront appliquées immédiatement après validation.
+    </p>
+  </header>
+
+  {{ form_start(form, {
+    attr: {
+      class: 'space-y-4',
+      'aria-describedby': 'role-help'
+    }
+  }) }}
+
+    <p id="role-help" class="text-[11px] text-slate-500">
+      Le rôle détermine l’accès de l’utilisateur aux différentes sections du site
+      (espace client, espace sous-traitant, administration…).
+    </p>
+
     <div>
-      {{ form_label(form.role, null, { label_attr: { class: 'text-xs font-medium text-slate-300' } }) }}
-      {{ form_widget(form.role, { attr: { class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100' } }) }}
-      {{ form_errors(form.role) }}
+      {{ form_label(form.role, null, {
+        label_attr: { class: 'text-xs font-medium text-slate-300' }
+      }) }}
+
+      {{ form_widget(form.role, {
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100'
+        }
+      }) }}
+
+      <div class="text-xs text-red-300">
+        {{ form_errors(form.role) }}
+      </div>
     </div>
 
     <button type="submit"
-            class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition">
+            class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 hover:bg-cyan-400 transition"
+            aria-label="Enregistrer le nouveau rôle de l’utilisateur">
       Enregistrer
     </button>
+
   {{ form_end(form) }}
 </section>
 {% endblock %}

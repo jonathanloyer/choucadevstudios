@@ -35,17 +35,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $lastname = null;
 
-    /**
-     * @var list<string> The user roles
-     */
+    #[ORM\Column(length: 20, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^\+?[0-9 .-]{6,20}$/',
+        message: 'Veuillez entrer un numéro de téléphone valide.'
+    )]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $city = null;
+
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
+
+    /**
+     * Mot de passe en clair utilisé uniquement pour les formulaires.
+     * Non persisté en base de données.
+     */
+    #[Assert\Length(
+        min: 6,
+        minMessage: 'Le mot de passe doit contenir au moins {{ limit }} caractères.'
+    )]
+    private ?string $plainPassword = null;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: BillingDocument::class, orphanRemoval: true)]
     private Collection $billingDocuments;
@@ -55,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->billingDocuments     = new ArrayCollection();
+        $this->billingDocuments = new ArrayCollection();
         $this->maintenanceContracts = new ArrayCollection();
     }
 
@@ -97,6 +117,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): static
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): static
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): static
+    {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): static
+    {
+        $this->city = $city;
+        return $this;
+    }
+
     public function getFullName(): string
     {
         return trim(($this->firstname ?? '') . ' ' . ($this->lastname ?? ''));
@@ -109,14 +173,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        $roles   = $this->roles;
+        $roles = $this->roles;
+        // garantit au moins ROLE_USER
         $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -149,6 +212,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Getter/Setter pour le mot de passe en clair (utilisé dans les formulaires).
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): static
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
     public function __serialize(): array
     {
         $data = (array) $this;
@@ -156,14 +233,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $data;
     }
 
-    #[\Deprecated]
     public function eraseCredentials(): void
     {
+        // On efface le mot de passe en clair après utilisation
+        $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection<int, BillingDocument>
-     */
     public function getBillingDocuments(): Collection
     {
         return $this->billingDocuments;
@@ -175,6 +250,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->billingDocuments->add($billingDocument);
             $billingDocument->setClient($this);
         }
+
         return $this;
     }
 
@@ -185,12 +261,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $billingDocument->setClient(null);
             }
         }
+
         return $this;
     }
 
-    /**
-     * @return Collection<int, MaintenanceContract>
-     */
     public function getMaintenanceContracts(): Collection
     {
         return $this->maintenanceContracts;
@@ -208,16 +282,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeMaintenanceContract(MaintenanceContract $contract): static
     {
-        // On se contente de retirer de la collection côté User.
-        // Le contrat reste associé en BDD, ce qui est suffisant pour ton usage.
         $this->maintenanceContracts->removeElement($contract);
-
         return $this;
     }
 
-    /**
-     * Contrat de maintenance actuellement actif (ou null s’il n’y en a pas)
-     */
     public function getActiveMaintenanceContract(): ?MaintenanceContract
     {
         foreach ($this->maintenanceContracts as $contract) {

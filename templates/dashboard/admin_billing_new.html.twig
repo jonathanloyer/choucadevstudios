@@ -1,46 +1,109 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Ajouter un document — Admin{% endblock %}
+{# ========================
+   SEO : titre + meta + NOINDEX (page admin)
+   ======================== #}
+{% block title %}
+  Ajouter un document de facturation — Administration ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Interface d’administration ChoucaDev Studios permettant d’ajouter un document de facturation
+  (devis ou facture) et de l’associer à un client ou à un sous-traitant.
+{% endblock %}
+
+{# Pour une page d’admin, on évite l’indexation #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="max-w-xl mx-auto px-4 py-10">
-  <h1 class="text-2xl sm:text-3xl font-semibold mb-6">
-    Ajouter un devis / une facture
-  </h1>
+<section class="max-w-xl mx-auto px-4 py-10" aria-labelledby="admin-billing-title">
 
+  {# En-tête #}
+  <header class="mb-4">
+    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-1">
+      Administration — Facturation
+    </p>
+
+    <h1 id="admin-billing-title" class="text-2xl sm:text-3xl font-semibold mb-2">
+      Ajouter un devis / une facture
+    </h1>
+
+    <p class="text-sm text-slate-300">
+      Sélectionne le destinataire, choisis le type de document puis importe le fichier PDF
+      pour le rendre accessible dans l’espace client ou sous-traitant.
+    </p>
+  </header>
+
+  {# Messages de confirmation #}
   {% for message in app.flashes('success') %}
-    <div class="mb-4 rounded border border-emerald-500/60 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200">
+    <div class="mb-4 rounded border border-emerald-500/60 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200" role="status">
       {{ message }}
     </div>
   {% endfor %}
 
-  {{ form_start(form, { attr: { class: 'space-y-4' } }) }}
+  {# Formulaire d’ajout de document #}
+  {{ form_start(form, {
+    attr: {
+      class: 'space-y-4',
+      'aria-describedby': 'admin-billing-help'
+    }
+  }) }}
+
+    <p id="admin-billing-help" class="text-[11px] text-slate-500 mb-1">
+      Les documents envoyés seront visibles dans l’espace du destinataire (client ou sous-traitant).
+    </p>
 
     <div>
-      {{ form_label(form.client, null, { label_attr: { class: 'text-xs font-medium text-slate-300' } }) }}
-      {{ form_widget(form.client, { attr: { class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100' } }) }}
-      {{ form_errors(form.client) }}
+      {{ form_label(form.client, null, {
+        label_attr: { class: 'text-xs font-medium text-slate-300' }
+      }) }}
+      {{ form_widget(form.client, {
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100'
+        }
+      }) }}
+      <div class="text-xs text-red-300">
+        {{ form_errors(form.client) }}
+      </div>
     </div>
 
     <div>
-      {{ form_label(form.type, null, { label_attr: { class: 'text-xs font-medium text-slate-300' } }) }}
-      {{ form_widget(form.type, { attr: { class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100' } }) }}
-      {{ form_errors(form.type) }}
+      {{ form_label(form.type, null, {
+        label_attr: { class: 'text-xs font-medium text-slate-300' }
+      }) }}
+      {{ form_widget(form.type, {
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100'
+        }
+      }) }}
+      <div class="text-xs text-red-300">
+        {{ form_errors(form.type) }}
+      </div>
     </div>
 
     <div>
-      {{ form_label(form.file, null, { label_attr: { class: 'text-xs font-medium text-slate-300' } }) }}
-      {{ form_widget(form.file, { attr: { class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100' } }) }}
-      {{ form_errors(form.file) }}
+      {{ form_label(form.file, null, {
+        label_attr: { class: 'text-xs font-medium text-slate-300' }
+      }) }}
+      {{ form_widget(form.file, {
+        attr: {
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100'
+        }
+      }) }}
+      <div class="text-xs text-red-300">
+        {{ form_errors(form.file) }}
+      </div>
     </div>
 
     <button
       type="submit"
       class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 hover:bg-cyan-400 transition"
+      aria-label="Enregistrer ce document de facturation"
     >
       Enregistrer le document
     </button>
 
   {{ form_end(form) }}
+
 </section>
 {% endblock %}

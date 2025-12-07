@@ -1,31 +1,62 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Sites vitrines — Offres ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + meta description
+   ======================== #}
+{% block title %}
+  Création de sites vitrines sur-mesure en Île-de-France — Offres ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  ChoucaDev Studios conçoit des sites vitrines professionnels sur-mesure, modernes et optimisés SEO,
+  développés avec Symfony et Tailwind CSS, pour les entreprises, indépendants et associations en Essonne,
+  Île-de-France et partout en France.
+{% endblock %}
 
 {% block body %}
-<section class="py-12 sm:py-16 bg-slate-950">
+<section class="py-12 sm:py-16 bg-slate-950" aria-labelledby="sites-vitrines-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
 
-    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
-      ← Retour aux services
+    <a href="{{ path('services') }}"
+       class="text-xs text-cyan-300 hover:text-cyan-200 inline-flex items-center gap-1">
+      <span aria-hidden="true">←</span>
+      <span>Retour aux services</span>
     </a>
 
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-3">
-      Développement de sites vitrines
-    </h1>
+    <header class="mt-3 mb-4">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-cyan-400 mb-1">
+        Développement web &amp; sites vitrines
+      </p>
 
-    <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl">
-      Des sites vitrines modernes, rapides et sécurisés, développés avec Symfony &amp; Tailwind CSS.
-      Idéal pour présenter ton activité de manière professionnelle et renforcer ta visibilité en ligne.
-    </p>
+      <h1 id="sites-vitrines-title"
+          class="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+        Développement de sites vitrines professionnels
+      </h1>
 
-    {# =======================
-       GRILLE DES OFFRES
+      <p class="text-slate-300 text-sm sm:text-base mt-3 max-w-3xl">
+        ChoucaDev Studios conçoit des <strong>sites vitrines sur-mesure</strong>,
+        modernes, rapides et sécurisés.  
+        Ils sont développés avec <strong>Symfony</strong> (framework PHP robuste)
+        et <strong>Tailwind CSS</strong> (framework CSS moderne),
+        afin d’offrir une expérience fluide, optimisée et hautement performante
+        sur mobile, tablette et ordinateur.  
+        Idéal pour présenter ton activité de manière professionnelle et améliorer
+        ta visibilité en ligne, en Essonne, en Île-de-France ou à distance.
+      </p>
+
+      <p class="text-[11px] text-slate-500 mt-2">
+        Chaque offre ci-dessous constitue une base : le devis final est toujours adapté à ton projet.
+      </p>
+    </header>
+
+    {# ======================= 
+       GRILLE DES OFFRES 
        ======================= #}
     <div class="grid gap-6 lg:grid-cols-3 mb-12">
 
       {# Offre 1 : Chouca Starter #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40">
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40"
+               aria-label="Offre site vitrine Chouca Starter">
         <header class="mb-4">
           <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400 mb-1">
             Offre découverte
@@ -48,21 +79,22 @@
 
         <ul class="text-sm text-slate-300 space-y-2 mb-6">
           <li>• 1 à 4 pages (Accueil, Services, Contact…)</li>
-          <li>• Design adapté à ta charte (logo, couleurs, typo)</li>
+          <li>• Design adapté à ta charte graphique</li>
           <li>• Formulaire de contact simple</li>
-          <li>• Site 100&nbsp;% responsive (mobile / tablette / PC)</li>
-          <li>• Mise en ligne et configuration de base</li>
+          <li>• Site 100&nbsp;% responsive</li>
+          <li>• Mise en ligne &amp; configuration de base</li>
         </ul>
 
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg"
+           aria-label="Demander un devis pour l'offre Chouca Starter">
           Demander un devis pour Starter
         </a>
       </article>
 
       {# Offre 2 : Chouca Pro (mise en avant) #}
-      <article class="relative rounded-2xl border border-cyan-500/70 bg-slate-900/80 p-6 pt-8 flex flex-col shadow-xl shadow-cyan-500/30 scale-[1.02]">
-        {# Badge mis en avant, centré au-dessus de la carte #}
+      <article class="relative rounded-2xl border border-cyan-500/70 bg-slate-900/80 p-6 pt-8 flex flex-col shadow-xl shadow-cyan-500/30 scale-[1.02]"
+               aria-label="Offre site vitrine Chouca Pro">
         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
           <span class="inline-flex items-center justify-center rounded-full bg-cyan-500 px-4 py-1.5
                          text-[10px] font-semibold text-slate-950 uppercase tracking-wide shadow-lg shadow-cyan-500/40">
@@ -78,7 +110,8 @@
             Chouca <span class="text-cyan-400">Pro</span>
           </h2>
           <p class="mt-3 text-sm text-slate-300">
-            Pour les entreprises qui veulent un site plus complet, optimisé pour la conversion et le SEO.
+            Pour les entreprises qui veulent un site complet, optimisé pour la conversion
+            et le référencement naturel.
           </p>
         </header>
 
@@ -91,22 +124,24 @@
         </div>
 
         <ul class="text-sm text-slate-200 space-y-2 mb-6">
-          <li>• 5 à 8 pages (services détaillés, à propos, FAQ…)</li>
-          <li>• Sections sur mesure pour tes offres ou réalisations</li>
-          <li>• Blog / actualités simple pour le contenu éditorial</li>
-          <li>• Optimisations SEO de base (balises, structure, performances)</li>
-          <li>• Intégration Google Analytics &amp; Search Console</li>
+          <li>• 5 à 8 pages structurées pour ton activité</li>
+          <li>• Sections sur mesure (offres, témoignages, réalisations…)</li>
+          <li>• Blog / actualités simple</li>
+          <li>• Optimisation SEO technique</li>
+          <li>• Intégration Google Analytics & Search Console</li>
           <li>• Conseils sur le contenu et les appels à l’action</li>
         </ul>
 
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/40 shadow-xl">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/40 shadow-xl"
+           aria-label="Demander un devis pour l'offre Chouca Pro">
           Demander un devis pour Pro
         </a>
       </article>
 
-      {# Offre 3 : Chouca Signature #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40">
+      {# Offre 3 : Signature #}
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 flex flex-col shadow-lg shadow-slate-950/40"
+               aria-label="Offre site vitrine Chouca Signature">
         <header class="mb-4">
           <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400 mb-1">
             Sur-mesure
@@ -115,7 +150,8 @@
             Chouca <span class="text-cyan-400">Signature</span>
           </h2>
           <p class="mt-3 text-sm text-slate-300">
-            Pour les projets uniques : fonctionnalités avancées, parcours utilisateurs spécifiques ou intégrations sur mesure.
+            Pour les projets uniques : fonctionnalités avancées, intégrations sur mesure,
+            architecture spécifique et accompagnement stratégique complet.
           </p>
         </header>
 
@@ -127,39 +163,40 @@
         </div>
 
         <ul class="text-sm text-slate-300 space-y-2 mb-6">
-          <li>• Fonctionnalités avancées (agenda, espace membres, zones privées…)</li>
-          <li>• Connexions à des outils externes (API, newsletters, CRM…)</li>
-          <li>• Parcours utilisateurs pensés pour tes objectifs</li>
-          <li>• Design totalement personnalisé</li>
-          <li>• Accompagnement stratégique sur ton écosystème digital</li>
-          <li>• Possibilité de maintenance et évolutions sur la durée</li>
+          <li>• Fonctionnalités avancées (agenda, espace clients, zones privées…)</li>
+          <li>• Intégrations tierces (API, CRM, newsletters…)</li>
+          <li>• Parcours utilisateurs personnalisés</li>
+          <li>• Design totalement sur-mesure</li>
+          <li>• Conseils stratégiques pour optimiser ton écosystème digital</li>
+          <li>• Maintenance & évolutions possibles sur la durée</li>
         </ul>
 
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-cyan-500/30 shadow-lg"
+           aria-label="Discuter d’un projet Chouca Signature">
           Discuter d’un projet Signature
         </a>
       </article>
 
     </div>
 
-    {# =======================
-       PROCESSUS
-       ======================= #}
-    <div class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300">
-      <h2 class="font-semibold mb-2 text-slate-100">
-        Comment se passe un projet avec ChoucaDev Studios&nbsp;?
+    {# PROCESSUS #}
+    <section class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300"
+             aria-labelledby="process-title">
+      <h2 id="process-title" class="font-semibold mb-2 text-slate-100">
+        Comment se déroule un projet avec ChoucaDev Studios&nbsp;?
       </h2>
       <ol class="list-decimal list-inside space-y-1">
-        <li>Échange sur ton activité, tes objectifs et ton budget.</li>
-        <li>Proposition d’arborescence, de structure et d’ambiance graphique.</li>
+        <li>Échange sur ton activité, ta cible et tes objectifs.</li>
+        <li>Proposition d’arborescence et d’ambiance graphique.</li>
         <li>Développement du site (Symfony + Tailwind CSS) et intégration de ton contenu.</li>
-        <li>Tests, ajustements, mise en ligne et accompagnement à la prise en main.</li>
+        <li>Tests, corrections, mise en ligne et prise en main.</li>
       </ol>
       <p class="mt-3 text-xs text-slate-400">
-        Chaque projet est ajusté à tes besoins : les tarifs indiqués sont des bases, le devis final est toujours personnalisé.
+        Tous les projets incluent un suivi minimum à la mise en ligne et des conseils
+        pour exploiter ton site efficacement.
       </p>
-    </div>
+    </section>
 
   </div>
 </section>
