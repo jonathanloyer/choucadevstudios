@@ -1,0 +1,129 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Cookies — ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Informations sur l’utilisation des cookies par le site ChoucaDev Studios :
+  cookies techniques nécessaires au fonctionnement du site et évolutions possibles
+  en matière de mesure d’audience.
+{% endblock %}
+
+{% block body %}
+<section class="bg-slate-950 text-slate-100" aria-labelledby="cookies-title">
+
+  {# HERO #}
+  <div class="border-b border-slate-800 bg-slate-900/90">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+
+      <nav class="mb-4 text-xs sm:text-[13px] text-slate-400 flex items-center gap-2" aria-label="Fil d'Ariane">
+        <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">Accueil</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-slate-300">Cookies</span>
+      </nav>
+
+      <h1 id="cookies-title" class="text-3xl sm:text-4xl font-semibold tracking-tight mb-3">
+        Cookies.
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl">
+        Cette page présente les types de cookies utilisés par le site
+        <span class="text-slate-100 font-medium">ChoucaDev Studios</span>
+        ainsi que vos options de gestion et d’information.
+      </p>
+
+    </div>
+  </div>
+
+  {# CONTENU #}
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12">
+
+    <article
+      class="bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl shadow-black/40
+             px-5 sm:px-8 py-6 sm:py-8 space-y-10 text-sm sm:text-[15px] leading-relaxed">
+
+      {# Article 1 #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 1
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Qu’est-ce qu’un cookie&nbsp;?</h2>
+
+        <p>
+          Un cookie est un petit fichier texte enregistré sur votre terminal (ordinateur, tablette,
+          smartphone) lorsque vous consultez un site web. Il permet notamment au site de reconnaître
+          votre appareil ou de mémoriser certaines préférences.
+        </p>
+      </section>
+
+      {# Article 2 #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 2
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Cookies utilisés sur ce site</h2>
+
+        <p>
+          À ce jour, le site <strong>ChoucaDev Studios</strong> utilise exclusivement&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>
+            <strong>Des cookies strictement nécessaires au fonctionnement du site</strong><br>
+            (gestion de session, sécurité, affichage des messages de validation ou d’erreur).
+            Ces cookies ne nécessitent aucun consentement particulier.
+          </li>
+        </ul>
+
+        <p>
+          Aucun cookie publicitaire ni de suivi marketing n’est utilisé actuellement.
+          Si des outils de mesure d’audience venaient à être intégrés
+          (ex. : Google Analytics, pixels réseaux sociaux, etc.),
+          cette page serait immédiatement mise à jour
+          et un bandeau de consentement conforme vous serait proposé.
+        </p>
+      </section>
+
+      {# Article 3 #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 3
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Gestion de vos préférences</h2>
+
+        <p>
+          Vous pouvez à tout moment configurer votre navigateur afin de&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>accepter ou refuser l’ensemble des cookies&nbsp;;</li>
+          <li>être informé lors du dépôt d’un cookie&nbsp;;</li>
+          <li>supprimer périodiquement les cookies enregistrés.</li>
+        </ul>
+
+        <p>
+          Le paramétrage s’effectue directement dans les options de votre navigateur
+          (Chrome, Firefox, Edge, Safari…).
+        </p>
+      </section>
+
+      {# Article 4 #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 4
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Évolutions futures</h2>
+
+        <p>
+          Si l’utilisation du site venait à inclure de nouveaux cookies
+          (analyse statistique, intégration vidéo, outils tiers, etc.),
+          une information claire et une demande de consentement vous seraient présentées
+          lors de votre visite.
+        </p>
+
+      </section>
+
+    </article>
+
+  </div>
+</section>
+{% endblock %}
