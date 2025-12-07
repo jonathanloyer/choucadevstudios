@@ -15,7 +15,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact')]
@@ -29,6 +28,48 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
+        /**
+         * 💡 Pré-remplissage du sujet si on arrive depuis un bouton
+         * "Demander un devis" avec un paramètre ?offer=...
+         * (uniquement si le formulaire n’a pas encore été soumis)
+         */
+        if (!$form->isSubmitted()) {
+            $offer = $request->query->get('offer');
+
+            if ($offer) {
+                $subject = match ($offer) {
+                    // 🌐 Sites vitrines
+                    'site-vitrine-starter'   => 'Demande de devis — Site vitrine Chouca Starter',
+                    'site-vitrine-pro'       => 'Demande de devis — Site vitrine Chouca Pro',
+                    'site-vitrine-signature' => 'Demande de devis — Site vitrine Chouca Signature',
+
+                    // 📹 Création de contenu (packs)
+                    'contenu-starter'        => 'Demande d’accompagnement — Pack Starter (création de contenu)',
+                    'contenu-production'     => 'Demande d’accompagnement — Pack Production (création de contenu)',
+                    'contenu-strategie'      => 'Demande d’accompagnement — Pack Stratégie & croissance (création de contenu)',
+
+                    // 🎨 Visuels / image de marque / 3D
+                    'visuels-identite'       => 'Demande de devis — Identité visuelle & branding',
+                    'visuels-marketing-video'=> 'Demande de devis — Vidéos & marketing digital',
+                    'visuels-3d'             => 'Demande de devis — Conception & 3D personnalisée',
+
+                    // 🛠 Maintenance
+                    'maintenance-care'       => 'Demande d’abonnement — Maintenance Chouca Care',
+                    'maintenance-guard'      => 'Demande d’abonnement — Maintenance Chouca Guard',
+                    'maintenance-ops'        => 'Demande d’abonnement — Maintenance Chouca Ops',
+
+                    // Valeur par défaut si on ne reconnaît pas l’offre
+                    default                  => 'Demande de devis depuis le site ChoucaDev Studios',
+                };
+
+                // On met à jour l’entité + le champ du formulaire
+                $contact->setSubject($subject);
+                if ($form->has('subject')) {
+                    $form->get('subject')->setData($subject);
+                }
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             // 1️⃣ Sauvegarde en base
@@ -41,7 +82,12 @@ class ContactController extends AbstractController
                 ->from('contact@choucadev-studios.fr')
                 ->to('contact@choucadev-studios.fr')
                 ->subject('Nouvelle demande de contact')
-                ->text("Nom : {$contact->getName()}\nEmail : {$contact->getEmail()}\nSujet : {$contact->getSubject()}\n\nMessage :\n{$contact->getMessage()}");
+                ->text(
+                    "Nom : {$contact->getName()}\n" .
+                    "Email : {$contact->getEmail()}\n" .
+                    "Sujet : {$contact->getSubject()}\n\n" .
+                    "Message :\n{$contact->getMessage()}"
+                );
 
             $mailer->send($email);
 
@@ -93,15 +139,12 @@ class ContactController extends AbstractController
 
             $this->addFlash('success', 'Le document a bien été enregistré pour le client.');
 
-            // plus tard : ici on pourra envoyer le mail au client
-            // ...
-
             return $this->redirectToRoute('admin_dashboard');
         }
 
         return $this->render('dashboard/admin_billing_new.html.twig', [
             'page_title' => 'Ajouter un devis / une facture',
-            'form' => $form->createView(),
+            'form'       => $form->createView(),
         ]);
     }
 }

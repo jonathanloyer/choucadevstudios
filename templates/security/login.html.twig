@@ -1,18 +1,29 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Connexion — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + description + NOINDEX
+   ======================== #}
+{% block title %}Connexion à votre espace — ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Page de connexion sécurisée à votre espace ChoucaDev Studios (client, sous-traitant ou administrateur).
+{% endblock %}
+
+{# Page sensible : on évite l’indexation #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="min-h-[60vh] flex items-center justify-center px-4 py-12">
+<section class="min-h-[60vh] flex items-center justify-center px-4 py-12" aria-labelledby="login-title">
   <div class="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl shadow-slate-900/40">
 
-    <h1 class="text-xl sm:text-2xl font-semibold mb-4 text-slate-50">
+    <h1 id="login-title" class="text-xl sm:text-2xl font-semibold mb-4 text-slate-50">
       Se connecter
     </h1>
 
     {# Message d'erreur de connexion #}
     {% if error %}
-      <div class="mb-4 rounded-lg border border-red-500/60 bg-red-500/10 px-3 py-2 text-sm text-red-200">
+      <div class="mb-4 rounded-lg border border-red-500/60 bg-red-500/10 px-3 py-2 text-sm text-red-200"
+           role="alert" aria-live="polite">
         {{ error.messageKey|trans(error.messageData, 'security') }}
       </div>
     {% endif %}
@@ -28,7 +39,11 @@
       </div>
     {% endif %}
 
-    <form method="post" class="space-y-4">
+    <form method="post" class="space-y-4" aria-describedby="login-help">
+      <p id="login-help" class="sr-only">
+        Formulaire de connexion à votre espace client, sous-traitant ou administrateur ChoucaDev Studios.
+      </p>
+
       <div>
         <label for="username" class="block text-xs font-medium text-slate-300 mb-1">
           Adresse email
@@ -37,8 +52,8 @@
           type="email"
           id="username"
           name="_username"
-          value=""
-          autocomplete="off"
+          value="{{ last_username|default('') }}"
+          autocomplete="email"
           required
           autofocus
           class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100
@@ -54,7 +69,7 @@
           type="password"
           id="password"
           name="_password"
-          autocomplete="off"
+          autocomplete="current-password"
           required
           class="w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100
                  placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"

@@ -1,0 +1,93 @@
+{% extends 'layout.html.twig' %}
+
+{# ========================
+   SEO : NOINDEX (admin)
+   ======================== #}
+{% block title %}Demandes de contact — Administration ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Liste interne des demandes de contact et de devis envoyées depuis le formulaire du site
+  ChoucaDev Studios : sites vitrines, maintenance, contenus, identité visuelle, etc.
+{% endblock %}
+
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block body %}
+<section class="max-w-5xl mx-auto px-4 py-10" aria-labelledby="admin-contacts-title">
+
+  <header class="mb-6">
+    <a href="{{ path('admin_dashboard') }}"
+       class="mb-2 inline-flex items-center text-xs text-slate-400 hover:text-cyan-300">
+      ← Retour au tableau de bord
+    </a>
+
+    <h1 id="admin-contacts-title" class="text-2xl sm:text-3xl font-semibold mb-2">
+      Demandes de contact &amp; devis
+    </h1>
+    <p class="text-sm text-slate-300 max-w-2xl">
+      Historique des messages envoyés via le formulaire de contact : demandes de devis
+      pour les offres ChoucaDev Studios, questions générales et demandes d’accompagnement.
+    </p>
+  </header>
+
+  <div class="overflow-x-auto rounded-2xl bg-slate-900/60 border border-slate-800">
+    <table class="min-w-full text-sm text-left" aria-describedby="contacts-table-help">
+      <caption id="contacts-table-help" class="sr-only">
+        Tableau listant les demandes de contact avec la date, le nom, l’email, le sujet et un aperçu du message.
+      </caption>
+
+      <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/60">
+        <tr>
+          <th scope="col" class="px-4 py-2">Date</th>
+          <th scope="col" class="px-4 py-2">Nom</th>
+          <th scope="col" class="px-4 py-2">Email</th>
+          <th scope="col" class="px-4 py-2">Sujet</th>
+          <th scope="col" class="px-4 py-2">Message</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {% if contacts is empty %}
+        <tr>
+          <td colspan="5" class="px-4 py-4 text-xs text-slate-400 text-center">
+            Aucune demande de contact enregistrée pour le moment.
+          </td>
+        </tr>
+      {% else %}
+        {% for contact in contacts %}
+          <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/60 transition">
+            <td class="px-4 py-2 text-xs text-slate-400 whitespace-nowrap">
+              {{ contact.createdAt ? contact.createdAt|date('d/m/Y H:i') : '—' }}
+            </td>
+
+            <td class="px-4 py-2 text-slate-100 text-sm">
+              {{ contact.name ?: '—' }}
+            </td>
+
+            <td class="px-4 py-2 text-slate-300 text-sm">
+              {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="hover:text-cyan-300">
+                  {{ contact.email }}
+                </a>
+              {% else %}
+                —
+              {% endif %}
+            </td>
+
+            <td class="px-4 py-2 text-slate-200 text-sm">
+              {{ contact.subject ?: '—' }}
+            </td>
+
+            <td class="px-4 py-2 text-xs text-slate-300 max-w-xs">
+              <div class="line-clamp-3">
+                {{ contact.message }}
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
