@@ -1,92 +1,105 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Services — ChoucaDev Studios{% endblock %}
+{% block title %}
+  Services web & digitaux — ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Découvrez les services proposés par ChoucaDev Studios : création de sites vitrines,
+  développement web Symfony, création de contenu pour créateurs, identité visuelle,
+  marketing digital, projets 3D et maintenance technique, depuis l’Essonne (Île-de-France).
+{% endblock %}
 
 {% block body %}
 <section class="py-12 sm:py-16 bg-slate-950">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+
     <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
       Nos services
     </p>
 
     <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
-      Les services ChoucaDev Studios
+      Services web &amp; digitaux ChoucaDev Studios
     </h1>
 
+    <h2 class="text-lg font-semibold text-slate-200 mb-4">
+      Liste des services professionnels proposés
+    </h2>
+
     <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl">
-      Studio digital polyvalent : développement web, création de contenus,
-      identité visuelle, marketing digital et solutions 3D.<br>
-      Clique sur un service pour voir le détail des offres.
+      ChoucaDev Studios vous accompagne dans la création et le développement de votre présence en ligne :
+      <strong>sites vitrines professionnels</strong>, contenus digitaux, identité visuelle, marketing
+      et suivi technique. <br class="hidden sm:block">
+      Cliquez sur un service pour découvrir le détail complet et les offres personnalisables.
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
       {# Développement web #}
       <a href="{{ path('services_developpement_web') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Détail du service de développement web">
         <h2 class="font-semibold mb-2 flex items-center justify-between">
           Développement web
-          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
-            Détails →
-          </span>
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
         </h2>
         <p class="text-sm text-slate-300 mb-3">
-          Création de sites vitrines modernes, rapides, sécurisés et optimisés SEO.
+          Création de <strong>sites vitrines modernes</strong>, rapides, sécurisés et optimisés SEO,
+          développés avec Symfony &amp; Tailwind CSS.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
-          Idéal : entreprises, artisans, associations
+          Idéal : entreprises, artisans, associations, professions libérales
         </span>
       </a>
 
       {# Création de contenu #}
       <a href="{{ path('services_creation_contenu') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Détail du service de création de contenu">
         <h2 class="font-semibold mb-2 flex items-center justify-between">
           Création de contenu
-          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
-            Détails →
-          </span>
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
         </h2>
         <p class="text-sm text-slate-300 mb-3">
-          Accompagnement créateurs (YouTube, TikTok, Twitch) : vidéos, miniatures,
-          identité visuelle et stratégie.
+          Accompagnement des créateurs et indépendants : vidéos, miniatures, visuels,
+          textes optimisés web et stratégie de contenu pour YouTube, TikTok, Twitch et les réseaux sociaux.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
-          Idéal : créateurs & indépendants
+          Idéal : créateurs de contenu &amp; indépendants
         </span>
       </a>
 
       {# Visuels / marketing / 3D #}
       <a href="{{ path('services_image_marque') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Détail du service visuels, marketing et 3D">
         <h2 class="font-semibold mb-2 flex items-center justify-between">
-          Visuels, marketing & 3D
-          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
-            Détails →
-          </span>
+          Visuels, marketing &amp; 3D
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
         </h2>
         <p class="text-sm text-slate-300 mb-3">
-          Logos, bannières, vidéos, campagnes marketing et conception 3D personnalisée.
+          Création de <strong>logos</strong>, chartes graphiques, visuels publicitaires,
+          montages vidéo et concepts 3D pour valoriser votre image sur tous vos supports digitaux.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
-          Idéal : image de marque & promotion
+          Idéal : identité visuelle &amp; campagnes marketing
         </span>
       </a>
 
-      {# 🆕 Hébergement & maintenance #}
+      {# Hébergement & maintenance #}
       <a href="{{ path('services_maintenance') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Détail du service d’hébergement et maintenance">
         <h2 class="font-semibold mb-2 flex items-center justify-between">
           Hébergement &amp; maintenance
-          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">
-            Détails →
-          </span>
+          <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
         </h2>
         <p class="text-sm text-slate-300 mb-3">
-          Suivi technique du site, mises à jour, sécurité, sauvegardes et accompagnement continu.
+          Suivi technique complet : mises à jour, sécurité, sauvegardes, corrections de bugs,
+          surveillance continue et accompagnement régulier.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
-          Idéal : entreprises qui veulent un site maintenu & sécurisé
+          Idéal : structures souhaitant un site sécurisé et maintenu sur la durée
         </span>
       </a>
 

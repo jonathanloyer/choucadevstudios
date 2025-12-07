@@ -1,35 +1,50 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}ChoucaDev Studios — Studio digital & web{% endblock %}
+{# ========================
+   SEO : titre + meta description
+   ======================== #}
+{% block title %}
+  ChoucaDev Studios — Création de sites vitrines professionnels à Gif-sur-Yvette (Essonne, Île-de-France)
+{% endblock %}
+
+{% block meta_description %}
+  ChoucaDev Studios, studio web basé à Gif-sur-Yvette en Essonne, conçoit des sites vitrines professionnels,
+  modernes et optimisés SEO pour les entreprises, indépendants et associations en Île-de-France et partout en France.
+{% endblock %}
 
 {% block body %}
 
 {# ========================
    HERO
    ======================== #}
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden" aria-labelledby="hero-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
     <div class="grid lg:grid-cols-2 gap-10 items-center">
 
       {# Texte à gauche #}
       <div>
         <p class="text-sm font-semibold text-cyan-400 mb-3">
-          Studio digital & web — Île-de-France
+          Studio digital &amp; web en Île-de-France
         </p>
 
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-          Des sites vitrines <span class="text-cyan-400">professionnels</span><br>
-          pour développer ton activité.
+        <h1 id="hero-title"
+            class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+          Création de <span class="text-cyan-400">sites vitrines professionnels</span><br>
+          pour développer votre activité.
         </h1>
 
         <p class="text-slate-300 text-sm sm:text-base max-w-xl mb-8">
-          Studio spécialisé en création de sites vitrines, contenus digitaux et solutions
-          web modernes. Nous créons des expériences rapides, sécurisées, responsive et optimisées SEO.
+          ChoucaDev Studios est un studio spécialisé dans la conception de
+          <strong>sites vitrines modernes, rapides et sécurisés</strong>, destinés aux entreprises,
+          indépendants et associations en Essonne et en Île-de-France.
+          Chaque site est conçu pour être <strong>performant</strong>, <strong>responsive</strong>
+          et <strong>optimisé SEO</strong> afin d’améliorer votre visibilité en ligne.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
           <a href="{{ path('contact') }}"
-             class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
+             class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30"
+             aria-label="Demander un devis gratuit pour la création d’un site vitrine">
             Demander un devis gratuit
           </a>
 
@@ -38,11 +53,15 @@
             Découvrir les services →
           </a>
         </div>
+
+        <p class="mt-4 text-[11px] text-slate-400">
+          Basé en Essonne (91), à proximité de Paris — prestation possible dans toute la France.
+        </p>
       </div>
 
       {# Carte arguments à droite #}
       <div class="relative">
-        <div class="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full"></div>
+        <div class="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full" aria-hidden="true"></div>
         <div class="relative rounded-3xl border border-slate-700/70 bg-slate-900/80 px-8 py-8 shadow-xl shadow-cyan-500/10">
           <h2 class="text-base sm:text-lg font-semibold mb-4">
             Pourquoi choisir ChoucaDev Studios ?
@@ -51,19 +70,23 @@
           <ul class="space-y-3 text-sm text-slate-200">
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span>Sites 100% <strong>responsive</strong> (mobile, tablette, PC).</span>
+              <span>Sites 100&nbsp;% <strong>responsive</strong> (mobile, tablette, ordinateur).</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span>Développement <strong>Symfony + Tailwind CSS</strong>.</span>
+              <span>Développement moderne <strong>Symfony &amp; Tailwind CSS</strong> pour un site propre, rapide et durable.</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span><strong>SEO optimisé</strong> dès la création.</span>
+              <span><strong>SEO optimisé</strong> dès la conception (structure, vitesse, balises, performance technique).</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span><strong>Sécurité renforcée</strong> (HTTPS, bonnes pratiques Symfony).</span>
+              <span><strong>Sécurité renforcée</strong> : HTTPS, conformité RGPD et bonnes pratiques Symfony.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-cyan-400">✔</span>
+              <span>Accompagnement <strong>personnalisé</strong> pour vous aider à gérer votre site en toute autonomie.</span>
             </li>
           </ul>
         </div>
@@ -78,57 +101,70 @@
 {# ========================
    SERVICES EN APERÇU (3 blocs)
    ======================== #}
-<section class="py-12 sm:py-16 bg-slate-950">
+<section id="services" class="py-12 sm:py-16 bg-slate-950" aria-labelledby="services-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
 
-    <h2 class="text-2xl sm:text-3xl font-semibold mb-2">
+    <h2 id="services-title" class="text-2xl sm:text-3xl font-semibold mb-2">
       Nos domaines d’expertise
     </h2>
 
     <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-2xl">
-      Découvrez les principaux services proposés par ChoucaDev Studios.  
-      Chaque domaine possède sa page dédiée avec toutes les offres.
+      ChoucaDev Studios vous accompagne dans la création de votre présence en ligne :
+      site vitrine, identité visuelle, contenus numériques et stratégies digitales.
+      Voici un aperçu des services proposés.
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
       {# Développement web #}
       <a href="{{ path('services_developpement_web') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Découvrir le service de développement web">
         <h3 class="font-semibold mb-2 flex items-center justify-between">
           Développement web
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
         </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Création de sites vitrines modernes, rapides et sécurisés avec Symfony.
+          Création de <strong>sites vitrines sur-mesure</strong> avec Symfony :
+          rapides, sécurisés, optimisés pour Google et simples à administrer.
         </p>
-        <span class="text-xs text-slate-400 mt-auto">Entreprises, associations, indépendants</span>
+        <span class="text-xs text-slate-400 mt-auto">
+          Entreprises, indépendants, associations, artisans
+        </span>
       </a>
 
       {# Création de contenu #}
       <a href="{{ path('services_creation_contenu') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Découvrir le service de création de contenu">
         <h3 class="font-semibold mb-2 flex items-center justify-between">
           Création de contenu
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
         </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Vidéos, miniatures, branding, accompagnement créateurs.
+          Accompagnement pour vos contenus digitaux : vidéos, miniatures, visuels marketing,
+          textes optimisés web et storytelling.
         </p>
-        <span class="text-xs text-slate-400 mt-auto">YouTube, TikTok, Twitch</span>
+        <span class="text-xs text-slate-400 mt-auto">
+          YouTube, TikTok, réseaux sociaux
+        </span>
       </a>
 
       {# Visuels / marketing / 3D #}
       <a href="{{ path('services_image_marque') }}"
-         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition">
+         class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
+         aria-label="Découvrir le service visuels, marketing et 3D">
         <h3 class="font-semibold mb-2 flex items-center justify-between">
-          Visuels, marketing & 3D
+          Visuels, marketing &amp; 3D
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Voir plus →</span>
         </h3>
         <p class="text-sm text-slate-300 mb-3">
-          Logos, vidéos, bannières, formations et conception 3D.
+          Création de <strong>logos</strong>, supports visuels, bannières et
+          maquettes 3D pour renforcer votre image de marque.
         </p>
-        <span class="text-xs text-slate-400 mt-auto">Identité visuelle & promotion</span>
+        <span class="text-xs text-slate-400 mt-auto">
+          Identité visuelle &amp; communication professionnelle
+        </span>
       </a>
 
     </div>
@@ -140,21 +176,27 @@
 {# ========================
    CONTACT
    ======================== #}
-<section class="py-12 sm:py-16 bg-slate-900/40">
+<section id="contact" class="py-12 sm:py-16 bg-slate-900/40" aria-labelledby="contact-title">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
-    <h2 class="text-2xl sm:text-3xl font-semibold mb-3">
-      Discutons de ton projet
+    <h2 id="contact-title" class="text-2xl sm:text-3xl font-semibold mb-3">
+      Discutons de votre projet digital
     </h2>
 
     <p class="text-slate-300 text-sm sm:text-base mb-6">
-      Tu as un projet de site vitrine ou un besoin digital ?  
-      Contacte-moi directement : je te réponds avec une proposition personnalisée.
+      Vous souhaitez créer un site vitrine, moderniser un site existant ou améliorer votre présence en ligne ?
+      Présentez-moi votre projet : je vous proposerai une solution adaptée à vos objectifs,
+      à votre activité et à votre localisation (Essonne, Île-de-France ou à distance).
     </p>
 
     <a href="{{ path('contact') }}"
-       class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-8 py-3 text-sm shadow-lg shadow-cyan-500/30">
+       class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-8 py-3 text-sm shadow-lg shadow-cyan-500/30"
+       aria-label="Accéder à la page contact de ChoucaDev Studios">
       Accéder à la page contact
     </a>
+
+    <p class="mt-4 text-[11px] text-slate-500">
+      Temps de réponse moyen : 24 à 48&nbsp;heures (jours ouvrés).
+    </p>
   </div>
 </section>
 

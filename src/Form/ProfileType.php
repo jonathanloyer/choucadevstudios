@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,15 +16,31 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'Adresse email',
             ])
             ->add('firstname', TextType::class, [
-                'label' => 'Prénom',
                 'required' => false,
+                'label' => 'Prénom',
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Nom',
                 'required' => false,
+                'label' => 'Nom',
+            ])
+            ->add('phone', TelType::class, [
+                'required' => false,
+                'label' => 'Téléphone',
+            ])
+            ->add('address', TextType::class, [
+                'required' => false,
+                'label' => 'Adresse postale',
+            ])
+            ->add('postalCode', TextType::class, [
+                'required' => false,
+                'label' => 'Code postal',
+            ])
+            ->add('city', TextType::class, [
+                'required' => false,
+                'label' => 'Ville',
             ]);
     }
 

@@ -35,6 +35,7 @@ class BillingDocumentType extends AbstractType
                 'choices' => [
                     'Devis' => 'quote',
                     'Facture' => 'invoice',
+                    'Documents' => 'others',
                 ],
             ])
 

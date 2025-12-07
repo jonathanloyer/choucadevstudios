@@ -1,66 +1,85 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Contact — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + meta description
+   ======================== #}
+{% block title %}
+	Contact — Agence web ChoucaDev Studios à Gif-sur-Yvette (Essonne)
+{% endblock %}
+
+{% block meta_description %}
+	Contactez ChoucaDev Studios, agence web basée à Gif-sur-Yvette en Essonne, pour votre projet de site vitrine,
+	  contenu digital ou accompagnement technique et maintenance en Île-de-France.
+{% endblock %}
 
 {% block body %}
-<section class="py-12 sm:py-16 bg-slate-900/40">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
-    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
-      Contact
-    </p>
+	<section class="py-12 sm:py-16 bg-slate-900/40" aria-labelledby="contact-title">
+		<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+			<p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
+				Contact
+			</p>
 
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-3">
-      Discutons de ton projet
-    </h1>
+			<h1 id="contact-title" class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-3">
+				Discutons de votre projet web
 
-    <p class="text-slate-300 text-sm sm:text-base mb-6">
-      Tu as un projet de site vitrine, de contenu numérique ou besoin d’un accompagnement digital ?  
-      Remplis ce formulaire et je te répondrai avec une proposition sur mesure.
-    </p>
+			</h1>
 
-    {{ form_start(contactForm, {'attr': {'class': 'space-y-4 max-w-xl'}}) }}
+			<p class="text-slate-300 text-sm sm:text-base mb-2">
+				Vous avez un projet de site vitrine, de contenu numérique ou besoin d’un accompagnement digital&nbsp?
+				      Remplissez ce formulaire et je vous répondrai avec une proposition sur mesure.
+			</p>
 
-      {{ form_row(contactForm.name, {
-        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+			<p class="text-[11px] sm:text-xs text-slate-400 mb-6">
+				ChoucaDev Studios est basé à Gif-sur-Yvette (Essonne, Île-de-France) et intervient partout en France, à distance.
+			</p>
+
+			{{ form_start(contactForm, {
+      attr: {
+        class: 'space-y-4 max-w-xl',
+        'aria-describedby': 'contact-description'
+      }
+    }) }}
+
+			<p id="contact-description" class="sr-only">
+				Formulaire de contact pour présenter votre projet de site web ou de contenu digital à ChoucaDev Studios.
+			</p>
+
+			{{ form_row(contactForm.name, {
+        label_attr: { class: 'block text-xs font-medium text-slate-300 mb-1' },
         attr: {
-          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
-                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400'
         }
       }) }}
 
-      {{ form_row(contactForm.email, {
-        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+			{{ form_row(contactForm.email, {
+        label_attr: { class: 'block text-xs font-medium text-slate-300 mb-1' },
         attr: {
-          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
-                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400'
         }
       }) }}
 
-      {{ form_row(contactForm.subject, {
-        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+			{{ form_row(contactForm.subject, {
+        label_attr: { class: 'block text-xs font-medium text-slate-300 mb-1' },
         attr: {
-          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
-                   focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400'
         }
       }) }}
 
-      {{ form_row(contactForm.message, {
-        label_attr: {class: 'block text-xs font-medium text-slate-300 mb-1'},
+			{{ form_row(contactForm.message, {
+        label_attr: { class: 'block text-xs font-medium text-slate-300 mb-1' },
         attr: {
-          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm
-                   focus:outline-none focus:ring-1 focus:ring-cyan-400',
+          class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-400',
           rows: 5
         }
       }) }}
 
-      <button type="submit"
-              class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400
-                     text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
-        Envoyer ma demande
-      </button>
+			<button type="submit" class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400
+				                     text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30" aria-label="Envoyer votre demande de contact à ChoucaDev Studios">
+				Envoyer ma demande
+			</button>
 
-    {{ form_end(contactForm) }}
+			{{ form_end(contactForm) }}
 
-  </div>
-</section>
+		</div>
+	</section>
 {% endblock %}

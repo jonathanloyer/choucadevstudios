@@ -27,6 +27,16 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'admin_user_show', methods: ['GET'])]
+    public function show(User $user): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        return $this->render('dashboard/user_show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
     #[Route('/{id}/role', name: 'admin_user_edit_role')]
     public function editRole(
         User $user,

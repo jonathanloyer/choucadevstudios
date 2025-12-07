@@ -1,29 +1,99 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Nouvel abonnement — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + meta + NOINDEX (page admin)
+   ======================== #}
+{% block title %}
+  Nouvel abonnement de maintenance — Administration ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Création d’un nouvel abonnement de maintenance pour les clients ChoucaDev Studios :
+  hébergement, mises à jour techniques, sauvegardes et support.
+{% endblock %}
+
+{# On ne veut pas que l’admin soit indexée #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="max-w-xl mx-auto px-4 py-10">
-  <h1 class="text-2xl sm:text-3xl font-semibold mb-3">
-    Créer un abonnement de maintenance
-  </h1>
+<section class="max-w-xl mx-auto px-4 py-10" aria-labelledby="maintenance-new-title">
 
-  <p class="text-sm text-slate-300 mb-6">
-    Associe une formule de maintenance à un client (hébergement, mises à jour, support…).
-  </p>
+  <header class="mb-4">
+    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-1">
+      Administration — Maintenance
+    </p>
+
+    <h1 id="maintenance-new-title" class="text-2xl sm:text-3xl font-semibold mb-2">
+      Créer un abonnement de maintenance
+    </h1>
+
+    <p class="text-sm text-slate-300">
+      Associe une formule de maintenance à un client afin de gérer l’hébergement, les mises à jour,
+      la sécurité et le support technique de son site.
+    </p>
+  </header>
 
   <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
-    {{ form_start(form) }}
-      <div class="space-y-4 text-sm">
-        {{ form_row(form.client) }}
-        {{ form_row(form.plan) }}
-        {# on ne rend plus form.price, il n’existe plus #}
-        {{ form_row(form.startedAt) }}
+    {{ form_start(form, {
+      attr: {
+        'aria-describedby': 'maintenance-help',
+        class: 'space-y-4 text-sm'
+      }
+    }) }}
+
+      <p id="maintenance-help" class="text-[11px] text-slate-500 mb-2">
+        Sélectionne le client, choisis la formule de maintenance adaptée et indique la date de début du contrat.
+      </p>
+
+      {# Client #}
+      <div>
+        {{ form_label(form.client, null, {
+          label_attr: { class: 'text-xs font-medium text-slate-300 mb-1 block' }
+        }) }}
+        {{ form_widget(form.client, {
+          attr: {
+            class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          }
+        }) }}
+        <div class="text-xs text-red-300">
+          {{ form_errors(form.client) }}
+        </div>
+      </div>
+
+      {# Plan de maintenance #}
+      <div>
+        {{ form_label(form.plan, null, {
+          label_attr: { class: 'text-xs font-medium text-slate-300 mb-1 block' }
+        }) }}
+        {{ form_widget(form.plan, {
+          attr: {
+            class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          }
+        }) }}
+        <div class="text-xs text-red-300">
+          {{ form_errors(form.plan) }}
+        </div>
+      </div>
+
+      {# Date de début #}
+      <div>
+        {{ form_label(form.startedAt, null, {
+          label_attr: { class: 'text-xs font-medium text-slate-300 mb-1 block' }
+        }) }}
+        {{ form_widget(form.startedAt, {
+          attr: {
+            class: 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-400'
+          }
+        }) }}
+        <div class="text-xs text-red-300">
+          {{ form_errors(form.startedAt) }}
+        </div>
       </div>
 
       <div class="mt-6 flex flex-wrap gap-3">
         <button type="submit"
-                class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition">
+                class="inline-flex items-center rounded-full bg-cyan-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400 transition"
+                aria-label="Enregistrer cet abonnement de maintenance">
           Enregistrer l’abonnement
         </button>
 
@@ -32,6 +102,7 @@
           Annuler
         </a>
       </div>
+
     {{ form_end(form) }}
   </div>
 </section>

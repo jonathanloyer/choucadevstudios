@@ -3,20 +3,104 @@
   <head>
     <meta charset="UTF-8">
 
-    <title>{% block title %}ChoucaDev Studios{% endblock %}</title>
+    {# ----------------------------
+       TITRE & META DESCRIPTION
+       ---------------------------- #}
+    <title>{% block title %}ChoucaDev Studios — Studio digital &amp; web en Île-de-France{% endblock %}</title>
+
+    {# Description par défaut, surchargeable dans chaque page #}
+    <meta name="description" content="{% block meta_description %}ChoucaDev Studios accompagne les entreprises et indépendants pour la création de sites vitrines, le développement web &amp; mobile, le web design et le SEO en Île-de-France.{% endblock %}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="ChoucaDev Studios — Création de sites vitrines, web design, développement web & mobile, SEO et solutions digitales en Île-de-France.">
+    <meta name="robots" content="{% block robots %}index,follow{% endblock %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#020617">
 
-    {# Favicons #}
+    {# ----------------------------
+       SEO / OPEN GRAPH / TWITTER
+       ---------------------------- #}
+    {% set seo_title = block('title')|striptags %}
+    {% set seo_description = block('meta_description')|striptags %}
+    {% set seo_url = app.request is defined and app.request ? app.request.uri : '' %}
+    {% set seo_image = asset('images/og-default.webp') %} {# remplace par ton image de partage #}
+
+    {# Open Graph (Facebook, LinkedIn…) #}
+    <meta property="og:site_name" content="ChoucaDev Studios">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ seo_title }}">
+    <meta property="og:description" content="{{ seo_description }}">
+    {% if seo_url %}
+      <meta property="og:url" content="{{ seo_url }}">
+    {% endif %}
+    <meta property="og:image" content="{{ seo_image }}">
+    <meta property="og:locale" content="fr_FR">
+
+    {# Twitter Cards #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ seo_title }}">
+    <meta name="twitter:description" content="{{ seo_description }}">
+    <meta name="twitter:image" content="{{ seo_image }}">
+
+    {# Canonical (évite le contenu dupliqué) #}
+    {% if seo_url %}
+      <link rel="canonical" href="{{ seo_url }}">
+    {% endif %}
+
+    {# ----------------------------
+       META GÉO (facultatif mais OK)
+       ---------------------------- #}
+    {# À ajuster si l’adresse de ChoucaDev change #}
+    <meta name="geo.region" content="FR-91">
+    <meta name="geo.placename" content="Gif-sur-Yvette, Île-de-France, France">
+    <meta name="geo.position" content="48.701;2.137">
+    <meta name="ICBM" content="48.701, 2.137">
+
+    {# ----------------------------
+       FAVICONS
+       ---------------------------- #}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}">
 
+    {# ----------------------------
+       CSS PRINCIPAL
+       ---------------------------- #}
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+
+    {# ----------------------------
+       DONNÉES STRUCTURÉES (JSON-LD)
+       À adapter : téléphone, URL finale…
+       ---------------------------- #}
+    {% if app.request is defined and app.request %}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "ChoucaDev Studios",
+        "url": "{{ app.request.schemeAndHttpHost }}",
+        "logo": "{{ asset('images/logo.png')|replace({'\\':'/'}) }}",
+        "description": "{{ seo_description|e('js') }}",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR",
+          "addressRegion": "Île-de-France",
+          "addressLocality": "Gif-sur-Yvette"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Île-de-France"
+        },
+        "sameAs": [
+          "https://www.facebook.com/", 
+          "https://www.instagram.com/",
+          "https://www.linkedin.com/"
+        ]
+      }
+      </script>
+    {% endif %}
+
   </head>
 
   <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
@@ -29,7 +113,7 @@
 
         {# Logo + lien vers accueil (toujours à gauche) #}
         <a href="{{ path('home') }}" class="flex items-center gap-3 shrink-0">
-          <img src="{{ asset('images/logo.png') }}" alt="ChoucaDev Studios Logo"
+          <img src="{{ asset('images/logo.png') }}" alt="Logo de ChoucaDev Studios"
                class="w-10 h-10 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_12px_rgba(0,200,255,0.6)]">
 
           <span class="flex flex-col leading-tight">
@@ -46,7 +130,7 @@
         <div class="flex items-center gap-6">
 
           {# MENU DESKTOP (>= md) #}
-          <nav class="hidden md:block text-sm">
+          <nav class="hidden md:block text-sm" aria-label="Navigation principale">
             <ul class="flex gap-6 items-center">
               <li>
                 <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">
@@ -76,7 +160,7 @@
           </nav>
 
           {# LIENS COMPTE (>= md) #}
-          <nav class="hidden md:block text-xs sm:text-sm">
+          <nav class="hidden md:block text-xs sm:text-sm" aria-label="Navigation compte">
             <ul class="flex items-center gap-3">
               {% if app.user %}
                 <li>
@@ -110,9 +194,10 @@
           <button id="nav-toggle"
                   class="md:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-700 text-slate-200 hover:border-cyan-400 hover:text-cyan-300"
                   aria-label="Ouvrir le menu"
-                  aria-expanded="false">
+                  aria-expanded="false"
+                  aria-controls="mobile-nav">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M4 6H20M4 12H20M4 18H20"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
@@ -121,7 +206,7 @@
       </div>
 
       {# MENU MOBILE (< md) : nav + compte #}
-      <nav id="mobile-nav" class="md:hidden hidden border-t border-slate-800 bg-slate-900/95">
+      <nav id="mobile-nav" class="md:hidden hidden border-t border-slate-800 bg-slate-900/95" aria-label="Navigation mobile">
         <div class="max-w-6xl mx-auto px-4 py-3 text-sm">
           <ul class="flex flex-col gap-2">
             <li>

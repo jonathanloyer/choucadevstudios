@@ -1,15 +1,45 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Admin — Tableau de bord{% endblock %}
+{# ========================
+   SEO : titre + description + NOINDEX (admin)
+   ======================== #}
+{% block title %}
+  Admin — Tableau de bord ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Tableau de bord d’administration ChoucaDev Studios : gestion des clients, sous-traitants,
+  documents de facturation et abonnements de maintenance.
+{% endblock %}
+
+{# On ne veut pas que l’interface d’administration soit indexée #}
+{% block robots %}noindex,nofollow{% endblock %}
 
 {% block body %}
-<section class="max-w-6xl mx-auto px-4 py-10">
-  <h1 class="text-2xl sm:text-3xl font-semibold mb-6">
+<section class="max-w-6xl mx-auto px-4 py-10" aria-labelledby="admin-dashboard-title">
+
+  {# Fil d’Ariane simple #}
+  <nav aria-label="Fil d’ariane" class="mb-4">
+    <ol class="flex items-center gap-1 text-xs text-slate-400">
+      <li>
+        <a href="{{ path('admin_dashboard') }}" class="hover:text-cyan-400 transition">
+          Tableau de bord
+        </a>
+      </li>
+      <li aria-hidden="true" class="px-1 text-slate-600">/</li>
+      <li class="text-slate-200 font-medium">
+        Administration
+      </li>
+    </ol>
+  </nav>
+
+  <h1 id="admin-dashboard-title" class="text-2xl sm:text-3xl font-semibold mb-6">
     Tableau de bord administration
   </h1>
 
   <p class="text-sm text-slate-300 mb-6">
     Bienvenue dans l’espace d’administration de ChoucaDev Studios.
+    Depuis ce tableau de bord, tu peux gérer les clients, sous-traitants, documents et abonnements de maintenance.
   </p>
 
   {# Boutons d'action #}
@@ -33,28 +63,70 @@
     </a>
   </div>
 
-  {# Cartes d’accès + listes #}
+  {# Cartes Clients / Sous-traitants / Factures #}
   <div class="grid gap-6 md:grid-cols-3">
 
     {# Clients #}
     <div id="clients"
          class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-      <h2 class="text-sm font-semibold mb-2 text-slate-100">Clients</h2>
-      <p class="text-xs text-slate-400 mb-3">
-        Gérer les comptes clients, leurs accès et leurs projets.
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">
+        Clients
+      </h2>
+      <p class="text-xs text-slate-400 mb-3" id="clients-table-text">
+        Vue d’ensemble des clients ChoucaDev Studios : coordonnées et statut de maintenance.
       </p>
 
       {% if clients is not empty %}
-        <ul class="space-y-1 text-[11px] text-slate-300 max-h-40 overflow-y-auto pr-1">
-          {% for user in clients %}
-            <li>
-              • <a href="{{ path('admin_user_edit_role', { id: user.id }) }}"
-                   class="hover:text-cyan-300">
+        <div class="overflow-x-auto rounded-xl border border-slate-800/60 bg-slate-950/40">
+          <table class="min-w-full text-[11px] text-left"
+                 aria-describedby="clients-table-text">
+            <caption class="sr-only">
+              Tableau listant les clients, leurs coordonnées et leur statut de maintenance.
+            </caption>
+            <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/50">
+              <tr>
+                <th class="px-3 py-2">Client</th>
+                <th class="px-3 py-2">Email</th>
+                <th class="px-3 py-2">Téléphone</th>
+                <th class="px-3 py-2">Maintenance</th>
+                <th class="px-3 py-2 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for user in clients %}
+              {% set contract = user.activeMaintenanceContract %}
+              <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/60 transition">
+                <td class="px-3 py-2 text-slate-100">
                   {{ user.fullName ?: user.email }}
-                </a>
-            </li>
-          {% endfor %}
-        </ul>
+                </td>
+                <td class="px-3 py-2 text-slate-300">
+                  {{ user.email }}
+                </td>
+                <td class="px-3 py-2 text-slate-300">
+                  {{ user.phone ?: '—' }}
+                </td>
+                <td class="px-3 py-2">
+                  {% if contract %}
+                    <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+                      Actif — {{ contract.plan ? contract.plan.name : 'Maintenance' }}
+                    </span>
+                  {% else %}
+                    <span class="inline-flex items-center rounded-full bg-slate-700/60 px-2 py-0.5 text-[10px] font-medium text-slate-200">
+                      Aucun contrat
+                    </span>
+                  {% endif %}
+                </td>
+                <td class="px-3 py-2 text-right">
+                  <a href="{{ path('admin_user_show', { id: user.id }) }}"
+                     class="inline-flex items-center rounded-full border border-slate-700 px-3 py-1 text-[10px] font-semibold text-slate-200 hover:border-cyan-400 hover:text-cyan-300 transition">
+                    Fiche client
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
       {% else %}
         <p class="text-[11px] text-slate-500">
           Aucun client pour le moment.
@@ -65,22 +137,51 @@
     {# Sous-traitants #}
     <div id="subcontractors"
          class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-      <h2 class="text-sm font-semibold mb-2 text-slate-100">Sous-traitants</h2>
-      <p class="text-xs text-slate-400 mb-3">
-        Gérer les sous-traitants et leur assigner des clients.
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">
+        Sous-traitants
+      </h2>
+      <p class="text-xs text-slate-400 mb-3" id="subcontractors-table-text">
+        Freelances et partenaires techniques travaillant avec ChoucaDev Studios.
       </p>
 
       {% if subcontractors is not empty %}
-        <ul class="space-y-1 text-[11px] text-slate-300 max-h-40 overflow-y-auto pr-1">
-          {% for user in subcontractors %}
-            <li>
-              • <a href="{{ path('admin_user_edit_role', { id: user.id }) }}"
-                   class="hover:text-cyan-300">
+        <div class="overflow-x-auto rounded-xl border border-slate-800/60 bg-slate-950/40">
+          <table class="min-w-full text-[11px] text-left"
+                 aria-describedby="subcontractors-table-text">
+            <caption class="sr-only">
+              Tableau listant les sous-traitants avec leurs coordonnées.
+            </caption>
+            <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/50">
+              <tr>
+                <th class="px-3 py-2">Nom</th>
+                <th class="px-3 py-2">Email</th>
+                <th class="px-3 py-2">Téléphone</th>
+                <th class="px-3 py-2 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for user in subcontractors %}
+              <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/60 transition">
+                <td class="px-3 py-2 text-slate-100">
                   {{ user.fullName ?: user.email }}
-                </a>
-            </li>
-          {% endfor %}
-        </ul>
+                </td>
+                <td class="px-3 py-2 text-slate-300">
+                  {{ user.email }}
+                </td>
+                <td class="px-3 py-2 text-slate-300">
+                  {{ user.phone ?: '—' }}
+                </td>
+                <td class="px-3 py-2 text-right">
+                  <a href="{{ path('admin_user_show', { id: user.id }) }}"
+                     class="inline-flex items-center rounded-full border border-slate-700 px-3 py-1 text-[10px] font-semibold text-slate-200 hover:border-cyan-400 hover:text-cyan-300 transition">
+                    Fiche sous-traitant
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
       {% else %}
         <p class="text-[11px] text-slate-500">
           Aucun sous-traitant pour le moment.
@@ -91,16 +192,44 @@
     {# Devis & factures #}
     <div id="billing"
          class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-      <h2 class="text-sm font-semibold mb-2 text-slate-100">Devis & factures</h2>
-      <p class="text-xs text-slate-400">
+      <h2 class="text-sm font-semibold mb-2 text-slate-100">
+        Devis &amp; factures
+      </h2>
+      <p class="text-xs text-slate-400 mb-3">
         Déposer et suivre les devis et factures des clients.
       </p>
+
+      {% if documents is not empty %}
+        <p class="text-[11px] text-slate-400 mb-2">
+          Aperçu des derniers documents :
+        </p>
+        <ul class="space-y-1 text-[11px] text-slate-300">
+          {% for doc in documents|slice(0, 3) %}
+            <li class="flex justify-between gap-2">
+              <span class="truncate max-w-[160px]">
+                {{ doc.typeLabel }} — {{ doc.client ? doc.client.fullName ?: doc.client.email : '—' }}
+              </span>
+              <span class="whitespace-nowrap text-slate-500">
+                {{ doc.sentAt ? doc.sentAt|date('d/m') : '-' }}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <p class="mt-2 text-[11px] text-cyan-300">
+          Voir le détail dans <strong>“Derniers documents envoyés”</strong> ci-dessous.
+        </p>
+      {% else %}
+        <p class="text-[11px] text-slate-500">
+          Aucun document de facturation enregistré pour le moment.
+        </p>
+      {% endif %}
     </div>
   </div>
 
-  {# Liste des derniers documents envoyés #}
+  {# Liste des derniers documents #}
   <div class="mt-10 text-xs text-slate-500">
-    <h2 class="text-sm font-semibold mb-3 text-slate-100">
+    <h2 class="text-sm font-semibold mb-3 text-slate-100" id="docs-title">
       Derniers documents envoyés
     </h2>
 
@@ -110,8 +239,11 @@
       </p>
     {% else %}
       <div class="overflow-x-auto rounded-2xl bg-slate-900/60 shadow-lg shadow-slate-950/40">
-        <table class="min-w-full text-xs text-left">
-          <thead class="border-b border-slate-800 text-slate-400">
+        <table class="min-w-full text-xs text-left" aria-labelledby="docs-title">
+          <caption class="sr-only">
+            Tableau listant les derniers documents (devis et factures) envoyés aux clients et sous-traitants.
+          </caption>
+          <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/50">
             <tr>
               <th class="px-4 py-2">Date</th>
               <th class="px-4 py-2">Client / sous-traitant</th>
@@ -123,7 +255,7 @@
           </thead>
           <tbody>
           {% for doc in documents %}
-            <tr class="border-b border-slate-800/60 last:border-b-0">
+            <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/60 transition">
               <td class="px-4 py-2 text-slate-300">
                 {{ doc.sentAt ? doc.sentAt|date('d/m/Y H:i') : '-' }}
               </td>
@@ -133,7 +265,7 @@
               </td>
 
               <td class="px-4 py-2">
-                {% if doc.forSubcontractor %}
+                {% if doc.client and doc.client.isSubcontractor() %}
                   <span class="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-[10px] font-medium text-purple-300">
                     Sous-traitant
                   </span>
@@ -174,7 +306,7 @@
 
   {# Abonnements de maintenance actifs #}
   <div class="mt-10 text-xs text-slate-500">
-    <h2 class="text-sm font-semibold mb-3 text-slate-100">
+    <h2 class="text-sm font-semibold mb-3 text-slate-100" id="contracts-title">
       Abonnements de maintenance actifs
     </h2>
 
@@ -184,19 +316,23 @@
       </p>
     {% else %}
       <div class="overflow-x-auto rounded-2xl bg-slate-900/60 shadow-lg shadow-slate-950/40">
-        <table class="min-w-full text-xs text-left">
-          <thead class="border-b border-slate-800 text-slate-400">
+        <table class="min-w-full text-xs text-left" aria-labelledby="contracts-title">
+          <caption class="sr-only">
+            Tableau listant les contrats de maintenance actifs, leur formule, prix et date de début.
+          </caption>
+          <thead class="border-b border-slate-800 text-slate-400 bg-slate-950/50">
             <tr>
               <th class="px-4 py-2">Client</th>
               <th class="px-4 py-2">Formule</th>
               <th class="px-4 py-2">Prix mensuel</th>
               <th class="px-4 py-2">Début</th>
               <th class="px-4 py-2">Statut</th>
+              <th class="px-4 py-2 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
           {% for contract in activeContracts %}
-            <tr class="border-b border-slate-800/60 last:border-b-0">
+            <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/60 transition">
               <td class="px-4 py-2 text-slate-100">
                 {{ contract.client ? contract.client.fullName ?: contract.client.email : '—' }}
               </td>
@@ -213,6 +349,19 @@
                 <span class="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
                   {{ contract.status }}
                 </span>
+              </td>
+
+              <td class="px-4 py-2 text-right">
+                <form method="post"
+                      action="{{ path('admin_maintenance_delete', { id: contract.id }) }}"
+                      onsubmit="return confirm('Supprimer cet abonnement ?');">
+                  <input type="hidden" name="_token"
+                         value="{{ csrf_token('delete_maintenance_' ~ contract.id) }}">
+                  <button type="submit"
+                          class="inline-flex items-center rounded-full bg-red-500/90 px-4 py-1.5 text-[11px] font-semibold text-white hover:bg-red-400 transition">
+                    Supprimer
+                  </button>
+                </form>
               </td>
             </tr>
           {% endfor %}

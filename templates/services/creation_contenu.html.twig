@@ -1,85 +1,123 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Création de contenu — ChoucaDev Studios{% endblock %}
+{# ========================
+   SEO : titre + meta description
+   ======================== #}
+{% block title %}
+  Création de contenu vidéo & branding pour créateurs — ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  ChoucaDev Studios accompagne les créateurs, streamers et entrepreneurs pour la création de contenu vidéo,
+  le montage, les miniatures YouTube, le branding et la stratégie de contenu sur YouTube, TikTok, Twitch et les réseaux sociaux.
+{% endblock %}
 
 {% block body %}
-<section class="py-12 sm:py-16 bg-slate-950">
+<section class="py-12 sm:py-16 bg-slate-950" aria-labelledby="content-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
 
-    <a href="{{ path('services') }}" class="text-xs text-cyan-300 hover:text-cyan-200">
-      ← Retour aux services
+    <a href="{{ path('services') }}"
+       class="text-xs text-cyan-300 hover:text-cyan-200 inline-flex items-center gap-1">
+      <span aria-hidden="true">←</span>
+      <span>Retour aux services</span>
     </a>
 
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3 mb-4">
-      Création & accompagnement de contenus
-    </h1>
+    <header class="mt-3 mb-6">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-cyan-400 mb-1">
+        Création de contenu &amp; accompagnement créateurs
+      </p>
 
-    <p class="text-slate-300 text-sm sm:text-base mb-6 max-w-3xl">
-      Accompagnement pour YouTube, TikTok, Twitch et autres plateformes : scénarisation,
-      tournage, montage vidéo, miniatures, branding et stratégie de contenu pour faire
-      grandir ton audience et te professionnaliser.
-    </p>
+      <h1 id="content-title" class="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+        Création &amp; accompagnement de contenus vidéo pour créateurs
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base mt-3 max-w-3xl">
+        ChoucaDev Studios t’accompagne sur YouTube, TikTok, Twitch et les réseaux sociaux :
+        <strong>scénarisation</strong>, <strong>montage vidéo</strong>, miniatures, identité visuelle
+        et stratégie de contenu.  
+        L’objectif : professionnaliser ta présence en ligne, gagner du temps sur la production
+        et faire grandir ton audience de manière cohérente.
+      </p>
+
+      <p class="mt-2 text-[11px] text-slate-500">
+        Que tu démarres de zéro ou que tu souhaites passer un cap avec ta chaîne ou ton contenu,
+        les packs ci-dessous servent de base pour construire un accompagnement sur mesure.
+      </p>
+    </header>
 
     <div class="grid gap-6 lg:grid-cols-3 mb-10">
 
       {# Pack Starter #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Pack Starter</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour bien démarrer</p>
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col shadow-lg shadow-slate-950/40"
+               aria-label="Pack Starter création de contenu">
+        <h2 class="font-semibold mb-1">Pack <span class="text-cyan-400">Starter</span></h2>
+        <p class="text-xs text-slate-400 mb-3">Pour bien démarrer sur de bonnes bases</p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Analyse de ton projet et de ta niche</li>
-          <li>- Aide à la création de la chaîne / profil</li>
-          <li>- Kit graphique simple (logo, bannière…)</li>
-          <li>- Conseils sur le matériel et l’organisation</li>
+          <li>• Analyse de ton projet, de ta niche et de ta cible</li>
+          <li>• Aide à la création ou optimisation de ta chaîne / profil</li>
+          <li>• Kit graphique simple (logo, bannière, visuels de base)</li>
+          <li>• Conseils sur le matériel, l’organisation et les premiers contenus</li>
         </ul>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour le Pack Starter">
           Demander un devis
         </a>
       </article>
 
       {# Pack Production #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Pack Production</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour gagner du temps</p>
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col shadow-lg shadow-slate-950/40"
+               aria-label="Pack Production création de contenu">
+        <h2 class="font-semibold mb-1">Pack <span class="text-cyan-400">Production</span></h2>
+        <p class="text-xs text-slate-400 mb-3">Pour gagner du temps sur le montage</p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Montages vidéos réguliers (YouTube, Shorts, Reels…)</li>
-          <li>- Création de miniatures optimisées pour le clic</li>
-          <li>- Adaptation des contenus pour plusieurs formats</li>
-          <li>- Possibilité de décliner les vidéos sur plusieurs plateformes</li>
+          <li>• Montages vidéos réguliers (YouTube, Shorts, Reels…)</li>
+          <li>• Création de miniatures optimisées pour le clic</li>
+          <li>• Adaptation des contenus en plusieurs formats (vertical, horizontal…)</li>
+          <li>• Déclinaison possible sur plusieurs plateformes avec un même contenu</li>
         </ul>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour le Pack Production">
           Demander un devis
         </a>
       </article>
 
       {# Pack Stratégie #}
-      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col">
-        <h2 class="font-semibold mb-1">Pack Stratégie & croissance</h2>
-        <p class="text-xs text-slate-400 mb-3">Pour structurer ton contenu</p>
+      <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 flex flex-col shadow-lg shadow-slate-950/40"
+               aria-label="Pack Stratégie et croissance">
+        <h2 class="font-semibold mb-1">Pack <span class="text-cyan-400">Stratégie &amp; croissance</span></h2>
+        <p class="text-xs text-slate-400 mb-3">Pour structurer ton contenu sur la durée</p>
         <ul class="text-sm text-slate-300 space-y-1 mb-4">
-          <li>- Analyse de la concurrence et de ton positionnement</li>
-          <li>- Calendrier éditorial et formats récurrents</li>
-          <li>- Optimisation titres, descriptions, tags, playlists</li>
-          <li>- Suivi des performances et ajustements</li>
+          <li>• Analyse de la concurrence et de ton positionnement</li>
+          <li>• Mise en place d’un calendrier éditorial et de formats récurrents</li>
+          <li>• Optimisation des titres, descriptions, tags et playlists</li>
+          <li>• Suivi des performances et ajustements réguliers</li>
         </ul>
         <a href="{{ path('contact') }}"
-           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30">
+           class="mt-auto inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 text-xs shadow-lg shadow-cyan-500/30"
+           aria-label="Demander un devis pour le Pack Stratégie et croissance">
           Demander un devis
         </a>
       </article>
 
     </div>
 
-    <div class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300">
-      <h2 class="font-semibold mb-2 text-slate-100">Pour qui est-ce adapté ?</h2>
+    <section class="border border-slate-800 rounded-2xl p-5 bg-slate-900/60 text-sm text-slate-300"
+             aria-labelledby="pour-qui-contenu">
+      <h2 id="pour-qui-contenu" class="font-semibold mb-2 text-slate-100">
+        Pour qui est-ce adapté&nbsp;?
+      </h2>
       <ul class="list-disc list-inside space-y-1">
-        <li>Créateurs qui débutent et veulent un rendu pro dès le départ.</li>
-        <li>Créateurs déjà en place qui souhaitent déléguer une partie de la production.</li>
-        <li>Entrepreneurs qui veulent utiliser la vidéo pour leur communication.</li>
+        <li>Créateurs et créatrices qui débutent et veulent un rendu professionnel dès le départ.</li>
+        <li>Créateurs déjà en place qui souhaitent déléguer une partie de la production vidéo.</li>
+        <li>Entrepreneurs, indépendants ou associations qui veulent utiliser la vidéo dans leur communication.</li>
       </ul>
-    </div>
+      <p class="mt-3 text-xs text-slate-400">
+        Tous les accompagnements sont ajustés en fonction de ton rythme, de ton budget
+        et du temps que tu peux consacrer à la création de contenu.
+      </p>
+    </section>
 
   </div>
 </section>
