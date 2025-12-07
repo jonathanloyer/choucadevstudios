@@ -1,0 +1,207 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mentions légales — ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Mentions légales du site ChoucaDev Studios : éditeur du site, hébergeur, propriété intellectuelle,
+  responsabilité et informations de contact.
+{% endblock %}
+
+{% block body %}
+<section class="bg-slate-950 text-slate-100" aria-labelledby="mentions-title">
+
+  {# HERO #}
+  <div class="border-b border-slate-800 bg-slate-900/90">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+
+      <nav class="mb-4 text-xs sm:text-[13px] text-slate-400 flex items-center gap-2" aria-label="Fil d'Ariane">
+        <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">Accueil</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-slate-300">Mentions légales</span>
+      </nav>
+
+      <h1 id="mentions-title" class="text-3xl sm:text-4xl font-semibold tracking-tight mb-3">
+        Mentions légales.
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl">
+        Retrouvez ici l’ensemble des informations légales relatives au site
+        <span class="text-slate-100 font-medium">ChoucaDev Studios</span>, son éditeur,
+        son hébergeur et ses responsabilités.
+      </p>
+
+    </div>
+  </div>
+
+  {# CONTENU #}
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12">
+
+    <article
+      class="bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl shadow-black/40
+             px-5 sm:px-8 py-6 sm:py-8 space-y-10 text-sm sm:text-[15px] leading-relaxed">
+
+      {# 1. Éditeur #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 1</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Éditeur du site</h2>
+
+        <p>
+          Le site <strong>ChoucaDev Studios</strong> est édité par&nbsp;:
+        </p>
+
+        <p>
+          <strong>Loyer Jonathan EI</strong><br>
+          15 route de l’Abbaye<br>
+          91190 Gif-sur-Yvette — France
+        </p>
+
+        <p>
+          Email&nbsp;:
+          <a href="mailto:contact@choucadev-studios.fr"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            contact@choucadev-studios.fr
+          </a><br>
+
+          SIRET&nbsp;: <em>à compléter lors de l’immatriculation</em><br>
+          Forme juridique&nbsp;: Entrepreneur Individuel (EI)
+        </p>
+      </section>
+
+      {# 2. Responsable de la publication #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 2</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Responsable de la publication</h2>
+
+        <p>
+          Le responsable de la publication est&nbsp;:
+          <strong>Jonathan Loyer</strong>, en qualité d’entrepreneur individuel.
+        </p>
+      </section>
+
+      {# 3. Hébergement #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 3</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Hébergeur du site</h2>
+
+        <p>Le site est hébergé par&nbsp;:</p>
+
+        <p>
+          <strong>Hostinger International Ltd</strong><br>
+          Adresse : (à renseigner selon votre contrat)<br>
+          Site web&nbsp;:
+          <a href="https://www.hostinger.fr" target="_blank" rel="noopener noreferrer"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            hostinger.fr
+          </a>
+        </p>
+      </section>
+
+      {# 4. Propriété intellectuelle #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 4</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Propriété intellectuelle</h2>
+
+        <p>
+          L’ensemble des éléments présents sur ce site (textes, images, logos, éléments graphiques,
+          structure, maquettes, code source, etc.) sont la propriété exclusive de
+          <strong>ChoucaDev Studios / Loyer Jonathan EI</strong>, sauf mention contraire.
+        </p>
+
+        <p>
+          Toute reproduction, adaptation, traduction, distribution ou exploitation, totale ou partielle,
+          sans autorisation écrite préalable, est strictement interdite et peut constituer une contrefaçon
+          conformément aux articles L.335-2 et suivants du Code de la propriété intellectuelle.
+        </p>
+      </section>
+
+      {# 5. Données personnelles #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 5</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Données personnelles</h2>
+
+        <p>
+          Des données personnelles peuvent être collectées, notamment via les formulaires,
+          dans le cadre du fonctionnement du site.
+        </p>
+
+        <p>
+          Pour plus d’informations sur la protection de vos données, veuillez consulter la
+          <a href="{{ path('legal_privacy') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            politique de confidentialité
+          </a>.
+        </p>
+      </section>
+
+      {# 6. Cookies #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 6</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Cookies</h2>
+
+        <p>
+          Le site utilise des cookies nécessaires à son fonctionnement.
+          D'autres cookies (analyse, réseaux sociaux, etc.) pourraient être ajoutés ultérieurement.
+        </p>
+
+        <p>
+          Pour en savoir plus ou gérer votre consentement, veuillez consulter la page
+          <a href="{{ path('legal_cookies') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            Cookies
+          </a>.
+        </p>
+      </section>
+
+      {# 7. Responsabilité #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 7</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Limitation de responsabilité</h2>
+
+        <p>
+          <strong>Loyer Jonathan EI</strong> met tout en œuvre pour fournir des informations fiables et à jour.
+          Toutefois, des erreurs, omissions ou indisponibilités temporaires peuvent survenir.
+        </p>
+
+        <p>
+          L’éditeur ne saurait être tenu responsable des dommages directs ou indirects résultant
+          de l’utilisation du site ou de l’impossibilité d’y accéder.
+        </p>
+      </section>
+
+      {# 8. Liens externes #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 8</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Liens externes</h2>
+
+        <p>
+          Le site peut contenir des liens vers des sites externes.  
+          <strong>Loyer Jonathan EI</strong> n’exerce aucun contrôle sur ces sites tiers
+          et ne peut être tenu responsable de leur contenu ni de leur fonctionnement.
+        </p>
+      </section>
+
+      {# 9. Droit applicable #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">Article 9</p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold">Droit applicable</h2>
+
+        <p>
+          Les présentes mentions légales sont régies par le droit français.
+          En cas de litige, et à défaut de résolution amiable,
+          les tribunaux français seront seuls compétents.
+        </p>
+      </section>
+
+    </article>
+  </div>
+</section>
+{% endblock %}

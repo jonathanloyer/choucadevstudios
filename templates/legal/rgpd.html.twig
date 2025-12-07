@@ -1,0 +1,239 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}RGPD — Données personnelles — ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Informations sur le RGPD et la protection des données personnelles chez ChoucaDev Studios :
+  responsable de traitement, droits des utilisateurs, principes de protection des données,
+  et liens vers la politique de confidentialité et les cookies.
+{% endblock %}
+
+{% block body %}
+<section class="bg-slate-950 text-slate-100" aria-labelledby="rgpd-title">
+
+  {# HERO #}
+  <div class="border-b border-slate-800 bg-slate-900/90">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+
+      <nav class="mb-4 text-xs sm:text-[13px] text-slate-400 flex items-center gap-2" aria-label="Fil d'Ariane">
+        <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">Accueil</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-slate-300">RGPD &amp; données personnelles</span>
+      </nav>
+
+      <h1 id="rgpd-title" class="text-3xl sm:text-4xl font-semibold tracking-tight mb-3">
+        RGPD &amp; données personnelles.
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mb-2">
+        Cette page résume les principaux engagements de
+        <span class="font-medium text-slate-100">ChoucaDev Studios</span>
+        en matière de protection des données personnelles, conformément au Règlement Général sur la Protection des Données (RGPD).
+      </p>
+
+      <p class="text-[11px] sm:text-xs text-slate-400">
+        Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+      </p>
+    </div>
+  </div>
+
+  {# CONTENU #}
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12">
+
+    <article
+      class="bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl shadow-black/40
+             px-5 sm:px-8 py-6 sm:py-8 space-y-10 text-sm sm:text-[15px] leading-relaxed">
+
+      {# Article 1 : responsable #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 1
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Responsable du traitement</h2>
+
+        <p>
+          Le responsable du traitement des données personnelles collectées via le site
+          <strong>ChoucaDev Studios</strong> est&nbsp;:
+        </p>
+
+        <p>
+          <strong>Loyer Jonathan EI</strong><br>
+          15 route de l’Abbaye, 91190 Gif-sur-Yvette, France<br>
+          Email&nbsp;:
+          <a href="mailto:contact@choucadev-studios.fr"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            contact@choucadev-studios.fr
+          </a>
+        </p>
+      </section>
+
+      {# Article 2 : principes #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 2
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Principes de protection des données</h2>
+
+        <p>
+          Conformément au RGPD, les traitements de données réalisés par <strong>ChoucaDev Studios</strong>
+          respectent les principes suivants&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li><strong>Licéité, loyauté et transparence</strong> : les données sont collectées de manière claire et légitime&nbsp;;</li>
+          <li><strong>Limitation des finalités</strong> : les données sont collectées pour des objectifs déterminés et légitimes&nbsp;;</li>
+          <li><strong>Minimisation des données</strong> : seules les données strictement nécessaires sont collectées&nbsp;;</li>
+          <li><strong>Exactitude</strong> : les données sont tenues à jour autant que possible&nbsp;;</li>
+          <li><strong>Limitation de la conservation</strong> : les données sont conservées pour une durée limitée et proportionnée&nbsp;;</li>
+          <li><strong>Intégrité et confidentialité</strong> : des mesures de sécurité sont mises en place pour protéger les données.</li>
+        </ul>
+      </section>
+
+      {# Article 3 : catégories & finalités #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 3
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Données concernées et finalités</h2>
+
+        <p>
+          Les catégories de données traitées (identité, coordonnées, contenu des messages, données techniques)
+          ainsi que leurs finalités (gestion des demandes, préparation de devis, suivi de la relation client,
+          sécurité du site) sont détaillées dans la
+          <a href="{{ path('legal_privacy') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            politique de confidentialité
+          </a>.
+        </p>
+      </section>
+
+      {# Article 4 : base légale #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 4
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Base légale des traitements</h2>
+
+        <p>
+          Selon les cas, les traitements de données reposent sur&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>l’<strong>exécution de mesures précontractuelles ou contractuelles</strong>&nbsp;;</li>
+          <li>l’<strong>intérêt légitime</strong> de ChoucaDev Studios (gestion de la relation client, sécurité, défense des droits)&nbsp;;</li>
+          <li>le respect d’<strong>obligations légales</strong> (dont les obligations comptables et fiscales).</li>
+        </ul>
+      </section>
+
+      {# Article 5 : durée de conservation #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 5
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Durée de conservation</h2>
+
+        <p>
+          Les durées de conservation des données (formulaire de contact, données client, données de facturation, logs techniques)
+          sont précisées dans la
+          <a href="{{ path('legal_privacy') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            politique de confidentialité
+          </a>.
+        </p>
+      </section>
+
+      {# Article 6 : destinataires #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 6
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Destinataires des données</h2>
+
+        <p>
+          Les données sont principalement destinées à <strong>Loyer Jonathan EI</strong> ainsi qu’aux prestataires
+          techniques intervenant sur le site (hébergement, e-mails, sauvegardes), dans la limite de ce qui est
+          strictement nécessaire à l’exécution de leurs missions.
+        </p>
+
+        <p>
+          Les données ne sont ni vendues, ni louées à des tiers.
+        </p>
+      </section>
+
+      {# Article 7 : droits des utilisateurs #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 7
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Vos droits sur vos données</h2>
+
+        <p>
+          En application du RGPD et de la loi «&nbsp;Informatique et Libertés&nbsp;», vous disposez notamment des droits suivants&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>Droit d’accès à vos données&nbsp;;</li>
+          <li>Droit de rectification&nbsp;;</li>
+          <li>Droit d’effacement (dans les limites prévues par la loi)&nbsp;;</li>
+          <li>Droit d’opposition&nbsp;;</li>
+          <li>Droit à la limitation du traitement&nbsp;;</li>
+          <li>Droit à la portabilité, lorsque cela est applicable.</li>
+        </ul>
+
+        <p>
+          Pour exercer ces droits, vous pouvez contacter&nbsp;:
+          <a href="mailto:contact@choucadev-studios.fr"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            contact@choucadev-studios.fr
+          </a>.
+        </p>
+
+        <p>
+          Vous disposez également du droit d’introduire une réclamation auprès de la CNIL
+          (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer"
+              class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            cnil.fr
+          </a>).
+        </p>
+      </section>
+
+      {# Article 8 : cookies #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 8
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Cookies et traceurs</h2>
+
+        <p>
+          Les informations détaillées relatives aux cookies (types de cookies utilisés, finalités, durée de conservation,
+          paramétrage) sont disponibles sur la page dédiée&nbsp;:
+          <a href="{{ path('legal_cookies') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            Cookies
+          </a>.
+        </p>
+      </section>
+
+      {# Article 9 : sécurité #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 9
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Sécurité des données</h2>
+
+        <p>
+          Des mesures techniques et organisationnelles appropriées sont mises en œuvre pour protéger les données
+          contre la perte, l’accès non autorisé, la divulgation ou la modification.
+        </p>
+
+        <p>
+          Aucun système n’étant totalement infaillible, une vigilance partagée reste néanmoins nécessaire
+          lors de toute utilisation d’Internet.
+        </p>
+      </section>
+
+    </article>
+
+  </div>
+</section>
+{% endblock %}

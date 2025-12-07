@@ -4,12 +4,12 @@
    SEO : titre + meta description
    ======================== #}
 {% block title %}
-  ChoucaDev Studios — Création de sites vitrines professionnels à Gif-sur-Yvette (Essonne, Île-de-France)
+  ChoucaDev Studios — Création de sites vitrines professionnels à Gif-sur-Yvette (Essonne)
 {% endblock %}
 
 {% block meta_description %}
   ChoucaDev Studios, studio web basé à Gif-sur-Yvette en Essonne, conçoit des sites vitrines professionnels,
-  modernes et optimisés SEO pour les entreprises, indépendants et associations en Île-de-France et partout en France.
+  modernes, sécurisés et optimisés SEO pour les entreprises, indépendants et associations en Île-de-France et partout en France.
 {% endblock %}
 
 {% block body %}
@@ -17,20 +17,20 @@
 {# ========================
    HERO
    ======================== #}
-<section class="relative overflow-hidden" aria-labelledby="hero-title">
+<section class="relative overflow-hidden" aria-labelledby="hero-title hero-subtitle">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
     <div class="grid lg:grid-cols-2 gap-10 items-center">
 
       {# Texte à gauche #}
       <div>
-        <p class="text-sm font-semibold text-cyan-400 mb-3">
+        <p id="hero-subtitle" class="text-sm font-semibold text-cyan-400 mb-3">
           Studio digital &amp; web en Île-de-France
         </p>
 
         <h1 id="hero-title"
             class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
           Création de <span class="text-cyan-400">sites vitrines professionnels</span><br>
-          pour développer votre activité.
+          pensés pour vos objectifs.
         </h1>
 
         <p class="text-slate-300 text-sm sm:text-base max-w-xl mb-8">
@@ -38,13 +38,13 @@
           <strong>sites vitrines modernes, rapides et sécurisés</strong>, destinés aux entreprises,
           indépendants et associations en Essonne et en Île-de-France.
           Chaque site est conçu pour être <strong>performant</strong>, <strong>responsive</strong>
-          et <strong>optimisé SEO</strong> afin d’améliorer votre visibilité en ligne.
+          et <strong>optimisé SEO</strong> afin d’améliorer durablement votre visibilité en ligne.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
           <a href="{{ path('contact') }}"
              class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30"
-             aria-label="Demander un devis gratuit pour la création d’un site vitrine">
+             aria-label="Demander un devis gratuit pour la création d’un site vitrine avec ChoucaDev Studios">
             Demander un devis gratuit
           </a>
 
@@ -55,8 +55,21 @@
         </div>
 
         <p class="mt-4 text-[11px] text-slate-400">
-          Basé en Essonne (91), à proximité de Paris — prestation possible dans toute la France.
+          Basé en Essonne (91), à proximité de Paris — prestations possibles dans toute la France (à distance ou sur place).
         </p>
+
+        {# Petit bloc de preuve sociale #}
+        <div class="mt-5 flex flex-wrap items-center gap-3 text-[11px] text-slate-400">
+          <span class="inline-flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Développement sur-mesure (Symfony &amp; Tailwind CSS)
+          </span>
+          <span class="hidden sm:inline-block text-slate-600">•</span>
+          <span class="inline-flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Accompagnement de la réflexion à la mise en ligne
+          </span>
+        </div>
       </div>
 
       {# Carte arguments à droite #}
@@ -78,7 +91,7 @@
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
-              <span><strong>SEO optimisé</strong> dès la conception (structure, vitesse, balises, performance technique).</span>
+              <span><strong>SEO optimisé dès la conception</strong> : structure, vitesse, balises, performance technique.</span>
             </li>
             <li class="flex gap-2">
               <span class="mt-0.5 text-cyan-400">✔</span>
@@ -183,7 +196,7 @@
     </h2>
 
     <p class="text-slate-300 text-sm sm:text-base mb-6">
-      Vous souhaitez créer un site vitrine, moderniser un site existant ou améliorer votre présence en ligne ?
+      Vous souhaitez créer un site vitrine, moderniser un site existant ou améliorer votre présence en ligne&nbsp;?
       Présentez-moi votre projet : je vous proposerai une solution adaptée à vos objectifs,
       à votre activité et à votre localisation (Essonne, Île-de-France ou à distance).
     </p>

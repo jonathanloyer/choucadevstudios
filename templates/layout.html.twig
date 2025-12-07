@@ -6,7 +6,9 @@
     {# ----------------------------
        TITRE & META DESCRIPTION
        ---------------------------- #}
-    <title>{% block title %}ChoucaDev Studios — Studio digital &amp; web en Île-de-France{% endblock %}</title>
+    <title>
+      {% block title %}ChoucaDev Studios — Studio digital &amp; web en Île-de-France{% endblock %}
+    </title>
 
     {# Description par défaut, surchargeable dans chaque page #}
     <meta name="description" content="{% block meta_description %}ChoucaDev Studios accompagne les entreprises et indépendants pour la création de sites vitrines, le développement web &amp; mobile, le web design et le SEO en Île-de-France.{% endblock %}">
@@ -22,9 +24,8 @@
     {% set seo_title = block('title')|striptags %}
     {% set seo_description = block('meta_description')|striptags %}
     {% set seo_url = app.request is defined and app.request ? app.request.uri : '' %}
-    {% set seo_image = asset('images/og-default.webp') %} {# remplace par ton image de partage #}
+    {% set seo_image = asset('images/og-default.webp') %}
 
-    {# Open Graph (Facebook, LinkedIn…) #}
     <meta property="og:site_name" content="ChoucaDev Studios">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ seo_title }}">
@@ -35,21 +36,18 @@
     <meta property="og:image" content="{{ seo_image }}">
     <meta property="og:locale" content="fr_FR">
 
-    {# Twitter Cards #}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ seo_title }}">
     <meta name="twitter:description" content="{{ seo_description }}">
     <meta name="twitter:image" content="{{ seo_image }}">
 
-    {# Canonical (évite le contenu dupliqué) #}
     {% if seo_url %}
       <link rel="canonical" href="{{ seo_url }}">
     {% endif %}
 
     {# ----------------------------
-       META GÉO (facultatif mais OK)
+       META GÉO
        ---------------------------- #}
-    {# À ajuster si l’adresse de ChoucaDev change #}
     <meta name="geo.region" content="FR-91">
     <meta name="geo.placename" content="Gif-sur-Yvette, Île-de-France, France">
     <meta name="geo.position" content="48.701;2.137">
@@ -71,7 +69,6 @@
 
     {# ----------------------------
        DONNÉES STRUCTURÉES (JSON-LD)
-       À adapter : téléphone, URL finale…
        ---------------------------- #}
     {% if app.request is defined and app.request %}
       <script type="application/ld+json">
@@ -90,17 +87,16 @@
         },
         "areaServed": {
           "@type": "AdministrativeArea",
-          "name": "Île-de-France"
+          "name": 'Île-de-France'
         },
         "sameAs": [
-          "https://www.facebook.com/", 
+          "https://www.facebook.com/",
           "https://www.instagram.com/",
           "https://www.linkedin.com/"
         ]
       }
       </script>
     {% endif %}
-
   </head>
 
   <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
@@ -111,9 +107,10 @@
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
       <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
 
-        {# Logo + lien vers accueil (toujours à gauche) #}
+        {# Logo + lien vers accueil #}
         <a href="{{ path('home') }}" class="flex items-center gap-3 shrink-0">
-          <img src="{{ asset('images/logo.png') }}" alt="Logo de ChoucaDev Studios"
+          <img src="{{ asset('images/logo.png') }}"
+               alt="Logo de ChoucaDev Studios"
                class="w-10 h-10 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_12px_rgba(0,200,255,0.6)]">
 
           <span class="flex flex-col leading-tight">
@@ -126,48 +123,26 @@
           </span>
         </a>
 
-        {# Bloc de droite : nav + compte + burger #}
+        {# Navigation principale #}
         <div class="flex items-center gap-6">
 
-          {# MENU DESKTOP (>= md) #}
           <nav class="hidden md:block text-sm" aria-label="Navigation principale">
             <ul class="flex gap-6 items-center">
-              <li>
-                <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">
-                  Accueil
-                </a>
-              </li>
-              <li>
-                <a href="{{ path('services') }}" class="hover:text-cyan-300 transition">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="{{ path('contact') }}" class="hover:text-cyan-300 transition">
-                  Contact
-                </a>
-              </li>
+              <li><a href="{{ path('home') }}" class="hover:text-cyan-300 transition">Accueil</a></li>
+              <li><a href="{{ path('services') }}" class="hover:text-cyan-300 transition">Services</a></li>
+              <li><a href="{{ path('contact') }}" class="hover:text-cyan-300 transition">Contact</a></li>
 
-              {# ➕ Lien Tableau de bord (seulement si connecté) #}
               {% if app.user %}
-                <li>
-                  <a href="{{ path('app_dashboard_redirect') }}" class="hover:text-cyan-300 transition">
-                    Tableau de bord
-                  </a>
-                </li>
+                <li><a href="{{ path('app_dashboard_redirect') }}" class="hover:text-cyan-300 transition">Tableau de bord</a></li>
               {% endif %}
             </ul>
           </nav>
 
-          {# LIENS COMPTE (>= md) #}
+          {# Liens compte #}
           <nav class="hidden md:block text-xs sm:text-sm" aria-label="Navigation compte">
             <ul class="flex items-center gap-3">
               {% if app.user %}
-                <li>
-                  <a href="{{ path('profile') }}" class="hover:text-cyan-300 transition">
-                    Mon compte
-                  </a>
-                </li>
+                <li><a href="{{ path('profile') }}" class="hover:text-cyan-300 transition">Mon compte</a></li>
                 <li>
                   <a href="{{ path('app_logout') }}"
                      class="px-3 py-1 rounded-full border border-slate-600 hover:border-cyan-400 hover:text-cyan-300 transition">
@@ -175,11 +150,7 @@
                   </a>
                 </li>
               {% else %}
-                <li>
-                  <a href="{{ path('app_register') }}" class="hover:text-cyan-300 transition">
-                    Inscription
-                  </a>
-                </li>
+                <li><a href="{{ path('app_register') }}" class="hover:text-cyan-300 transition">Inscription</a></li>
                 <li>
                   <a href="{{ path('app_login') }}"
                      class="px-3 py-1 rounded-full border border-cyan-400 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 transition">
@@ -190,7 +161,7 @@
             </ul>
           </nav>
 
-          {# BOUTON BURGER (mobile < md) #}
+          {# BOUTON BURGER #}
           <button id="nav-toggle"
                   class="md:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-700 text-slate-200 hover:border-cyan-400 hover:text-cyan-300"
                   aria-label="Ouvrir le menu"
@@ -202,58 +173,35 @@
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
           </button>
+
         </div>
       </div>
 
-      {# MENU MOBILE (< md) : nav + compte #}
+      {# MENU MOBILE #}
       <nav id="mobile-nav" class="md:hidden hidden border-t border-slate-800 bg-slate-900/95" aria-label="Navigation mobile">
         <div class="max-w-6xl mx-auto px-4 py-3 text-sm">
           <ul class="flex flex-col gap-2">
-            <li>
-              <a href="{{ path('home') }}" class="block py-1 hover:text-cyan-300 transition">
-                Accueil
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('services') }}" class="block py-1 hover:text-cyan-300 transition">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('contact') }}" class="block py-1 hover:text-cyan-300 transition">
-                Contact
-              </a>
-            </li>
+            <li><a href="{{ path('home') }}" class="block py-1 hover:text-cyan-300 transition">Accueil</a></li>
+            <li><a href="{{ path('services') }}" class="block py-1 hover:text-cyan-300 transition">Services</a></li>
+            <li><a href="{{ path('contact') }}" class="block py-1 hover:text-cyan-300 transition">Contact</a></li>
 
-            {# ➕ Lien Tableau de bord en mobile aussi (si connecté) #}
             {% if app.user %}
-              <li>
-                <a href="{{ path('app_dashboard_redirect') }}" class="block py-1 hover:text-cyan-300 transition">
-                  Tableau de bord
-                </a>
-              </li>
+              <li><a href="{{ path('app_dashboard_redirect') }}" class="block py-1 hover:text-cyan-300 transition">Tableau de bord</a></li>
             {% endif %}
 
             <li class="mt-2 border-t border-slate-700 pt-2">
               {% if app.user %}
-                <a href="{{ path('profile') }}" class="block py-1 hover:text-cyan-300 transition">
-                  Mon compte
-                </a>
-                <a href="{{ path('app_logout') }}" class="block py-1 hover:text-cyan-300 transition">
-                  Déconnexion
-                </a>
+                <a href="{{ path('profile') }}" class="block py-1 hover:text-cyan-300 transition">Mon compte</a>
+                <a href="{{ path('app_logout') }}" class="block py-1 hover:text-cyan-300 transition">Déconnexion</a>
               {% else %}
-                <a href="{{ path('app_register') }}" class="block py-1 hover:text-cyan-300 transition">
-                  Inscription
-                </a>
-                <a href="{{ path('app_login') }}" class="block py-1 hover:text-cyan-300 transition">
-                  Se connecter
-                </a>
+                <a href="{{ path('app_register') }}" class="block py-1 hover:text-cyan-300 transition">Inscription</a>
+                <a href="{{ path('app_login') }}" class="block py-1 hover:text-cyan-300 transition">Se connecter</a>
               {% endif %}
             </li>
           </ul>
         </div>
       </nav>
+
     </header>
 
     {# ==========================
@@ -263,49 +211,418 @@
       {% block body %}{% endblock %}
     </main>
 
+
+    {# ==========================
+       BANDEAU COOKIES / CMP
+       ========================== #}
+    <div
+      id="cookie-banner"
+      class="fixed inset-x-4 bottom-4 z-40 max-w-2xl mx-auto
+             bg-slate-900 border border-slate-700 rounded-2xl
+             shadow-xl shadow-black/40 px-4 py-4 sm:px-6 sm:py-5
+             flex flex-col sm:flex-row sm:items-center gap-3
+             text-xs sm:text-sm text-slate-100 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-banner-title"
+    >
+      <div class="flex-1 space-y-1">
+        <p id="cookie-banner-title" class="font-semibold text-sm sm:text-base">
+          Votre confidentialité, nos cookies.
+        </p>
+        <p class="text-[11px] sm:text-xs text-slate-300">
+          Nous utilisons des cookies nécessaires au bon fonctionnement du site et, avec votre accord,
+          des cookies de mesure d’audience et marketing.
+        </p>
+        <p class="text-[11px] sm:text-xs text-slate-400">
+          Vous pouvez modifier vos choix à tout moment sur la page
+          <a href="{{ path('legal_cookies') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            Cookies
+          </a>.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0 flex gap-2 sm:flex-col">
+        <button
+          type="button"
+          id="cookie-accept-all"
+          class="px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium
+                 bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition"
+        >
+          Tout accepter
+        </button>
+        <button
+          type="button"
+          id="cookie-decline-all"
+          class="px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium
+                 border border-slate-600 text-slate-200 hover:border-slate-400 transition"
+        >
+          Tout refuser
+        </button>
+        <button
+          type="button"
+          id="cookie-customize"
+          class="px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium
+                 border border-cyan-500 text-cyan-300 hover:bg-cyan-500/10 transition"
+        >
+          Personnaliser
+        </button>
+      </div>
+    </div>
+
+    {# MODALE DE PRÉFÉRENCES COOKIES #}
+    <div
+      id="cookie-modal-backdrop"
+      class="fixed inset-0 z-40 bg-black/70 hidden items-center justify-center px-4"
+      aria-hidden="true"
+    >
+      <div class="max-w-xl w-full bg-slate-950 border border-slate-700 rounded-2xl shadow-2xl shadow-black/60 px-5 py-5 sm:px-7 sm:py-7">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <h2 class="text-lg sm:text-xl font-semibold mb-1">
+              Préférences de cookies
+            </h2>
+            <p class="text-[11px] sm:text-xs text-slate-400">
+              Vous pouvez choisir les catégories de cookies que vous acceptez. Les cookies nécessaires
+              sont toujours actifs pour garantir le fonctionnement du site.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="cookie-modal-close"
+            class="text-slate-400 hover:text-slate-200"
+            aria-label="Fermer la fenêtre de préférences"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="space-y-4 text-sm sm:text-[15px]">
+
+          <div class="flex items-start justify-between gap-4 border border-slate-800 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3">
+            <div class="flex-1">
+              <p class="font-medium text-slate-100 text-sm">Cookies nécessaires</p>
+              <p class="text-[11px] sm:text-xs text-slate-400">
+                Indispensables au fonctionnement du site (sécurité, session, choix de consentement).
+                Toujours actifs.
+              </p>
+            </div>
+            <span class="text-[11px] sm:text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/40">
+              Toujours actif
+            </span>
+          </div>
+
+          <div class="flex items-start justify-between gap-4 border border-slate-800 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3">
+            <div class="flex-1">
+              <p class="font-medium text-slate-100 text-sm">Statistiques</p>
+              <p class="text-[11px] sm:text-xs text-slate-400">
+                Mesure d’audience anonyme (par exemple Google Analytics) pour améliorer le site.
+              </p>
+            </div>
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="cookie-toggle-analytics" class="sr-only">
+              <span class="w-9 h-5 flex items-center bg-slate-700 rounded-full p-0.5 transition">
+                <span class="w-4 h-4 bg-slate-300 rounded-full shadow transform transition"></span>
+              </span>
+            </label>
+          </div>
+
+          <div class="flex items-start justify-between gap-4 border border-slate-800 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3">
+            <div class="flex-1">
+              <p class="font-medium text-slate-100 text-sm">Marketing</p>
+              <p class="text-[11px] sm:text-xs text-slate-400">
+                Outils publicitaires et de suivi (par exemple pixels réseaux sociaux).
+              </p>
+            </div>
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="cookie-toggle-marketing" class="sr-only">
+              <span class="w-9 h-5 flex items-center bg-slate-700 rounded-full p-0.5 transition">
+                <span class="w-4 h-4 bg-slate-300 rounded-full shadow transform transition"></span>
+              </span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row sm:justify-end gap-2">
+          <button
+            type="button"
+            id="cookie-save-preferences"
+            class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium
+                   bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition"
+          >
+            Enregistrer mes choix
+          </button>
+          <button
+            type="button"
+            id="cookie-modal-decline-all"
+            class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium
+                   border border-slate-600 text-slate-200 hover:border-slate-400 transition"
+          >
+            Tout refuser
+          </button>
+        </div>
+      </div>
+    </div>
+
+
     {# ==========================
        FOOTER
        ========================== #}
-    <footer class="border-t border-slate-800 bg-slate-900/90 mt-8">
-      <div class="max-w-6xl mx-auto px-4 py-6 text-xs sm:text-[13px] text-slate-400
-                  flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          &copy; {{ "now"|date("Y") }} ChoucaDev Studios — Tous droits réservés.
-        </div>
-        <div class="text-slate-500">
-          Site développé avec Symfony &amp; Tailwind CSS.
-        </div>
+    <footer class="mt-12 border-t border-slate-800 bg-slate-950/95">
+      <div class="max-w-6xl mx-auto px-4 py-6 sm:py-8 space-y-3">
+        <p class="text-[10px] sm:text-[11px] text-center text-slate-300">
+          ChoucaDev Studios — Entreprise Individuelle · Gif-sur-Yvette (91)
+        </p>
+
+        <p class="text-[11px] sm:text-xs text-center text-slate-200">
+          &copy; {{ "now"|date("Y") }} ChoucaDev Studios — Tous droits réservés
+          &nbsp;—&nbsp;
+          <a href="{{ path('legal_mentions') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+            Mentions légales
+          </a>
+          &nbsp;—&nbsp;
+          <a href="{{ path('legal_privacy') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+            Politique de confidentialité
+          </a>
+          &nbsp;—&nbsp;
+          <a href="{{ path('legal_cookies') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+            Gestion des cookies
+          </a>
+          &nbsp;—&nbsp;
+          <a href="{{ path('legal_cgu') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+            CGU
+          </a>
+          &nbsp;—&nbsp;
+          <a href="{{ path('legal_rgpd') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+            RGPD
+          </a>
+        </p>
       </div>
     </footer>
 
+
     {# ==========================
-       SCRIPT MENU BURGER
+       SCRIPTS : MENU + CMP COOKIES
        ========================== #}
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+
+        /* --------------------------
+           MENU BURGER
+        --------------------------- */
         const toggle = document.getElementById('nav-toggle');
         const mobileNav = document.getElementById('mobile-nav');
 
-        if (!toggle || !mobileNav) return;
+        if (toggle && mobileNav) {
+          toggle.addEventListener('click', () => {
+            const isHidden = mobileNav.classList.contains('hidden');
+            mobileNav.classList.toggle('hidden', !isHidden);
+            toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+          });
 
-        toggle.addEventListener('click', () => {
-          const isHidden = mobileNav.classList.contains('hidden');
-          if (isHidden) {
-            mobileNav.classList.remove('hidden');
-            toggle.setAttribute('aria-expanded', 'true');
+          window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+              mobileNav.classList.add('hidden');
+              toggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+
+
+        /* --------------------------
+           COOKIES – CMP LIGHT
+        --------------------------- */
+        const banner = document.getElementById('cookie-banner');
+        const btnAcceptAll = document.getElementById('cookie-accept-all');
+        const btnDeclineAll = document.getElementById('cookie-decline-all');
+        const btnCustomize = document.getElementById('cookie-customize');
+
+        const modalBackdrop = document.getElementById('cookie-modal-backdrop');
+        const modalClose = document.getElementById('cookie-modal-close');
+        const toggleAnalytics = document.getElementById('cookie-toggle-analytics');
+        const toggleMarketing = document.getElementById('cookie-toggle-marketing');
+        const btnSavePrefs = document.getElementById('cookie-save-preferences');
+        const btnModalDeclineAll = document.getElementById('cookie-modal-decline-all');
+
+        const CONSENT_COOKIE_NAME = 'choucadev_cookie_prefs';
+        const CONSENT_MAX_AGE = 60 * 60 * 24 * 180; // 180 jours
+
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+          return null;
+        }
+
+        function setCookie(name, value, maxAgeSeconds) {
+          document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAgeSeconds}; SameSite=Lax`;
+        }
+
+        function parseConsent() {
+          const raw = getCookie(CONSENT_COOKIE_NAME);
+          if (!raw) return null;
+          try {
+            return JSON.parse(decodeURIComponent(raw));
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function saveConsent(consent) {
+          const str = encodeURIComponent(JSON.stringify(consent));
+          setCookie(CONSENT_COOKIE_NAME, str, CONSENT_MAX_AGE);
+        }
+
+        function hideBanner() {
+          banner?.classList.add('hidden');
+        }
+
+        function showBanner() {
+          banner?.classList.remove('hidden');
+        }
+
+        function openModal() {
+          modalBackdrop?.classList.remove('hidden');
+          modalBackdrop?.classList.add('flex');
+        }
+
+        function closeModal() {
+          modalBackdrop?.classList.add('hidden');
+          modalBackdrop?.classList.remove('flex');
+        }
+
+        function syncTogglesFromConsent(consent) {
+          if (!consent) {
+            if (toggleAnalytics) toggleAnalytics.checked = false;
+            if (toggleMarketing) toggleMarketing.checked = false;
           } else {
-            mobileNav.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
+            if (toggleAnalytics) toggleAnalytics.checked = !!consent.analytics;
+            if (toggleMarketing) toggleMarketing.checked = !!consent.marketing;
+          }
+          updateToggleVisual(toggleAnalytics);
+          updateToggleVisual(toggleMarketing);
+        }
+
+        function updateToggleVisual(input) {
+          if (!input) return;
+          const track = input.nextElementSibling;
+          const thumb = track?.querySelector('span');
+          const on = input.checked;
+          if (track) {
+            track.classList.toggle('bg-cyan-500', on);
+            track.classList.toggle('bg-slate-700', !on);
+          }
+          if (thumb) {
+            thumb.classList.toggle('translate-x-4', on);
+          }
+        }
+
+        if (toggleAnalytics) {
+          toggleAnalytics.addEventListener('change', () => updateToggleVisual(toggleAnalytics));
+        }
+        if (toggleMarketing) {
+          toggleMarketing.addEventListener('change', () => updateToggleVisual(toggleMarketing));
+        }
+
+        // Fonctions à remplir plus tard quand tu ajouteras GA / pixels
+        function enableAnalytics() {
+          console.log('[Cookies] Analytics autorisés (aucun script ajouté pour le moment).');
+        }
+
+        function enableMarketing() {
+          console.log('[Cookies] Marketing autorisé (aucun script ajouté pour le moment).');
+        }
+
+        function applyConsent(consent) {
+          if (!consent) return;
+          if (consent.analytics) {
+            enableAnalytics();
+          }
+          if (consent.marketing) {
+            enableMarketing();
+          }
+        }
+
+        // Initialisation à l’arrivée sur le site
+        const existingConsent = parseConsent();
+        if (!existingConsent) {
+          showBanner();
+        } else {
+          hideBanner();
+          applyConsent(existingConsent);
+        }
+
+        // Bouton "Tout accepter"
+        btnAcceptAll?.addEventListener('click', () => {
+          const consent = {
+            necessary: true,
+            analytics: true,
+            marketing: true
+          };
+          saveConsent(consent);
+          hideBanner();
+          closeModal();
+          applyConsent(consent);
+        });
+
+        // Bouton "Tout refuser" (bandeau)
+        btnDeclineAll?.addEventListener('click', () => {
+          const consent = {
+            necessary: true,
+            analytics: false,
+            marketing: false
+          };
+          saveConsent(consent);
+          hideBanner();
+          closeModal();
+        });
+
+        // Bouton "Personnaliser"
+        btnCustomize?.addEventListener('click', () => {
+          const current = parseConsent();
+          syncTogglesFromConsent(current);
+          openModal();
+        });
+
+        // Modale : bouton fermer
+        modalClose?.addEventListener('click', () => {
+          closeModal();
+        });
+
+        // Modale : "Tout refuser"
+        btnModalDeclineAll?.addEventListener('click', () => {
+          const consent = {
+            necessary: true,
+            analytics: false,
+            marketing: false
+          };
+          saveConsent(consent);
+          hideBanner();
+          closeModal();
+        });
+
+        // Modale : "Enregistrer mes choix"
+        btnSavePrefs?.addEventListener('click', () => {
+          const consent = {
+            necessary: true,
+            analytics: !!(toggleAnalytics && toggleAnalytics.checked),
+            marketing: !!(toggleMarketing && toggleMarketing.checked)
+          };
+          saveConsent(consent);
+          hideBanner();
+          closeModal();
+          applyConsent(consent);
+        });
+
+        // Fermer la modale en cliquant en dehors
+        modalBackdrop?.addEventListener('click', (e) => {
+          if (e.target === modalBackdrop) {
+            closeModal();
           }
         });
 
-        // Quand on repasse en écran >= md, on ferme le menu mobile
-        window.addEventListener('resize', () => {
-          if (window.innerWidth >= 768) { // md
-            mobileNav.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
       });
     </script>
 

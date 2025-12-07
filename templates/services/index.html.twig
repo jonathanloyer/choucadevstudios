@@ -1,36 +1,38 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-  Services web & digitaux — ChoucaDev Studios
+  Services web & digitaux — ChoucaDev Studios (sites vitrines, contenus & identité visuelle)
 {% endblock %}
 
 {% block meta_description %}
   Découvrez les services proposés par ChoucaDev Studios : création de sites vitrines,
   développement web Symfony, création de contenu pour créateurs, identité visuelle,
-  marketing digital, projets 3D et maintenance technique, depuis l’Essonne (Île-de-France).
+  marketing digital, projets 3D et maintenance technique, depuis Gif-sur-Yvette (Essonne, Île-de-France).
 {% endblock %}
 
 {% block body %}
-<section class="py-12 sm:py-16 bg-slate-950">
+<section class="py-12 sm:py-16 bg-slate-950" aria-labelledby="services-main-title">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
 
     <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
       Nos services
     </p>
 
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
+    <h1 id="services-main-title" class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
       Services web &amp; digitaux ChoucaDev Studios
     </h1>
 
     <h2 class="text-lg font-semibold text-slate-200 mb-4">
-      Liste des services professionnels proposés
+      Une offre complète pour votre présence en ligne
     </h2>
 
     <p class="text-slate-300 text-sm sm:text-base mb-8 max-w-3xl">
       ChoucaDev Studios vous accompagne dans la création et le développement de votre présence en ligne :
       <strong>sites vitrines professionnels</strong>, contenus digitaux, identité visuelle, marketing
-      et suivi technique. <br class="hidden sm:block">
-      Cliquez sur un service pour découvrir le détail complet et les offres personnalisables.
+      et suivi technique.&nbsp;
+      <span class="hidden sm:inline">
+        Cliquez sur un service pour découvrir le détail complet et les offres personnalisables.
+      </span>
     </p>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -38,14 +40,14 @@
       {# Développement web #}
       <a href="{{ path('services_developpement_web') }}"
          class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
-         aria-label="Détail du service de développement web">
-        <h2 class="font-semibold mb-2 flex items-center justify-between">
+         aria-label="Détail du service de développement web proposé par ChoucaDev Studios">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
           Développement web
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
-        </h2>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
           Création de <strong>sites vitrines modernes</strong>, rapides, sécurisés et optimisés SEO,
-          développés avec Symfony &amp; Tailwind CSS.
+          développés avec Symfony &amp; Tailwind CSS pour une base technique solide et durable.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
           Idéal : entreprises, artisans, associations, professions libérales
@@ -55,11 +57,11 @@
       {# Création de contenu #}
       <a href="{{ path('services_creation_contenu') }}"
          class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
-         aria-label="Détail du service de création de contenu">
-        <h2 class="font-semibold mb-2 flex items-center justify-between">
+         aria-label="Détail du service de création de contenu pour créateurs et indépendants">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
           Création de contenu
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
-        </h2>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
           Accompagnement des créateurs et indépendants : vidéos, miniatures, visuels,
           textes optimisés web et stratégie de contenu pour YouTube, TikTok, Twitch et les réseaux sociaux.
@@ -72,11 +74,11 @@
       {# Visuels / marketing / 3D #}
       <a href="{{ path('services_image_marque') }}"
          class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
-         aria-label="Détail du service visuels, marketing et 3D">
-        <h2 class="font-semibold mb-2 flex items-center justify-between">
+         aria-label="Détail du service visuels, marketing et 3D pour l’image de marque">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
           Visuels, marketing &amp; 3D
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
-        </h2>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
           Création de <strong>logos</strong>, chartes graphiques, visuels publicitaires,
           montages vidéo et concepts 3D pour valoriser votre image sur tous vos supports digitaux.
@@ -89,17 +91,17 @@
       {# Hébergement & maintenance #}
       <a href="{{ path('services_maintenance') }}"
          class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col hover:border-cyan-400/70 hover:bg-slate-900 transition"
-         aria-label="Détail du service d’hébergement et maintenance">
-        <h2 class="font-semibold mb-2 flex items-center justify-between">
+         aria-label="Détail du service d’hébergement et maintenance technique">
+        <h3 class="font-semibold mb-2 flex items-center justify-between">
           Hébergement &amp; maintenance
           <span class="text-xs text-cyan-300 group-hover:translate-x-1 transition">Détails →</span>
-        </h2>
+        </h3>
         <p class="text-sm text-slate-300 mb-3">
           Suivi technique complet : mises à jour, sécurité, sauvegardes, corrections de bugs,
-          surveillance continue et accompagnement régulier.
+          surveillance continue et accompagnement régulier pour un site fiable sur le long terme.
         </p>
         <span class="text-xs text-slate-400 mt-auto">
-          Idéal : structures souhaitant un site sécurisé et maintenu sur la durée
+          Idéal : structures souhaitant un site sécurisé et maintenu dans le temps
         </span>
       </a>
 

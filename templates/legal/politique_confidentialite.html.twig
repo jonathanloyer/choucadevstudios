@@ -1,0 +1,280 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Politique de confidentialité — ChoucaDev Studios{% endblock %}
+
+{% block meta_description %}
+  Politique de confidentialité de ChoucaDev Studios (Loyer Jonathan EI) :
+  données collectées, finalités, base légale, durée de conservation, droits RGPD
+  et modalités de contact.
+{% endblock %}
+
+{% block body %}
+<section class="bg-slate-950 text-slate-100" aria-labelledby="privacy-title">
+
+  {# HERO #}
+  <div class="border-b border-slate-800 bg-slate-900/90">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+
+      <nav class="mb-4 text-xs sm:text-[13px] text-slate-400 flex items-center gap-2" aria-label="Fil d'Ariane">
+        <a href="{{ path('home') }}" class="hover:text-cyan-300 transition">Accueil</a>
+        <span class="text-slate-600">/</span>
+        <span class="text-slate-300">Politique de confidentialité</span>
+      </nav>
+
+      <h1 id="privacy-title" class="text-3xl sm:text-4xl font-semibold tracking-tight mb-3">
+        Politique de confidentialité.
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mb-2">
+        Cette politique explique comment <span class="font-medium text-slate-100">ChoucaDev Studios</span>
+        collecte, utilise et protège vos données personnelles dans le cadre de l’utilisation du site.
+      </p>
+
+      <p class="text-[11px] sm:text-xs text-slate-400">
+        Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+      </p>
+    </div>
+  </div>
+
+  {# CONTENU #}
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12">
+
+    <article
+      class="bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl shadow-black/40
+             px-5 sm:px-8 py-6 sm:py-8 space-y-10 text-sm sm:text-[15px] leading-relaxed">
+
+      {# 1. Responsable du traitement #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 1
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Qui est responsable du traitement&nbsp;?</h2>
+
+        <p>
+          Le responsable du traitement des données personnelles collectées via ce site est&nbsp;:
+        </p>
+
+        <p>
+          <strong>Loyer Jonathan EI</strong><br>
+          15 route de l’Abbaye, 91190 Gif-sur-Yvette, France<br>
+          Email&nbsp;:
+          <a href="mailto:contact@choucadev-studios.fr"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            contact@choucadev-studios.fr
+          </a>
+        </p>
+      </section>
+
+      {# 2. Données collectées #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 2
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Quelles données sont collectées&nbsp;?</h2>
+
+        <p>
+          Les données collectées dépendent de votre utilisation du site et des formulaires que vous renseignez.
+          À titre indicatif, peuvent être collectés&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>Identité&nbsp;: nom, prénom (ou nom de structure le cas échéant)&nbsp;;</li>
+          <li>Coordonnées&nbsp;: adresse email, éventuellement numéro de téléphone&nbsp;;</li>
+          <li>Contenu du message&nbsp;: informations que vous indiquez dans le formulaire de contact&nbsp;;</li>
+          <li>
+            Données techniques&nbsp;: logs serveur, adresse IP, type de navigateur,
+            uniquement à des fins de sécurité et de bon fonctionnement du site.
+          </li>
+        </ul>
+      </section>
+
+      {# 3. Finalités #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 3
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Pour quelles finalités vos données sont-elles utilisées&nbsp;?</h2>
+
+        <p>Vos données peuvent être traitées pour les finalités suivantes&nbsp;:</p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li><strong>Gestion des demandes de contact et de devis</strong> (réponse à vos messages, échanges sur votre projet)&nbsp;;</li>
+          <li><strong>Préparation et exécution d’une relation contractuelle</strong> (échanges avant devis, suivi de mission, facturation)&nbsp;;</li>
+          <li><strong>Suivi de la relation client</strong> (historiques de demandes, support, gestion administrative)&nbsp;;</li>
+          <li><strong>Sécurité et bon fonctionnement du site</strong> (journaux techniques, prévention des abus ou tentatives de fraude).</li>
+        </ul>
+      </section>
+
+      {# 4. Base légale #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 4
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Quelle est la base légale du traitement&nbsp;?</h2>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>
+            <strong>Exécution de mesures précontractuelles ou contractuelles</strong> pour la gestion des demandes
+            de contact et de devis, ainsi que pour l’exécution des prestations convenues&nbsp;;
+          </li>
+          <li>
+            <strong>Intérêt légitime</strong> pour la gestion de la relation client, la sécurité du site
+            et la défense des droits en cas de litige&nbsp;;
+          </li>
+          <li>
+            <strong>Obligations légales</strong> pour la conservation de certaines données liées à la facturation
+            et à la comptabilité.
+          </li>
+        </ul>
+      </section>
+
+      {# 5. Durée de conservation #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 5
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">
+          Combien de temps vos données sont-elles conservées&nbsp;?
+        </h2>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>
+            Données issues du formulaire de contact&nbsp;:
+            en principe jusqu’à <strong>3 ans après le dernier échange</strong>
+            ou la dernière prise de contact, sauf obligation légale plus longue&nbsp;;
+          </li>
+          <li>
+            Données comptables et de facturation&nbsp;:
+            conservées <strong>10 ans</strong>, conformément aux obligations légales françaises&nbsp;;
+          </li>
+          <li>
+            Logs techniques (sécurité)&nbsp;:
+            conservés pour des durées limitées, strictement nécessaires à la sécurité
+            et au bon fonctionnement du site.
+          </li>
+        </ul>
+      </section>
+
+      {# 6. Destinataires #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 6
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Qui peut avoir accès à vos données&nbsp;?</h2>
+
+        <p>Les données sont principalement destinées à&nbsp;:</p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li><strong>Loyer Jonathan EI</strong>, en qualité de responsable de traitement&nbsp;;</li>
+          <li>
+            L’hébergeur du site (Hostinger), pour l’hébergement, la sauvegarde et la sécurité des données&nbsp;;
+          </li>
+          <li>
+            Le cas échéant, des prestataires techniques (solution d’e-mailing, sauvegarde, outils de support),
+            dans la mesure strictement nécessaire à l’exécution de leurs missions.
+          </li>
+        </ul>
+
+        <p>
+          Vos données ne sont ni vendues ni louées à des tiers.
+        </p>
+      </section>
+
+      {# 7. Droits RGPD #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 7
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Vos droits sur vos données</h2>
+
+        <p>
+          Conformément au Règlement général sur la protection des données (RGPD)
+          et à la loi «&nbsp;Informatique et Libertés&nbsp;», vous disposez des droits suivants
+          sur vos données personnelles&nbsp;:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1 text-slate-200">
+          <li>Droit d’accès&nbsp;;</li>
+          <li>Droit de rectification&nbsp;;</li>
+          <li>Droit d’effacement (dans les limites prévues par la loi)&nbsp;;</li>
+          <li>Droit d’opposition&nbsp;;</li>
+          <li>Droit à la limitation du traitement&nbsp;;</li>
+          <li>Droit à la portabilité (dans les cas prévus par la réglementation).</li>
+        </ul>
+
+        <p>
+          Pour exercer ces droits, vous pouvez envoyer un email à&nbsp;:
+          <a href="mailto:contact@choucadev-studios.fr"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            contact@choucadev-studios.fr
+          </a>
+          en précisant votre demande et, si nécessaire, un justificatif d’identité.
+        </p>
+
+        <p>
+          Vous pouvez également introduire une réclamation auprès de la CNIL
+          (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer"
+              class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            cnil.fr
+          </a>)
+          si vous estimez que vos droits ne sont pas respectés.
+        </p>
+      </section>
+
+      {# 8. Cookies #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 8
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Cookies et traceurs</h2>
+
+        <p>
+          Pour plus d’informations sur les cookies utilisés sur ce site et sur la gestion de votre consentement,
+          vous pouvez consulter la page
+          <a href="{{ path('legal_cookies') }}"
+             class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4">
+            Cookies
+          </a>.
+        </p>
+      </section>
+
+      {# 9. Sécurité #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 9
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Sécurité</h2>
+
+        <p>
+          Des mesures techniques et organisationnelles raisonnables sont mises en œuvre
+          pour protéger vos données contre la perte, l’accès non autorisé, la divulgation
+          ou la modification.
+        </p>
+
+        <p>
+          Aucun système n’étant totalement sécurisé, une vigilance partagée reste néanmoins nécessaire
+          lors de toute communication d’informations sur Internet.
+        </p>
+      </section>
+
+      {# 10. Mise à jour #}
+      <section class="space-y-3">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-cyan-300">
+          Article 10
+        </p>
+        <h2 class="text-xl sm:text-2xl font-semibold">Mise à jour de la politique</h2>
+
+        <p>
+          La présente politique de confidentialité peut être amenée à évoluer afin de refléter
+          les modifications du site, des services proposés ou de la réglementation applicable.
+        </p>
+
+        <p>
+          En cas de changement important, une information pourra être affichée sur le site.
+        </p>
+      </section>
+
+    </article>
+  </div>
+</section>
+{% endblock %}
