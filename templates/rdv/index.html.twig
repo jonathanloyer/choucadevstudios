@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+  Prendre RDV — ChoucaDev Studios
+{% endblock %}
+
+{% block meta_description %}
+  Réservez un rendez-vous gratuit de 60 minutes avec ChoucaDev Studios : échange sur votre projet, vos objectifs et vos besoins (site vitrine, refonte, maintenance, visibilité).
+{% endblock %}
+
+{% block body %}
+<section class="py-12 sm:py-16 bg-slate-950" aria-labelledby="rdv-title">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
+
+    <p class="text-xs uppercase tracking-[0.2em] text-cyan-400 mb-2">
+      Prendre rendez-vous
+    </p>
+
+    <h1 id="rdv-title" class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
+      Réserver un échange gratuit (60 min)
+    </h1>
+
+    <p class="text-slate-300 text-sm sm:text-base mb-6">
+      Cet échange gratuit d’environ 1 heure permet de discuter de votre projet, de vos objectifs et de vos besoins
+      (site web, refonte, maintenance, visibilité en ligne).
+      Le rendez-vous peut se faire en <strong>visioconférence (Google Meet)</strong> ou par <strong>téléphone</strong>,
+      selon votre préférence indiquée lors de la réservation.
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2 mb-8">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="font-semibold mb-2">🕒 Disponibilités</h2>
+        <p class="text-sm text-slate-300">Lun–Ven / 10h–20h</p>
+        <p class="text-xs text-slate-400 mt-1">RDV possible minimum 24h à l’avance</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="font-semibold mb-2">❓ Infos demandées</h2>
+        <p class="text-sm text-slate-300">Nom, email, description du projet</p>
+        <p class="text-xs text-slate-400 mt-1">
+          Si besoin, vous pouvez aussi passer par la page
+          <a class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4" href="{{ path('contact') }}">
+            Contact
+          </a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center mb-10">
+      <a href="{{ calendar_link }}" target="_blank" rel="noopener"
+         class="inline-flex justify-center items-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-2.5 text-sm shadow-lg shadow-cyan-500/30">
+        Ouvrir le calendrier et réserver →
+      </a>
+
+      <a href="{{ path('contact') }}"
+         class="text-sm text-cyan-300 hover:text-cyan-200">
+        Je préfère envoyer un message →
+      </a>
+    </div>
+
+    {# OPTION : intégration directe (si Google te fournit un embed) #}
+    {# Si tu as un lien "Intégrer" (iframe) depuis Google Calendar, colle-le ici #}
+    {# <div class="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/40">
+      <iframe
+        src="TON_URL_IFRAME_ICI"
+        style="border:0"
+        width="100%"
+        height="720"
+        frameborder="0"
+        scrolling="no"
+        loading="lazy">
+      </iframe>
+    </div> #}
+
+  </div>
+</section>
+{% endblock %}
