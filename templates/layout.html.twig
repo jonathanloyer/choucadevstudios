@@ -87,7 +87,7 @@
         },
         "areaServed": {
           "@type": "AdministrativeArea",
-          "name": 'Île-de-France'
+          "name": "Île-de-France"
         },
         "sameAs": [
           "https://www.facebook.com/",
@@ -132,13 +132,21 @@
               <li><a href="{{ path('services') }}" class="hover:text-cyan-300 transition">Services</a></li>
               <li><a href="{{ path('contact') }}" class="hover:text-cyan-300 transition">Contact</a></li>
 
+              {# --- Prendre RDV (route interne) --- #}
+              <li>
+                <a href="{{ path('prendre_rdv') }}"
+                   class="px-3 py-1 rounded-full border border-cyan-400 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 transition">
+                  Prendre RDV
+                </a>
+              </li>
+
               {% if app.user %}
                 <li><a href="{{ path('app_dashboard_redirect') }}" class="hover:text-cyan-300 transition">Tableau de bord</a></li>
               {% endif %}
             </ul>
           </nav>
 
-          {# Liens compte #}
+          {# Liens compte (header: uniquement si connecté) #}
           <nav class="hidden md:block text-xs sm:text-sm" aria-label="Navigation compte">
             <ul class="flex items-center gap-3">
               {% if app.user %}
@@ -147,14 +155,6 @@
                   <a href="{{ path('app_logout') }}"
                      class="px-3 py-1 rounded-full border border-slate-600 hover:border-cyan-400 hover:text-cyan-300 transition">
                     Déconnexion
-                  </a>
-                </li>
-              {% else %}
-                <li><a href="{{ path('app_register') }}" class="hover:text-cyan-300 transition">Inscription</a></li>
-                <li>
-                  <a href="{{ path('app_login') }}"
-                     class="px-3 py-1 rounded-full border border-cyan-400 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 transition">
-                    Se connecter
                   </a>
                 </li>
               {% endif %}
@@ -185,19 +185,22 @@
             <li><a href="{{ path('services') }}" class="block py-1 hover:text-cyan-300 transition">Services</a></li>
             <li><a href="{{ path('contact') }}" class="block py-1 hover:text-cyan-300 transition">Contact</a></li>
 
+            {# --- Prendre RDV (route interne) --- #}
+            <li class="pt-1">
+              <a href="{{ path('prendre_rdv') }}"
+                 class="block py-2 px-3 rounded-lg border border-cyan-400 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 transition">
+                Prendre RDV
+              </a>
+            </li>
+
             {% if app.user %}
               <li><a href="{{ path('app_dashboard_redirect') }}" class="block py-1 hover:text-cyan-300 transition">Tableau de bord</a></li>
-            {% endif %}
 
-            <li class="mt-2 border-t border-slate-700 pt-2">
-              {% if app.user %}
+              <li class="mt-2 border-t border-slate-700 pt-2">
                 <a href="{{ path('profile') }}" class="block py-1 hover:text-cyan-300 transition">Mon compte</a>
                 <a href="{{ path('app_logout') }}" class="block py-1 hover:text-cyan-300 transition">Déconnexion</a>
-              {% else %}
-                <a href="{{ path('app_register') }}" class="block py-1 hover:text-cyan-300 transition">Inscription</a>
-                <a href="{{ path('app_login') }}" class="block py-1 hover:text-cyan-300 transition">Se connecter</a>
-              {% endif %}
-            </li>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -211,13 +214,13 @@
       {% block body %}{% endblock %}
     </main>
 
-
     {# ==========================
        BANDEAU COOKIES / CMP
        ========================== #}
     <div
       id="cookie-banner"
-      class="fixed inset-x-4 bottom-4 z-40 max-w-2xl mx-auto
+      class="fixed inset-x-4 bottom-4 z-50 max-w-2xl mx-auto
+             pb-[env(safe-area-inset-bottom)]
              bg-slate-900 border border-slate-700 rounded-2xl
              shadow-xl shadow-black/40 px-4 py-4 sm:px-6 sm:py-5
              flex flex-col sm:flex-row sm:items-center gap-3
@@ -366,7 +369,6 @@
       </div>
     </div>
 
-
     {# ==========================
        FOOTER
        ========================== #}
@@ -398,10 +400,26 @@
           <a href="{{ path('legal_rgpd') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
             RGPD
           </a>
+
+          {# --- Footer pro : Espace client si déconnecté, sinon Mon compte / Déconnexion --- #}
+          {% if app.user %}
+            &nbsp;—&nbsp;
+            <a href="{{ path('profile') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+              Mon compte
+            </a>
+            &nbsp;—&nbsp;
+            <a href="{{ path('app_logout') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+              Déconnexion
+            </a>
+          {% else %}
+            &nbsp;—&nbsp;
+            <a href="{{ path('app_login') }}" class="hover:text-cyan-300 hover:underline underline-offset-4 transition">
+              Espace client
+            </a>
+          {% endif %}
         </p>
       </div>
     </footer>
-
 
     {# ==========================
        SCRIPTS : MENU + CMP COOKIES
@@ -429,7 +447,6 @@
             }
           });
         }
-
 
         /* --------------------------
            COOKIES – CMP LIGHT
